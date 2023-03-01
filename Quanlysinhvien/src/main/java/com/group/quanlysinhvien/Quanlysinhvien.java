@@ -4,6 +4,8 @@
 
 package com.group.quanlysinhvien;
 
+import View.LoginFrm;
+
 /**
  *
  * @author ThinhTran
@@ -11,6 +13,8 @@ package com.group.quanlysinhvien;
 public class Quanlysinhvien {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+
+        LoginFrm login = new LoginFrm();
+        login.setVisible(true);
     }
 }

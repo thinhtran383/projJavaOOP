@@ -21,6 +21,7 @@ public class MainFrm extends javax.swing.JFrame  implements ActionListener{
         counter = 0;
         showCounter();
         btnUp.addActionListener(this);
+        btnClose.addActionListener(this);
     }
 
     /**
@@ -35,7 +36,7 @@ public class MainFrm extends javax.swing.JFrame  implements ActionListener{
         laybelCounter = new javax.swing.JLabel();
         btnUp = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnClose = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -48,8 +49,8 @@ public class MainFrm extends javax.swing.JFrame  implements ActionListener{
         jButton2.setMnemonic('D');
         jButton2.setText("Down");
 
-        jButton3.setMnemonic('C');
-        jButton3.setText("Close");
+        btnClose.setMnemonic('C');
+        btnClose.setText("Close");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -65,7 +66,7 @@ public class MainFrm extends javax.swing.JFrame  implements ActionListener{
                 .addGap(142, 142, 142)
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3)
+                .addComponent(btnClose)
                 .addGap(24, 24, 24))
         );
         layout.setVerticalGroup(
@@ -77,7 +78,7 @@ public class MainFrm extends javax.swing.JFrame  implements ActionListener{
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnUp)
                     .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(btnClose))
                 .addGap(110, 110, 110))
         );
 
@@ -120,9 +121,9 @@ public class MainFrm extends javax.swing.JFrame  implements ActionListener{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnClose;
     private javax.swing.JButton btnUp;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel laybelCounter;
     // End of variables declaration//GEN-END:variables
 
@@ -135,6 +136,10 @@ public class MainFrm extends javax.swing.JFrame  implements ActionListener{
         if(ae.getSource().equals(btnUp)){
             counter++;
             showCounter();
+        }
+        
+        if(ae.getSource().equals(btnClose)){
+            dispose();
         }
     }
 }

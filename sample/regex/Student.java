@@ -14,7 +14,8 @@ public class Student {
         this.major = major;
     }
 
-    public Student() {}
+    public Student() {
+    }
 
     public Student(String id) throws InvalidStudentIdException {
         setId(id);
@@ -33,7 +34,7 @@ public class Student {
         } else {
             this.id = null;
             var msg = "Ma sinh vien khong hop le, vui long kiem tra lai";
-            throw new InvalidStudentIdException(msg, id);
+
         }
     }
 

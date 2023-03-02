@@ -1,10 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package View;
 
 import java.io.Serializable;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,7 +20,7 @@ public class Account implements Serializable {
     }
 
     public Account(String email, String password, String phoneNumber) {
-        this.email = email;
+        setEmail(email);
         this.password = password;
         this.phoneNumber = phoneNumber;
     }
@@ -29,7 +30,16 @@ public class Account implements Serializable {
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        var regex = "^[a-zA-Z][\\w-]+@([\\w]+\\.[\\w]+|[\\w]+\\.[\\w]{2,}\\.[\\w]{2,})$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(email);
+        if (matcher.matches()) {
+            this.email = email;
+        } else {
+            this.email = null;
+            var msg = "Email không hợp lệ";
+            JOptionPane.showMessageDialog(null, msg, "Thông báo", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     public String getPassword() {

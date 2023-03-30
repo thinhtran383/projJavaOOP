@@ -6,8 +6,7 @@ import javafx.fxml.FXML;
 public class LoginController {
 
     @FXML
-    private void btnLoginClick() throws IOException {
+    private void btnRegisterClick() throws IOException {
         App.setRoot("WellcomeFrm");
     }
-
 }

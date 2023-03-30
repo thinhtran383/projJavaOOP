@@ -26,12 +26,12 @@ public class LoginController {
 
     private String selectedRole = "Admin";
     private ArrayList<Account> studentAccounts = new ArrayList<>();
-    private ArrayList<Account> admiAccounts = new ArrayList<>();
+    private ArrayList<Account> adminAccounts = new ArrayList<>();
 
     @FXML
     public void initialize() { // xu ly combobox
         setCbRole();
-        initAccounts();
+        initAccount();
     }
 
     private void setCbRole() {
@@ -43,32 +43,6 @@ public class LoginController {
         });
     }
 
-    private void initAccounts() { // lay du lieu tai khoan mat khau tu db
-        if (selectedRole.equals("Admin")) {
-            ExecuteQuery query = new ExecuteQuery("Select * from adminaccount");
-            ResultSet resultSet = query.executeQuery();
-            try {
-                while (resultSet.next()) {
-                    admiAccounts.add(new Account(resultSet.getString("username"),
-                            resultSet.getString("password")));
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        } else if (selectedRole.equals("Student")) {
-            ExecuteQuery query = new ExecuteQuery("SELECT * FROM studentaccount");
-            ResultSet resultSet = query.executeQuery();
-            try {
-                while (resultSet.next()) {
-                    studentAccounts.add(new Account(resultSet.getString("username"),
-                            resultSet.getString("password")));
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
     private void showLoginError() {
         Alert alert = new Alert(AlertType.ERROR);
         alert.setTitle("Lỗi đăng nhập");
@@ -77,9 +51,36 @@ public class LoginController {
         alert.showAndWait();
     }
 
+    private void initAccount() {
+        ExecuteQuery queryAdmin = new ExecuteQuery("SELECT * FROM adminaccount"); // lay du lieu account admin tu
+                                                                                  // database
+        ResultSet resultSet = queryAdmin.executeQuery();
+        try {
+            while (resultSet.next()) {
+                adminAccounts.add(new Account(resultSet.getString("username"),
+                        resultSet.getString("password")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        ExecuteQuery queryStudent = new ExecuteQuery("SELECT * FROM studentaccount"); // lay du lieu account student tu
+                                                                                      // database
+        resultSet = queryStudent.executeQuery();
+        try {
+            while (resultSet.next()) {
+                studentAccounts.add(new Account(resultSet.getString("username"),
+                        resultSet.getString("password")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     private int checkAccount() {
-        if (txtEmail.getText().equals(admiAccounts.get(0).getUsername())
-                && txtPassword.getText().equals(admiAccounts.get(0).getPassword())) {
+
+        if (txtEmail.getText().equals(adminAccounts.get(0).getUsername())
+                && txtPassword.getText().equals(adminAccounts.get(0).getPassword())) {
             return 1;
         }
 
@@ -134,13 +135,6 @@ public class LoginController {
         // } catch (SQLException e) {
         // e.printStackTrace();
         // }
-    }
-
-    public void btnP(ActionEvent actionEvent) {
-        for (Account account : admiAccounts) {
-            System.out.println(account);
-        }
-        System.out.println("check");
     }
 
 }

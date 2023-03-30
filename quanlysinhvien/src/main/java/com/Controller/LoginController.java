@@ -24,12 +24,17 @@ public class LoginController {
     @FXML
     private ComboBox cbRole;
 
-    private String selectedRole = "";
+    private String selectedRole = "Admin";
     private ArrayList<Account> studentAccounts = new ArrayList<>();
     private ArrayList<Account> admiAccounts = new ArrayList<>();
 
     @FXML
     public void initialize() { // xu ly combobox
+        setCbRole();
+        initAccounts();
+    }
+
+    private void setCbRole() {
         cbRole.getItems().addAll("Admin", "Student");
         cbRole.getSelectionModel().selectFirst(); // set gia tri mac dinh cho combobox
         cbRole.setOnAction(e -> {
@@ -38,17 +43,9 @@ public class LoginController {
         });
     }
 
-    private void showLoginError() {
-        Alert alert = new Alert(AlertType.ERROR);
-        alert.setTitle("Lỗi đăng nhập");
-        alert.setHeaderText(null);
-        alert.setContentText("Tài khoản hoặc mật khẩu không chính xác.");
-        alert.showAndWait();
-    }
-
-    private int checkAccount() {
+    private void initAccounts() { // lay du lieu tai khoan mat khau tu db
         if (selectedRole.equals("Admin")) {
-            ExecuteQuery query = new ExecuteQuery("SELECT * FROM adminaccount");
+            ExecuteQuery query = new ExecuteQuery("Select * from adminaccount");
             ResultSet resultSet = query.executeQuery();
             try {
                 while (resultSet.next()) {
@@ -57,11 +54,6 @@ public class LoginController {
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
-            }
-
-            if (txtEmail.getText().equals(admiAccounts.get(0).getUsername())
-                    && txtPassword.getText().equals(admiAccounts.get(0).getPassword())) {
-                return 1;
             }
         } else if (selectedRole.equals("Student")) {
             ExecuteQuery query = new ExecuteQuery("SELECT * FROM studentaccount");
@@ -74,12 +66,28 @@ public class LoginController {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-
-            if (txtEmail.getText().equals(studentAccounts.get(0).getUsername())
-                    && txtPassword.getText().equals(studentAccounts.get(0).getPassword())) {
-                return 1;
-            }
         }
+    }
+
+    private void showLoginError() {
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("Lỗi đăng nhập");
+        alert.setHeaderText(null);
+        alert.setContentText("Tài khoản hoặc mật khẩu không chính xác.");
+        alert.showAndWait();
+    }
+
+    private int checkAccount() {
+        if (txtEmail.getText().equals(admiAccounts.get(0).getUsername())
+                && txtPassword.getText().equals(admiAccounts.get(0).getPassword())) {
+            return 1;
+        }
+
+        if (txtEmail.getText().equals(studentAccounts.get(0).getUsername())
+                && txtPassword.getText().equals(studentAccounts.get(0).getPassword())) {
+            return 1;
+        }
+
         return 0;
     }
 
@@ -126,6 +134,13 @@ public class LoginController {
         // } catch (SQLException e) {
         // e.printStackTrace();
         // }
+    }
+
+    public void btnP(ActionEvent actionEvent) {
+        for (Account account : admiAccounts) {
+            System.out.println(account);
+        }
+        System.out.println("check");
     }
 
 }

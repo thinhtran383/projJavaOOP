@@ -5,8 +5,8 @@ module com {
     requires transitive javafx.graphics;
     requires java.desktop;
 
-    requires org.apache.poi.poi;
-    requires org.apache.poi.ooxml;
+    // requires org.apache.poi.poi;
+    // requires org.apache.poi.ooxml;
 
     opens com to javafx.fxml;
 

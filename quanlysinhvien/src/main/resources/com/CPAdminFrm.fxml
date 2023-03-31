@@ -1,16 +1,96 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Controller.AdminController">
-   <children>
-      <Label layoutX="170.0" layoutY="57.0" text="Role Admin Login" textFill="#aa1818">
+<BorderPane prefHeight="761.0" prefWidth="886.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Controller.AdminController">
+   <top>
+      <Label prefHeight="64.0" prefWidth="260.0" text="Role Admin Login" textFill="#aa1818" BorderPane.alignment="CENTER">
          <font>
-            <Font size="33.0" />
+            <Font name="System Bold" size="29.0" />
          </font>
       </Label>
-   </children>
-</AnchorPane>
+   </top>
+   <center>
+      <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+        <tabs>
+          <Tab text="QUẢN LÝ MÔN HỌC">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Pane centerShape="false" focusTraversable="true" layoutX="14.0" layoutY="14.0" prefHeight="136.0" prefWidth="443.0">
+                           <children>
+                              <BorderPane prefHeight="136.0" prefWidth="444.0">
+                                 <top>
+                                    <Label text="Sắp xếp môn học" underline="true" BorderPane.alignment="CENTER_LEFT" />
+                                 </top>
+                                 <left>
+                                    <GridPane focusTraversable="true" prefHeight="131.0" prefWidth="441.0" scaleShape="false" BorderPane.alignment="CENTER">
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <children>
+                                          <RadioButton mnemonicParsing="false" text="Sắp xếp theo tên">
+                                             <toggleGroup>
+                                                <ToggleGroup fx:id="Sort" />
+                                             </toggleGroup>
+                                          </RadioButton>
+                                          <RadioButton mnemonicParsing="false" text="Sắp xếp số tín" toggleGroup="$Sort" GridPane.columnIndex="1" />
+                                          <RadioButton mnemonicParsing="false" text="RadioButton" toggleGroup="$Sort" GridPane.rowIndex="1" />
+                                          <RadioButton mnemonicParsing="false" text="RadioButton" toggleGroup="$Sort" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                       </children>
+                                    </GridPane>
+                                 </left>
+                              </BorderPane>
+                           </children>
+                           <effect>
+                              <Glow level="0.12" />
+                           </effect>
+                        </Pane>
+                        <TableView layoutY="273.0" prefHeight="356.0" prefWidth="886.0">
+                          <columns>
+                              <TableColumn prefWidth="75.0" text="Column X" />
+                            <TableColumn prefWidth="75.0" text="C1" />
+                            <TableColumn prefWidth="75.0" text="C2" />
+                              <TableColumn prefWidth="75.0" text="Column X" />
+                              <TableColumn prefWidth="75.0" text="Column X" />
+                          </columns>
+                        </TableView>
+                        <Button fx:id="btnShow" layoutX="660.0" layoutY="57.0" mnemonicParsing="false" onAction="#onClickLogout" text="123" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="QUẢN LÝ SINH VIÊN">
+               <content>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+               </content>
+          </Tab>
+            <Tab text="QUẢN LÝ ĐĂNG KÍ">
+               <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="548.0" prefWidth="831.0" />
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </center>
+</BorderPane>

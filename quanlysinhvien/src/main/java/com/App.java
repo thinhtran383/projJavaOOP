@@ -24,6 +24,15 @@ public class App extends Application {
         scene.setRoot(loadFXML(fxml));
     }
 
+    public static void setRootPop(String fxml, String title, boolean resizable) throws IOException {
+        Stage stage = new Stage();
+        Scene newScene = new Scene(loadFXML(fxml), 700, 500);
+        stage.setResizable(resizable);
+        stage.setScene(newScene);
+        stage.setTitle(title);
+        stage.show();
+    }
+
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();

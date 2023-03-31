@@ -11,7 +11,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.input.KeyCode;
 
 public class LoginController {
 
@@ -20,7 +19,7 @@ public class LoginController {
     @FXML
     private PasswordField txtPassword;
     @FXML
-    private ComboBox cbRole;
+    private ComboBox<String> cbRole;
 
     @FXML
     Button btnSubmit;
@@ -55,6 +54,7 @@ public class LoginController {
     private void initAccount() {
         ExecuteQuery queryAdmin = new ExecuteQuery("SELECT * FROM adminaccount"); // lay du lieu account admin tu
                                                                                   // database
+
         ResultSet resultSet = queryAdmin.executeQuery();
         try {
             while (resultSet.next()) {

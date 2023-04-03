@@ -3,9 +3,12 @@ package com.Models;
 public class Courses {
     private String courseId;
     private String courseName;
+    private int credits;
 
-    public Courses(String courseName) {
+    public Courses(String courseId, String courseName, int credits) {
+        this.courseId = courseId;
         this.courseName = courseName;
+        this.credits = credits;
     }
 
     public String getCourseId() {
@@ -20,13 +23,16 @@ public class Courses {
         return courseName;
     }
 
-    @Override
-    public String toString() {
-        return "Courses [courseId=" + courseId + ", courseName=" + courseName + "]";
-    }
-
     public void setCourseName(String courseName) {
         this.courseName = courseName;
+    }
+
+    public int getCredits() {
+        return credits;
+    }
+
+    public void setCredits(int credits) {
+        this.credits = credits;
     }
 
 }

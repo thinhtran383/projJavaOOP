@@ -1,4 +1,4 @@
-package com.Models;
+package com.utils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,7 +15,6 @@ public class ExecuteQuery {
 
     public ExecuteQuery(String query) {
         this.query = query;
-        executeQuery();
     }
 
     public static Connection getConnection() throws SQLException {
@@ -46,5 +45,16 @@ public class ExecuteQuery {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public void executeUpdate() {
+        try {
+
+            Connection connection = getConnection();
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

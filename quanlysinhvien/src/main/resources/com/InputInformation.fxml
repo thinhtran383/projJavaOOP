@@ -1,46 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="511.0" prefWidth="767.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <GridPane layoutX="1.0" layoutY="-8.0" prefHeight="408.0" prefWidth="600.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="97.88884819878473" minHeight="10.0" prefHeight="29.00000847710504" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="177.44443596733942" minHeight="10.0" prefHeight="26.666670057508668" vgrow="SOMETIMES" />
-          <RowConstraints fillHeight="false" maxHeight="259.1111043294271" minHeight="79.66664632161456" prefHeight="258.22221883138025" valignment="CENTER" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <Label text="Nhập tên:" />
-            <Label text="Nhập ngày sinh:" GridPane.rowIndex="1" />
-            <Label text="Nhập số điện thoại" GridPane.rowIndex="2" />
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="51.0" text="OK" GridPane.rowIndex="3">
-               <GridPane.margin>
-                  <Insets left="135.0" />
-               </GridPane.margin>
-            </Button>
-            <Button mnemonicParsing="false" text="Cancel" GridPane.columnIndex="1" GridPane.rowIndex="3">
-               <GridPane.margin>
-                  <Insets left="135.0" />
-               </GridPane.margin>
-            </Button>
-            <TextField prefHeight="25.0" prefWidth="293.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-         </children>
-      </GridPane>
+      <BorderPane layoutX="50.0" layoutY="22.0">
+         <center>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="411.0" prefWidth="668.0" style="-fx-border-color: black;">
+               <children>
+                  <BorderPane layoutX="54.0" layoutY="29.0">
+                     <left>
+                        <GridPane prefHeight="362.0" prefWidth="557.0" style="-fx-border-color: ;" BorderPane.alignment="CENTER">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="294.11114501953125" minWidth="10.0" prefWidth="117.44446182250977" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="454.2222154405382" minWidth="10.0" prefWidth="294.77776039971246" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints maxHeight="70.0" minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="70.0" minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="70.0" minHeight="0.0" prefHeight="70.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="70.0" minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="70.0" minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="70.0" minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="70.0" minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label text="Nhập mã sinh viên:" />
+                              <Label text="Nhập họ tên:" GridPane.rowIndex="1" />
+                              <Label text="Nhập địa chỉ:" GridPane.rowIndex="2" />
+                              <TextField prefHeight="25.0" prefWidth="287.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField GridPane.columnIndex="1" />
+                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Label text="Nhập số điện thoại: " GridPane.rowIndex="3" />
+                              <Label text="Nhập email:" GridPane.rowIndex="4" />
+                              <Label text="Ngày sinh:" GridPane.rowIndex="5" />
+                              <Label text="Giới tính:" GridPane.rowIndex="6" />
+                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <TextField prefHeight="25.0" prefWidth="385.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                 <children>
+                                    <RadioButton layoutX="26.0" layoutY="11.0" mnemonicParsing="false" text="Nam">
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="Gender" />
+                                       </toggleGroup>
+                                    </RadioButton>
+                                    <RadioButton layoutX="273.0" layoutY="11.0" mnemonicParsing="false" text="Nữ" toggleGroup="$Gender" />
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </GridPane>
+                     </left>
+                  </BorderPane>
+               </children>
+            </AnchorPane>
+         </center>
+         <top>
+            <Label text="NHẬP THÔNG TIN CÁ NHÂN" BorderPane.alignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="31.0" />
+               </font>
+            </Label>
+         </top>
+      </BorderPane>
    </children>
 </AnchorPane>

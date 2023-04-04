@@ -1,13 +1,7 @@
 package com.Controller;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import com.Models.Courses;
 import com.utils.ExecuteQuery;
 import com.utils.ExportToExcel;
@@ -21,23 +15,18 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-// import java.io.IOException;
-
-// import com.App;
-// import com.Controller.LogoutController;
-
 public class AdminController {
+    public Button btnExport;
     @FXML
-    private TableView<Courses> table;
+    private TableView<Courses> tableCourses;
     @FXML
     private TableColumn<Courses, String> idColumn;
     @FXML
     private TableColumn<Courses, String> nameColumn;
     @FXML
     private TableColumn<Courses, Integer> creditsColumn;
-    @FXML
-    Button btnExport;
-    private ObservableList<Courses> coursesList = FXCollections.observableArrayList();
+
+    private ObservableList<Courses> coursesList = FXCollections.observableArrayList(); // tao rang buoc du lieu voi bang
 
     public void initialize() {
         initCourses();
@@ -64,57 +53,66 @@ public class AdminController {
         idColumn.setCellValueFactory(new PropertyValueFactory<Courses, String>("courseId"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<Courses, String>("courseName"));
         creditsColumn.setCellValueFactory(new PropertyValueFactory<Courses, Integer>("credits"));
-        table.setItems(coursesList);
+        tableCourses.setItems(coursesList);
     }
 
     public void onPressExport(ActionEvent actionEvent) {
-        try {
-            // Tạo một workbook mới
-            XSSFWorkbook workbook = new XSSFWorkbook();
-            // Tạo một sheet mới
-            XSSFSheet sheet = workbook.createSheet("Courses");
-            // Tạo một hàng mới trong sheet
-            XSSFRow headerRow = sheet.createRow(0);
 
-            // Tạo các cell cho header
-            XSSFCell idHeader = headerRow.createCell(0);
-            idHeader.setCellValue("ID");
+        ExportToExcel.exportToExcel(tableCourses, "Courses.xlsx");
 
-            XSSFCell nameHeader = headerRow.createCell(1);
-            nameHeader.setCellValue("Name");
-
-            XSSFCell creditsHeader = headerRow.createCell(2);
-            creditsHeader.setCellValue("Credits");
-
-            // Duyệt qua các dòng của table view và thêm vào sheet
-            for (int i = 0; i < coursesList.size(); i++) {
-                Courses course = coursesList.get(i);
-                XSSFRow row = sheet.createRow(i + 1);
-
-                XSSFCell idCell = row.createCell(0);
-                idCell.setCellValue(course.getCourseId());
-
-                XSSFCell nameCell = row.createCell(1);
-                nameCell.setCellValue(course.getCourseName());
-
-                XSSFCell creditsCell = row.createCell(2);
-                creditsCell.setCellValue(course.getCredits());
-            }
-
-            // Tạo một file mới
-            FileOutputStream fileOut = new FileOutputStream("courses.xlsx");
-            workbook.write(fileOut);
-            fileOut.close();
-            workbook.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        // List<TableColumn<Courses, ?>> columns = tableCourses.getColumns();
+        // for (int i = 0; i < columns.size(); i++) {
+        // String columnName = columns.get(i).getText();
+        // System.out.println("Tiêu đề của cột: " + columnName);
+        // }
 
         // try {
-        // ExportToExcel.export(table, "courses.xlsx");
+        // // Tạo một workbook mới
+        // XSSFWorkbook workbook = new XSSFWorkbook();
+        // // Tạo một sheet mới
+        // XSSFSheet sheet = workbook.createSheet("Courses");
+        // // Tạo một hàng mới trong sheet
+        // XSSFRow headerRow = sheet.createRow(0);
+
+        // // Tạo các cell cho header
+        // XSSFCell idHeader = headerRow.createCell(0);
+        // idHeader.setCellValue(idColumn.getText());
+
+        // XSSFCell nameHeader = headerRow.createCell(1);
+        // nameHeader.setCellValue(nameColumn.getText());
+
+        // XSSFCell creditsHeader = headerRow.createCell(2);
+        // creditsHeader.setCellValue(creditsColumn.getText());
+
+        // // Duyệt qua các dòng của tableCourses view và thêm vào sheet
+        // for (int i = 0; i < coursesList.size(); i++) {
+        // Courses course = coursesList.get(i);
+        // XSSFRow row = sheet.createRow(i + 1);
+
+        // XSSFCell idCell = row.createCell(0);
+        // idCell.setCellValue(course.getCourseId());
+
+        // XSSFCell nameCell = row.createCell(1);
+        // nameCell.setCellValue(course.getCourseName());
+
+        // XSSFCell creditsCell = row.createCell(2);
+        // creditsCell.setCellValue(course.getCredits());
+        // }
+
+        // // Tạo một file mới
+        // FileOutputStream fileOut = new FileOutputStream("courses.xlsx");
+        // workbook.write(fileOut);
+        // fileOut.close();
+        // workbook.close();
         // } catch (IOException e) {
-        // // TODO Auto-generated catch block
+        // e.printStackTrace();
+        // }
+
+        // try {
+        // ExportToExcel.export(tableCourses, "courses.xlsx");
+        // } catch (IOException e) {
         // e.printStackTrace();
         // }
     }
+
 }

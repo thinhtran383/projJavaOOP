@@ -1,12 +1,13 @@
-com\Controller\StudentController.class
 com\utils\ExportToExcel.class
+com\App.class
 com\Models\Account.class
 com\Models\Student.class
-com\App.class
-com\Controller\LogoutController.class
-com\Models\ExecuteQuery.class
 module-info.class
 com\Controller\AdminController.class
 com\Models\Courses.class
+com\Controller\DashboardController.class
+com\Controller\StudentController.class
+com\Controller\LogoutController.class
+com\utils\ExecuteQuery.class
 com\Controller\LoginController.class
 com\Controller\InputInformationController.class

@@ -15,8 +15,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("RegisterFrm"), 918, 791);
-        // stage.setResizable(false);
+        scene = new Scene(loadFXML("LoginFrmBeta"), 500, 500);
         stage.setScene(scene);
         stage.show();
 
@@ -27,12 +26,6 @@ public class App extends Application {
     }
 
     public static void setRootPop(String fxml, String title, boolean resizable) throws IOException {
-        // Stage stage = new Stage();
-        // Scene newScene = new Scene(loadFXML(fxml), 700, 500);
-        // stage.setResizable(resizable);
-        // stage.setScene(newScene);
-        // stage.setTitle(title);
-        // stage.show();
 
         Stage stage = new Stage();
         Scene newScene = new Scene(loadFXML(fxml), 700, 500);

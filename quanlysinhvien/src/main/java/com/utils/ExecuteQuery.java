@@ -17,7 +17,7 @@ public class ExecuteQuery {
         this.query = query;
     }
 
-    public static Connection getConnection() throws SQLException {
+    private static Connection getConnection() throws SQLException { // tạo kết nối đến database
         return DriverManager.getConnection(jdbcUrl, username, password);
     }
 

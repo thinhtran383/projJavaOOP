@@ -2,43 +2,76 @@ package com.utils;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.List;
+
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ExportToExcel {
-    public static void export(TableView table, String filePath) throws IOException {
-
+    public static <T> void exportToExcel(TableView<T> table, String fileName) { // phuong thuc generic voi T la kieu du
+                                                                                // lieu cua table
         XSSFWorkbook workbook = new XSSFWorkbook();
-        XSSFSheet sheet = workbook.createSheet("Sheet1");
+        XSSFSheet sheet = workbook.createSheet(table.getId());
+        XSSFRow headerRow = sheet.createRow(0);
 
-        // Get the column headers
-        Row headerRow = sheet.createRow(0);
-        for (int i = 0; i < table.getColumns().size(); i++) {
-            TableColumn col = (TableColumn) table.getColumns().get(i);
-            Cell cell = headerRow.createCell(i);
-            cell.setCellValue(col.getText());
+        // Tạo header
+        List<TableColumn<T, ?>> columns = table.getColumns();
+        for (int i = 0; i < columns.size(); i++) {
+            headerRow.createCell(i).setCellValue(columns.get(i).getText());
         }
 
-        // Get the table data
-        ObservableList<ObservableList> data = table.getItems();
-        for (int i = 0; i < data.size(); i++) {
-            Row row = sheet.createRow(i + 1);
-            for (int j = 0; j < data.get(i).size(); j++) {
-                Cell cell = row.createCell(j);
-                cell.setCellValue(data.get(i).get(j).toString());
+        // Thêm dữ liệu
+        ObservableList<T> items = table.getItems();
+        for (int row = 0; row < items.size(); row++) {
+            Row sheetRow = sheet.createRow(row + 1);
+            T item = items.get(row);
+            for (int col = 0; col < columns.size(); col++) {
+                TableColumn<T, ?> column = columns.get(col);
+                Cell cell = sheetRow.createCell(col);
+                Object value = column.getCellData(item);
+                if (value != null) {
+                    switch (value.getClass().getSimpleName()) {
+                        case "String":
+                            cell.setCellValue((String) value);
+                            break;
+                        case "Double":
+                            cell.setCellValue((Double) value);
+                            break;
+                        case "Integer":
+                            cell.setCellValue((Integer) value);
+                            break;
+                        case "Boolean":
+                            cell.setCellValue((Boolean) value);
+                            break;
+                        default:
+                            cell.setCellValue(value.toString());
+                            break;
+                    }
+                }
             }
         }
 
-        // Write the workbook to a file
-        try (FileOutputStream outputStream = new FileOutputStream(filePath)) {
-            workbook.write(outputStream);
+        // Lưu file
+        try (FileOutputStream fileOut = new FileOutputStream(fileName)) {
+            workbook.write(fileOut);
+        } catch (IOException e) {
+            System.out.println("Lỗi khi lưu file");
+            e.printStackTrace();
         }
 
-        workbook.close();
+        // Đóng workbook
+        try {
+            workbook.close();
+        } catch (IOException e) {
+            System.out.println("Lỗi khi đóng tệp");
+            e.printStackTrace();
+        }
     }
+
 }

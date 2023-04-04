@@ -4,9 +4,11 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
 import com.App;
 import com.Models.Account;
 import com.utils.ExecuteQuery;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -48,6 +50,13 @@ public class LoginController {
         alert.setTitle("Lỗi đăng nhập");
         alert.setHeaderText(null);
         alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    private static void showSuccessAlert() {
+        Alert alert = new Alert(AlertType.INFORMATION, "Đăng nhập thành công");
+        alert.setTitle("Thành công");
+        alert.setHeaderText(null);
         alert.showAndWait();
     }
 
@@ -101,7 +110,8 @@ public class LoginController {
         }
 
         if (checkAccount() == 1 && selectedRole.equals("Admin")) {
-            App.setRoot("CPAdminFrm"); // khoi chay CPAdminFrm
+            showSuccessAlert();
+            App.setRoot("CPAdminFrmBeta"); // khoi chay CPAdminFrm
         } else if (checkAccount() == 1 && selectedRole.equals("Student")) {
             App.setRoot("CPStudentFrm");
         } else {

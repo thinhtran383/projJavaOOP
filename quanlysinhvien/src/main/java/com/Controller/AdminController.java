@@ -2,6 +2,8 @@ package com.Controller;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Optional;
+
 import com.Models.Courses;
 import com.utils.ExecuteQuery;
 import com.utils.ExportToExcel;
@@ -10,13 +12,27 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 public class AdminController {
-    public Button btnExport;
+    @FXML
+    private Button btnDelete;
+    @FXML
+    private Button btnExport;
+    @FXML
+    private TextField txtid;
+    @FXML
+    private TextField txtName;
+    @FXML
+    private TextField txtCredits;
     @FXML
     private TableView<Courses> tableCourses;
     @FXML
@@ -56,63 +72,95 @@ public class AdminController {
         tableCourses.setItems(coursesList);
     }
 
+    private static boolean showWarningDelete() {
+        Alert alert = new Alert(AlertType.CONFIRMATION, "Bạn có muốn xóa khóa học này?\n"
+                + "Lưu ý: Việc xóa khóa học sẽ xóa tất cả sinh viên \nđăng ký khóa học này");
+        alert.setTitle("Xác nhận");
+        alert.setHeaderText(null);
+        Optional<ButtonType> result = alert.showAndWait();
+        return result.isPresent() && result.get() == ButtonType.OK;
+    }
+
     public void onPressExport(ActionEvent actionEvent) {
 
         ExportToExcel.exportToExcel(tableCourses, "Courses.xlsx");
+    }
 
-        // List<TableColumn<Courses, ?>> columns = tableCourses.getColumns();
-        // for (int i = 0; i < columns.size(); i++) {
-        // String columnName = columns.get(i).getText();
-        // System.out.println("Tiêu đề của cột: " + columnName);
-        // }
+    public void setOnMouseClick(MouseEvent mouseEvent) {
+        Courses course = tableCourses.getSelectionModel().getSelectedItem();
+        txtid.setText(course.getCourseId());
+        txtName.setText(course.getCourseName());
+        txtCredits.setText(String.valueOf(course.getCredits()));
 
-        // try {
-        // // Tạo một workbook mới
-        // XSSFWorkbook workbook = new XSSFWorkbook();
-        // // Tạo một sheet mới
-        // XSSFSheet sheet = workbook.createSheet("Courses");
-        // // Tạo một hàng mới trong sheet
-        // XSSFRow headerRow = sheet.createRow(0);
+        if (txtid.getText().isEmpty() || txtName.getText().isEmpty() || txtCredits.getText().isEmpty()) {
+            btnDelete.setDisable(true);
+        } else {
+            btnDelete.setDisable(false);
+        }
+    }
 
-        // // Tạo các cell cho header
-        // XSSFCell idHeader = headerRow.createCell(0);
-        // idHeader.setCellValue(idColumn.getText());
+    public void onClickLogout(ActionEvent actionEvent) {
+        LogoutController.onClickLogout(actionEvent);
+    }
 
-        // XSSFCell nameHeader = headerRow.createCell(1);
-        // nameHeader.setCellValue(nameColumn.getText());
+    private void clear() {
+        txtid.clear();
+        txtName.clear();
+        txtCredits.clear();
+    }
 
-        // XSSFCell creditsHeader = headerRow.createCell(2);
-        // creditsHeader.setCellValue(creditsColumn.getText());
+    public void onClickDelete(ActionEvent actionEvent) {
 
-        // // Duyệt qua các dòng của tableCourses view và thêm vào sheet
-        // for (int i = 0; i < coursesList.size(); i++) {
-        // Courses course = coursesList.get(i);
-        // XSSFRow row = sheet.createRow(i + 1);
+        if (showWarningDelete() == false)
+            return;
+        String id = txtid.getText();
+        ExecuteQuery query = new ExecuteQuery("DELETE FROM courses WHERE course_id = '" + id + "'");
+        query.executeUpdate();
+        coursesList.remove(tableCourses.getSelectionModel().getSelectedItem());
+        clear();
+    }
 
-        // XSSFCell idCell = row.createCell(0);
-        // idCell.setCellValue(course.getCourseId());
+    public void onClickAdd(ActionEvent actionEvent) { // chua hoan thien
 
-        // XSSFCell nameCell = row.createCell(1);
-        // nameCell.setCellValue(course.getCourseName());
+        String id = txtid.getText();
+        String name = txtName.getText();
+        int credits;
+        if (txtCredits.getText().isEmpty()) {
+            credits = 0;
+        } else {
+            credits = Integer.parseInt(txtCredits.getText());
+        }
+        if (id.isEmpty() || name.isEmpty() || credits == 0) {
+            Alert alert = new Alert(AlertType.ERROR, "Vui lòng nhập đầy đủ thông tin");
+            alert.setTitle("Lỗi");
+            alert.setHeaderText(null);
+            alert.showAndWait();
+            return;
+        } else if (credits < 0) {
+            Alert alert = new Alert(AlertType.ERROR, "Số tín chỉ không hợp lệ");
+            alert.setTitle("Lỗi");
+            alert.setHeaderText(null);
+            alert.showAndWait();
+            return;
+        } // kiem tra co bi trung khong
+        for (Courses course : coursesList) {
+            if (course.getCourseId().equals(id)) {
+                Alert alert = new Alert(AlertType.ERROR, "Mã khóa học đã tồn tại");
+                alert.setTitle("Lỗi");
+                alert.setHeaderText(null);
+                alert.showAndWait();
+                return;
+            }
+        }
+        ExecuteQuery query = new ExecuteQuery(
+                "INSERT INTO courses VALUES ('" + id + "', '" + name + "', " + credits + ")");
+        query.executeUpdate();
+        coursesList.add(new Courses(id, name, credits));
+        clear();
+    }
 
-        // XSSFCell creditsCell = row.createCell(2);
-        // creditsCell.setCellValue(course.getCredits());
-        // }
-
-        // // Tạo một file mới
-        // FileOutputStream fileOut = new FileOutputStream("courses.xlsx");
-        // workbook.write(fileOut);
-        // fileOut.close();
-        // workbook.close();
-        // } catch (IOException e) {
-        // e.printStackTrace();
-        // }
-
-        // try {
-        // ExportToExcel.export(tableCourses, "courses.xlsx");
-        // } catch (IOException e) {
-        // e.printStackTrace();
-        // }
+    public void onClickClear(ActionEvent actionEvent) {
+        clear();
     }
 
 }

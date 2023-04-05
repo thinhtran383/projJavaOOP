@@ -12,9 +12,6 @@ import javafx.scene.control.ButtonType;
 
 // xu ly nut dang xuat
 public class LogoutController {
-    public void initialize() {
-
-    }
 
     private static boolean showLogoutAlert() {
         Alert alert = new Alert(AlertType.CONFIRMATION, "Bạn có muốn đăng xuất?");
@@ -27,7 +24,7 @@ public class LogoutController {
     public static void onClickLogout(ActionEvent actionEvent) {
         if (showLogoutAlert()) {
             try {
-                App.setRoot("LoginFrm");
+                App.setRoot("LoginFrmBeta");
             } catch (IOException e) {
                 System.out.println("Không tìm thấy tài nguyên");
                 e.printStackTrace();

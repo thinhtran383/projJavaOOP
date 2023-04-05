@@ -49,7 +49,6 @@ public class ExecuteQuery {
 
     public void executeUpdate() {
         try {
-
             Connection connection = getConnection();
             Statement statement = connection.createStatement();
             statement.executeUpdate(query);

@@ -16,6 +16,7 @@ module com {
     exports com;
     exports com.Controller;
     exports com.Models;
+    exports com.utils;
 
     opens com.Controller to javafx.fxml;
 }

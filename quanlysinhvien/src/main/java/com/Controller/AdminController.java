@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Optional;
 
+import com.Helper.AlertHelper;
 import com.Models.Courses;
 import com.utils.ExecuteQuery;
 import com.utils.ExportToExcel;
@@ -15,7 +16,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -25,6 +25,12 @@ import javafx.scene.input.MouseEvent;
 public class AdminController {
     @FXML
     private Button btnDelete;
+    @FXML
+    private TextField txtSearch;
+    @FXML
+    private Button btnUpdate;
+    @FXML
+    private Button btnAdd;
     @FXML
     private Button btnExport;
     @FXML
@@ -72,18 +78,18 @@ public class AdminController {
         tableCourses.setItems(coursesList);
     }
 
-    private static boolean showWarningDelete() {
-        Alert alert = new Alert(AlertType.CONFIRMATION, "Bạn có muốn xóa khóa học này?\n"
-                + "Lưu ý: Việc xóa khóa học sẽ xóa tất cả sinh viên \nđăng ký khóa học này");
-        alert.setTitle("Xác nhận");
-        alert.setHeaderText(null);
-        Optional<ButtonType> result = alert.showAndWait();
-        return result.isPresent() && result.get() == ButtonType.OK;
-    }
-
     public void onPressExport(ActionEvent actionEvent) {
+        if (coursesList.isEmpty()) {
+            AlertHelper.showAlert(AlertType.ERROR, "Lỗi", null, "Không có dữ liệu để xuất");
+            return;
+        } else {
 
-        ExportToExcel.exportToExcel(tableCourses, "Courses.xlsx");
+            if (AlertHelper.showConfirmation("Bạn có muốn xuất dữ liệu ra excel không?")) {
+                ExportToExcel.exportToExcel(tableCourses, "Courses.xlsx");
+                AlertHelper.showAlert(AlertType.INFORMATION, "Thông báo", null, "Xuất dữ liệu thành công!");
+            }
+        }
+
     }
 
     public void setOnMouseClick(MouseEvent mouseEvent) {
@@ -92,11 +98,6 @@ public class AdminController {
         txtName.setText(course.getCourseName());
         txtCredits.setText(String.valueOf(course.getCredits()));
 
-        if (txtid.getText().isEmpty() || txtName.getText().isEmpty() || txtCredits.getText().isEmpty()) {
-            btnDelete.setDisable(true);
-        } else {
-            btnDelete.setDisable(false);
-        }
     }
 
     public void onClickLogout(ActionEvent actionEvent) {
@@ -109,9 +110,11 @@ public class AdminController {
         txtCredits.clear();
     }
 
-    public void onClickDelete(ActionEvent actionEvent) {
-
-        if (showWarningDelete() == false)
+    public void onClickDelete(ActionEvent actionEvent) { // bug
+        if (tableCourses.getSelectionModel().getSelectedItem() == null)
+            return;
+        if (AlertHelper.showConfirmation("Bạn có muốn xóa khóa học này?\n"
+                + "Lưu ý: Việc xóa khóa học sẽ xóa tất cả sinh viên \nđăng ký khóa học này") == false)
             return;
         String id = txtid.getText();
         ExecuteQuery query = new ExecuteQuery("DELETE FROM courses WHERE course_id = '" + id + "'");
@@ -121,20 +124,21 @@ public class AdminController {
     }
 
     public void onClickAdd(ActionEvent actionEvent) { // chua hoan thien
-
+        int credits;
         String id = txtid.getText();
         String name = txtName.getText();
-        int credits;
-        if (txtCredits.getText().isEmpty()) {
-            credits = 0;
-        } else {
+
+        // kiem tra neu so tin chi khong la so thi se bao loi
+        try {
             credits = Integer.parseInt(txtCredits.getText());
+        } catch (NumberFormatException e) {
+            AlertHelper.showAlert(AlertType.ERROR, "Lỗi", null, "Số tín chỉ không hợp lệ");
+
+            return;
         }
+        credits = txtCredits.getText().isEmpty() ? 0 : Integer.parseInt(txtCredits.getText());
         if (id.isEmpty() || name.isEmpty() || credits == 0) {
-            Alert alert = new Alert(AlertType.ERROR, "Vui lòng nhập đầy đủ thông tin");
-            alert.setTitle("Lỗi");
-            alert.setHeaderText(null);
-            alert.showAndWait();
+            AlertHelper.showAlert(AlertType.ERROR, "Lỗi", null, "Vui lòng nhập đầy đủ thông tin");
             return;
         } else if (credits < 0) {
             Alert alert = new Alert(AlertType.ERROR, "Số tín chỉ không hợp lệ");
@@ -145,10 +149,7 @@ public class AdminController {
         } // kiem tra co bi trung khong
         for (Courses course : coursesList) {
             if (course.getCourseId().equals(id)) {
-                Alert alert = new Alert(AlertType.ERROR, "Mã khóa học đã tồn tại");
-                alert.setTitle("Lỗi");
-                alert.setHeaderText(null);
-                alert.showAndWait();
+                AlertHelper.showAlert(AlertType.ERROR, "Lỗi", null, "Mã khoá học đã tồn tại");
                 return;
             }
         }
@@ -160,6 +161,28 @@ public class AdminController {
     }
 
     public void onClickClear(ActionEvent actionEvent) {
+        clear();
+    }
+
+    public void onClickUpdate(ActionEvent actionEvent) { // chua toi uu
+        String id = txtid.getText();
+        String name = txtName.getText();
+        int credits = txtCredits.getText().isEmpty() ? 0 : Integer.parseInt(txtCredits.getText());
+        if (id.isEmpty() || name.isEmpty() || credits == 0) {
+            AlertHelper.showAlert(AlertType.ERROR, "Lỗi", null, "Vui lòng nhập đầy đủ thông tin");
+            return;
+        } else if (credits < 0) {
+            AlertHelper.showAlert(AlertType.ERROR, "Lỗi", null, "Số tín chỉ không hợp lệ");
+            return;
+        }
+        ExecuteQuery query = new ExecuteQuery(
+                "UPDATE courses SET course_name = '" + name + "', course_credit = " + credits + " WHERE course_id = '"
+                        + id + "'");
+        query.executeUpdate();
+        Courses course = tableCourses.getSelectionModel().getSelectedItem();
+        course.setCourseName(name);
+        course.setCredits(credits);
+        tableCourses.refresh();
         clear();
     }
 

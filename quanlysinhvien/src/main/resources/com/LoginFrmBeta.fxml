@@ -35,7 +35,7 @@
                         <Font name="Segoe UI" size="16.0" />
                     </font>
                 </Text>
-                <Button layoutX="317.0" layoutY="244.0" mnemonicParsing="false" onAction="#btnSubmit" prefHeight="33.0" prefWidth="123.0" text="Login" />
+                <Button defaultButton="true" layoutX="317.0" layoutY="244.0" mnemonicParsing="false" onAction="#btnSubmit" prefHeight="33.0" prefWidth="123.0" text="Login" />
             <Label layoutX="50.0" layoutY="123.0" prefHeight="25.0" prefWidth="79.0" text="Role: " textFill="#f5f3f3">
                <font>
                   <Font size="16.0" />

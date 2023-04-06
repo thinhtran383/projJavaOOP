@@ -15,7 +15,6 @@ public class AdminController {
 
     @FXML
     private void initialize() {
-        SubjectMangement subjectMangement = new SubjectMangement();
 
         Tab tab1 = tabPane.getTabs().get(0);
 
@@ -24,6 +23,17 @@ public class AdminController {
         try {
             Parent root = loader.load();
             tab1.setContent(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Tab tab2 = tabPane.getTabs().get(1);
+
+        FXMLLoader loader1 = new FXMLLoader(
+                getClass().getResource("/com/StudentMangementFrm.fxml"));
+        try {
+            Parent root = loader1.load();
+            tab2.setContent(root);
         } catch (IOException e) {
             e.printStackTrace();
         }

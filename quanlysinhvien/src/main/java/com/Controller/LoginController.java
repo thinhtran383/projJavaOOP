@@ -97,7 +97,7 @@ public class LoginController {
 
         if (txtEmail.getText().equals(studentAccounts.get(0).getUsername())
                 && txtPassword.getText().equals(studentAccounts.get(0).getPassword())) {
-            return 1;
+            return 2;
         }
 
         return 0;
@@ -112,7 +112,7 @@ public class LoginController {
         if (checkAccount() == 1 && selectedRole.equals("Admin")) {
             showSuccessAlert();
             App.setRoot("CPAdminFrmBeta"); // khoi chay CPAdminFrm
-        } else if (checkAccount() == 1 && selectedRole.equals("Student")) {
+        } else if (checkAccount() == 2 && selectedRole.equals("Student")) {
             App.setRoot("CPStudentFrm");
         } else {
             showLoginError("Sai tên đăng nhập hoặc mật khẩu");

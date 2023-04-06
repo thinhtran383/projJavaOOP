@@ -46,7 +46,7 @@ public class SubjectMangementController {
     @FXML
     private TableColumn<Courses, Integer> creditsColumn;
 
-    private ObservableList<Courses> coursesList = FXCollections.observableArrayList(); // tao rang buoc du lieu voi bang
+    private final ObservableList<Courses> coursesList = FXCollections.observableArrayList(); // tao rang buoc du lieu voi bang
 
     public void initialize() {
         initCourses();
@@ -79,7 +79,6 @@ public class SubjectMangementController {
     public void onPressExport(ActionEvent actionEvent) {
         if (coursesList.isEmpty()) {
             AlertHelper.showAlert(AlertType.ERROR, "Lỗi", null, "Không có dữ liệu để xuất");
-            return;
         } else {
 
             if (AlertHelper.showConfirmation("Bạn có muốn xuất dữ liệu ra excel không?")) {
@@ -111,8 +110,8 @@ public class SubjectMangementController {
     public void onClickDelete(ActionEvent actionEvent) { // bug
         if (tableCourses.getSelectionModel().getSelectedItem() == null)
             return;
-        if (AlertHelper.showConfirmation("Bạn có muốn xóa khóa học này?\n"
-                + "Lưu ý: Việc xóa khóa học sẽ xóa tất cả sinh viên \nđăng ký khóa học này") == false)
+        if (!AlertHelper.showConfirmation("Bạn có muốn xóa khóa học này?\n"
+                + "Lưu ý: Việc xóa khóa học sẽ xóa tất cả sinh viên \nđăng ký khóa học này"))
             return;
         String id = txtid.getText();
         ExecuteQuery query = new ExecuteQuery("DELETE FROM courses WHERE course_id ='" + id + "'");

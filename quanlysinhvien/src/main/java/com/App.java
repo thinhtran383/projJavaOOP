@@ -17,6 +17,7 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("LoginFrmBeta"), 500, 500);
         stage.setScene(scene);
+
         stage.show();
 
     }

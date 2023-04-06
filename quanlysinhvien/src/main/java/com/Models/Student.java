@@ -1,30 +1,32 @@
 package com.Models;
 
+import java.time.LocalDate;
+
 public class Student {
-    private int studentId;
+    private String studentId;
     private String studentName;
     private String studentGender;
     private String studentAddress;
     private String studentEmail;
     private String studentPhone;
-    private String studentBirthday;
+    private LocalDate studentBirthday;
 
-    public Student(int studentId, String studentName, String studentGender, String studentAddress, String studentEmail,
-            String studentPhone, String studentBirthday) {
+    public Student(String studentId, String studentName, String studentAddress, String studentPhone,
+            String studentEmail, LocalDate studentBirthday, String studentGender) {
         this.studentId = studentId;
         this.studentName = studentName;
-        this.studentGender = studentGender;
         this.studentAddress = studentAddress;
-        this.studentEmail = studentEmail;
         this.studentPhone = studentPhone;
+        this.studentEmail = studentEmail;
         this.studentBirthday = studentBirthday;
+        this.studentGender = studentGender;
     }
 
-    public int getStudentId() {
+    public String getStudentId() {
         return studentId;
     }
 
-    public void setStudentId(int studentId) {
+    public void setStudentId(String studentId) {
         this.studentId = studentId;
     }
 
@@ -68,11 +70,11 @@ public class Student {
         this.studentPhone = studentPhone;
     }
 
-    public String getStudentBirthday() {
+    public LocalDate getStudentBirthday() {
         return studentBirthday;
     }
 
-    public void setStudentBirthday(String studentBirthday) {
+    public void setStudentBirthday(LocalDate studentBirthday) {
         this.studentBirthday = studentBirthday;
     }
 

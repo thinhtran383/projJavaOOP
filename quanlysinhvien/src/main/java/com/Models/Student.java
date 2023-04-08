@@ -22,6 +22,12 @@ public class Student {
         this.studentGender = studentGender;
     }
 
+    public Student(String studentId, String studentName, LocalDate studentBirthday) {
+        this.studentId = studentId;
+        this.studentName = studentName;
+        this.studentBirthday = studentBirthday;
+    }
+
     public String getStudentId() {
         return studentId;
     }

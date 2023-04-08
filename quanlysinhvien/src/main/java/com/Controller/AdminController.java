@@ -37,5 +37,16 @@ public class AdminController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        Tab tab3 = tabPane.getTabs().get(2);
+
+        FXMLLoader loader2 = new FXMLLoader(
+                getClass().getResource("/com/EnrollmentManagementFrm.fxml"));
+        try {
+            Parent root = loader2.load();
+            tab3.setContent(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

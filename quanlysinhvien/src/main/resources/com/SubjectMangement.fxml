@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="740.0" prefWidth="898.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Controller.SubjectMangementController">
+<AnchorPane prefHeight="740.0" prefWidth="898.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Controller.SubjectManagementController">
    <children>
       <Label layoutX="15.0" layoutY="53.0" text="Subject ID:" />
       <Label layoutX="15.0" layoutY="111.0" text="Subject Name:" />
@@ -26,18 +26,16 @@
       <Button fx:id="btnAdd" defaultButton="true" layoutX="21.0" layoutY="312.0" mnemonicParsing="false" onAction="#onClickAdd" prefHeight="34.0" prefWidth="95.0" text="Add" />
       <Button fx:id="btnClear" layoutX="194.0" layoutY="312.0" mnemonicParsing="false" onAction="#onClickAdd" prefHeight="34.0" prefWidth="95.0" text="Clear" />
       <Button layoutX="194.0" layoutY="363.0" mnemonicParsing="false" onAction="#onPressExport" prefHeight="34.0" prefWidth="95.0" text="Export" />
-      <Button layoutX="789.0" layoutY="691.0" mnemonicParsing="false" onAction="#onClickLogout" prefHeight="34.0" prefWidth="95.0" text="Logout" />
       <TextField layoutX="547.0" layoutY="15.0" />
       <Text fill="#2b579a" layoutX="439.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search:" wrappingWidth="79.3828125">
          <font>
             <Font size="23.0" />
          </font>
       </Text>
-      <Line endX="-100.00003051757812" endY="589.0" layoutX="441.0" layoutY="93.0" startX="-100.0" startY="-93.0" />
-      <Line endX="-458.0" endY="505.5" layoutX="458.0" layoutY="177.0" startX="440.0" startY="505.5" />
+      <Line endX="-100.0" endY="647.0" layoutX="441.0" layoutY="93.0" startX="-100.0" startY="-93.0" />
       <AnchorPane layoutX="342.0" layoutY="61.0" prefHeight="563.0" prefWidth="476.0" style="-fx-background-color: red;">
          <children>
-            <TableView fx:id="tableCourses" onMouseClicked="#setOnMouseClick" prefHeight="619.0" prefWidth="555.0">
+            <TableView fx:id="tableCourses" onMouseClicked="#setOnMouseClick" prefHeight="678.0" prefWidth="555.0">
               <columns>
                 <TableColumn fx:id="idColumn" editable="false" prefWidth="121.0" text="Subject ID">
                      <graphic>

@@ -18,7 +18,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
-public class StudentMangementController {
+public class StudentManagementController {
     @FXML
     private TableColumn<Student, String> idColumn;
     @FXML
@@ -60,7 +60,7 @@ public class StudentMangementController {
     @FXML
     private Button btnExport;
 
-    private ObservableList<Student> studentsList = FXCollections.observableArrayList();
+    public ObservableList<Student> studentsList = FXCollections.observableArrayList();
 
     public void initialize() {
         initStudents();
@@ -136,12 +136,13 @@ public class StudentMangementController {
         }
 
         ExecuteQuery query = new ExecuteQuery(
-                "INSERT INTO students VALUES('21010005', 'Tran Thi B', '456 XYZ Street, Hanoi', '0123456789', '21010002@st.phenikaa-uni.edu.vn', '2002-02-02', 'Female')");
+                "INSERT INTO students VALUES('" + id + "', '" + name + "', '" + address + "', '" + email + "', '"
+                        + phone
+                        + "', '" + dob + "', '" + gender + "')");
 
         query.executeUpdate();
-        studentsList
-                .add(new Student(id, name, address, phone,
-                        email, dob, gender));
+        studentsList.add(new Student(id, name, address, phone,
+                email, dob, gender));
 
         clear();
 

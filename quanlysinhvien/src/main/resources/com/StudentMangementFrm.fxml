@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="740.0" prefWidth="898.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Controller.StudentMangementController">
+<AnchorPane prefHeight="740.0" prefWidth="898.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Controller.StudentManagementController">
    <children>
       <AnchorPane layoutY="82.0" prefHeight="325.0" prefWidth="898.0" style="-fx-background-color: red;">
          <children>
@@ -134,7 +134,7 @@
       <TextField fx:id="txtAddress" layoutX="424.0" layoutY="538.0" prefHeight="29.0" prefWidth="201.0" />
       <TextField fx:id="txtPhone" layoutX="424.0" layoutY="588.0" prefHeight="29.0" prefWidth="201.0" />
       <ComboBox fx:id="cbGender" layoutX="115.0" layoutY="538.0" prefHeight="27.0" prefWidth="175.0" />
-      <DatePicker fx:id="cbDob" layoutX="422.0" layoutY="437.0" promptText="Pick date" />
+      <DatePicker fx:id="cbDob" editable="false" layoutX="422.0" layoutY="437.0" promptText="Pick date" />
       <Button fx:id="btnAdd" layoutX="126.0" layoutY="661.0" mnemonicParsing="false" onAction="#onClickAdd" prefWidth="95.0" text="Add" />
       <Button fx:id="btnDelete" layoutX="258.0" layoutY="661.0" mnemonicParsing="false" onAction="#onClickDelete" prefWidth="95.0" text="Delete" />
       <Button fx:id="btnClear" layoutX="393.0" layoutY="661.0" mnemonicParsing="false" onAction="#onClickClear" prefWidth="95.0" text="Clear" />

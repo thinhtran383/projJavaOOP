@@ -20,7 +20,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
-public class SubjectMangementController {
+public class SubjectManagementController {
     @FXML
     private Button btnDelete;
     @FXML
@@ -46,7 +46,7 @@ public class SubjectMangementController {
     @FXML
     private TableColumn<Courses, Integer> creditsColumn;
 
-    private final ObservableList<Courses> coursesList = FXCollections.observableArrayList(); // tao rang buoc du lieu voi bang
+    private final ObservableList<Courses> coursesList = FXCollections.observableArrayList();
 
     public void initialize() {
         initCourses();
@@ -95,10 +95,6 @@ public class SubjectMangementController {
         txtName.setText(course.getCourseName());
         txtCredits.setText(String.valueOf(course.getCredits()));
 
-    }
-
-    public void onClickLogout(ActionEvent actionEvent) {
-        LogoutController.onClickLogout(actionEvent);
     }
 
     private void clear() {

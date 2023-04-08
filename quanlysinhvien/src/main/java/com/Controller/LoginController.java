@@ -111,7 +111,8 @@ public class LoginController {
 
         if (checkAccount() == 1 && selectedRole.equals("Admin")) {
             showSuccessAlert();
-            App.setRoot("CPAdminFrmBeta"); // khoi chay CPAdminFrm
+            // App.setRoot("CPAdminFrmBeta"); // khoi chay CPAdminFrm
+            App.setRoot("Frm");
         } else if (checkAccount() == 2 && selectedRole.equals("Student")) {
             App.setRoot("CPStudentFrm");
         } else {

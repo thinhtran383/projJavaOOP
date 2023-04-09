@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="740.0" prefWidth="898.0" xmlns="http://javafx.com/javafx/19" fx:controller="com.Controller" xmlns:fx="http://javafx.com/fxml/1">
+    <stylesheets>
+        <URL value="@css/Style.css" />
+        <URL value="@css/Metro-UI.css" />
+    </stylesheets>
+    <children>
+        <Label layoutX="30.0" layoutY="21.0" text="THÔNG TIN CƠ BẢN">
+            <font>
+                <Font name="System Bold" size="17.0" />
+            </font>
+        </Label>
+        <Line endX="783.0" layoutX="115.0" layoutY="63.0" startX="-115.0" />
+        <Line endX="786.0" layoutX="112.0" layoutY="156.0" startX="-112.0" />
+        <TableView layoutY="203.0" prefHeight="263.0" prefWidth="898.0">
+            <columns>
+                <TableColumn prefWidth="127.555535197258" text="Subject ID">
+                    <graphic>
+                        <ImageView fitHeight="28.0" fitWidth="27.0" opacity="0.49" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@img/tabel.png" />
+                            </image>
+                        </ImageView>
+                    </graphic></TableColumn>
+                <TableColumn prefWidth="274.2222595214844" text="Subject Name">
+                    <graphic>
+                        <ImageView fitHeight="28.0" fitWidth="27.0" opacity="0.49" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@img/tabel.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </TableColumn>
+                <TableColumn prefWidth="133.77777099609375" text="Attendance_grade">
+                    <graphic>
+                        <ImageView fitHeight="28.0" fitWidth="27.0" opacity="0.49" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@img/tabel.png" />
+                            </image>
+                        </ImageView>
+                    </graphic></TableColumn>
+                <TableColumn prefWidth="142.6666259765625" text="Midterm_grade">
+                    <graphic>
+                        <ImageView fitHeight="28.0" fitWidth="27.0" opacity="0.49" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@img/tabel.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </TableColumn>
+                <TableColumn prefWidth="215.111083984375" text="Final_grade">
+                    <graphic>
+                        <ImageView fitHeight="28.0" fitWidth="27.0" opacity="0.49" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@img/tabel.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </TableColumn>
+            </columns>
+        </TableView>
+        <Label layoutX="30.0" layoutY="169.0" text="BẢNG ĐIỂM">
+            <font>
+                <Font name="System Bold" size="17.0" />
+            </font>
+        </Label>
+        <GridPane layoutX="14.0" layoutY="64.0" prefHeight="66.0" prefWidth="898.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints maxHeight="81.5" minHeight="10.0" prefHeight="29.5" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="163.0" minHeight="10.0" prefHeight="36.5" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <Label text="Student ID">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Label text="Address" GridPane.columnIndex="6">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Label text="Name" GridPane.columnIndex="1">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Label text="Gender" GridPane.columnIndex="2">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Label text="Email" GridPane.columnIndex="3">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Label text="Phone Number" GridPane.columnIndex="4">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Label text="Dob" GridPane.columnIndex="5">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Label text="Label" GridPane.rowIndex="1" />
+                <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <Label text="Label" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                <Label text="Label" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                <Label text="Label" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                <Label text="Label" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                <Label text="Label" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+            </children>
+        </GridPane>
+    </children>
+</AnchorPane>

@@ -1,15 +1,13 @@
 package com.Controller;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.time.LocalDate;
 
 import com.Helper.AlertHelper;
+import com.Helper.DataManager;
 import com.Models.Student;
 import com.utils.ExecuteQuery;
 import com.utils.ExportToExcel;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -60,10 +58,12 @@ public class StudentManagementController {
     @FXML
     private Button btnExport;
 
-    public ObservableList<Student> studentsList = FXCollections.observableArrayList();
+    // public ObservableList<Student> studentsList =
+    // FXCollections.observableArrayList();
+    private ObservableList<Student> studentsList = DataManager.getStudentsList();
 
     public void initialize() {
-        initStudents();
+        // initStudents();
         showOnTable();
         setCbGender();
     }
@@ -83,26 +83,26 @@ public class StudentManagementController {
         tableStudents.setItems(studentsList);
     }
 
-    private void initStudents() {
-        ExecuteQuery query = new ExecuteQuery("SELECT * FROM students");
-        ResultSet resultSet = query.executeQuery();
-        try {
-            while (resultSet.next()) {
-                LocalDate dob = LocalDate.parse(resultSet.getString("date_of_birth"));
-                Student student = new Student(
-                        resultSet.getString("student_id"),
-                        resultSet.getString("name"),
-                        resultSet.getString("address"),
-                        resultSet.getString("phone_number"),
-                        resultSet.getString("email"),
-                        dob,
-                        resultSet.getString("gender"));
-                studentsList.add(student);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+    // private void initStudents() {
+    // ExecuteQuery query = new ExecuteQuery("SELECT * FROM students");
+    // ResultSet resultSet = query.executeQuery();
+    // try {
+    // while (resultSet.next()) {
+    // LocalDate dob = LocalDate.parse(resultSet.getString("date_of_birth"));
+    // Student student = new Student(
+    // resultSet.getString("student_id"),
+    // resultSet.getString("name"),
+    // resultSet.getString("address"),
+    // resultSet.getString("phone_number"),
+    // resultSet.getString("email"),
+    // dob,
+    // resultSet.getString("gender"));
+    // studentsList.add(student);
+    // }
+    // } catch (SQLException e) {
+    // e.printStackTrace();
+    // }
+    // }
 
     private void clear() {
         txtAddress.clear();
@@ -134,11 +134,12 @@ public class StudentManagementController {
                 return;
             }
         }
-
-        ExecuteQuery query = new ExecuteQuery(
-                "INSERT INTO students VALUES('" + id + "', '" + name + "', '" + address + "', '" + email + "', '"
-                        + phone
-                        + "', '" + dob + "', '" + gender + "')");
+        String insertSql = "INSERT INTO students (student_id, name, address, phone_number, email, date_of_birth, gender) VALUES ('"
+                +
+                id + "', '" + name + "', '" + address + "', '" + phone + "', '" + email + "', '" + dob + "', '" + gender
+                + "')";
+        ExecuteQuery query = new ExecuteQuery(insertSql);
+        query.executeUpdate();
 
         query.executeUpdate();
         studentsList.add(new Student(id, name, address, phone,
@@ -168,18 +169,21 @@ public class StudentManagementController {
 
     public void onClickUpdate(ActionEvent actionEvent) {
         String id = txtStudentId.getText();
+        String oldId = tableStudents.getSelectionModel().getSelectedItem().getStudentId();
         String name = txtName.getText();
         String address = txtAddress.getText();
         String email = txtEmail.getText();
         String phone = txtPhone.getText();
         LocalDate dob = cbDob.getValue();
         String gender = cbGender.getValue();
-
-        ExecuteQuery query = new ExecuteQuery("UPDATE students SET name = '" + name + "', address = '" + address
+        String sql = "UPDATE students SET name = '" + name + "', student_id='" + id + "', address = '" + address
                 + "', phone_number = '" + phone + "', email = '" + email + "', date_of_birth = '" + dob
-                + "', gender = '" + gender + "' WHERE student_id = '" + id + "'");
+                + "', gender = '" + gender + "' WHERE student_id = '" + oldId + "'";
+        ExecuteQuery query = new ExecuteQuery(sql);
         query.executeUpdate();
+
         Student student = tableStudents.getSelectionModel().getSelectedItem();
+        student.setStudentId(id);
         student.setStudentName(name);
         student.setStudentAddress(address);
         student.setStudentEmail(email);
@@ -187,7 +191,9 @@ public class StudentManagementController {
         student.setStudentAddress(address);
         student.setStudentBirthday(dob);
         student.setStudentGender(gender);
+
         tableStudents.refresh();
+
         AlertHelper.showAlert(AlertType.INFORMATION, "Thông báo", null, "Cập nhật thành công!");
     }
 

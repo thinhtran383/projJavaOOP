@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.App;
+import com.Helper.AlertHelper;
 import com.Models.Account;
 import com.utils.ExecuteQuery;
 
@@ -26,7 +27,7 @@ public class LoginController {
     @FXML
     Button btnSubmit;
 
-    private String selectedRole = "Admin";
+    public static String selectedRole = "Admin";
     private ArrayList<Account> studentAccounts = new ArrayList<>();
     private ArrayList<Account> adminAccounts = new ArrayList<>();
 
@@ -43,21 +44,6 @@ public class LoginController {
             selectedRole = cbRole.getSelectionModel().getSelectedItem().toString();
             System.out.println(selectedRole);
         });
-    }
-
-    private void showLoginError(String message) {
-        Alert alert = new Alert(AlertType.ERROR);
-        alert.setTitle("Lỗi đăng nhập");
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
-
-    private static void showSuccessAlert() {
-        Alert alert = new Alert(AlertType.INFORMATION, "Đăng nhập thành công");
-        alert.setTitle("Thành công");
-        alert.setHeaderText(null);
-        alert.showAndWait();
     }
 
     private void initAccount() {
@@ -105,18 +91,19 @@ public class LoginController {
 
     public void btnSubmit(ActionEvent actionEvent) throws IOException { // khi nhan nut
         if (txtEmail.getText().equals("") || txtPassword.getText().equals("")) { // neu khong nhap du thong tin bao loi
-            showLoginError("Vui lòng nhập đầy đủ thông tin");
+            // showLoginError("Vui lòng nhập đầy đủ thông tin");
+            AlertHelper.showAlert(AlertType.ERROR, "Lỗi", null, "Vui lòng nhập đầy đủ thông tin");
             return;
         }
 
         if (checkAccount() == 1 && selectedRole.equals("Admin")) {
-            showSuccessAlert();
-            // App.setRoot("CPAdminFrmBeta"); // khoi chay CPAdminFrm
+            AlertHelper.showAlert(AlertType.INFORMATION, "Thành công", null, "Đăng nhập thành công");
             App.setRoot("Frm");
         } else if (checkAccount() == 2 && selectedRole.equals("Student")) {
-            App.setRoot("CPStudentFrm");
+            AlertHelper.showAlert(AlertType.INFORMATION, "Thành công", null, "Đăng nhập thành công");
+            App.setRoot("Frm");
         } else {
-            showLoginError("Sai tên đăng nhập hoặc mật khẩu");
+            AlertHelper.showAlert(AlertType.ERROR, "Lỗi", null, "Tài khoản hoặc mật khẩu không đúng ");
         }
 
         // System.out.println("Pass: " + getPassword());

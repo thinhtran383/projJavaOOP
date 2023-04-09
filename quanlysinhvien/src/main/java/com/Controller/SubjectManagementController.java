@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.Helper.AlertHelper;
+import com.Helper.DataManager;
 import com.Models.Courses;
 import com.utils.ExecuteQuery;
 import com.utils.ExportToExcel;
@@ -46,28 +47,31 @@ public class SubjectManagementController {
     @FXML
     private TableColumn<Courses, Integer> creditsColumn;
 
-    private final ObservableList<Courses> coursesList = FXCollections.observableArrayList();
+    // private final ObservableList<Courses> coursesList =
+    // FXCollections.observableArrayList();
+
+    private ObservableList<Courses> coursesList = DataManager.getCoursesList();
 
     public void initialize() {
-        initCourses();
+        // initCourses();
         showOnTable();
     }
 
-    private void initCourses() {
-        ExecuteQuery query = new ExecuteQuery("SELECT * FROM courses");
-        ResultSet resultSet = query.executeQuery();
-        try {
-            while (resultSet.next()) {
-                Courses course = new Courses(
-                        resultSet.getString("course_id"),
-                        resultSet.getString("course_name"),
-                        resultSet.getInt("course_credit"));
-                coursesList.add(course);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+    // private void initCourses() {
+    // ExecuteQuery query = new ExecuteQuery("SELECT * FROM courses");
+    // ResultSet resultSet = query.executeQuery();
+    // try {
+    // while (resultSet.next()) {
+    // Courses course = new Courses(
+    // resultSet.getString("course_id"),
+    // resultSet.getString("course_name"),
+    // resultSet.getInt("course_credit"));
+    // coursesList.add(course);
+    // }
+    // } catch (SQLException e) {
+    // e.printStackTrace();
+    // }
+    // }
 
     private void showOnTable() {
         idColumn.setCellValueFactory(new PropertyValueFactory<Courses, String>("courseId"));
@@ -157,8 +161,9 @@ public class SubjectManagementController {
         clear();
     }
 
-    public void onClickUpdate(ActionEvent actionEvent) { // chua toi uu
+    public void onClickUpdate(ActionEvent actionEvent) {
         String id = txtid.getText();
+        String oldId = tableCourses.getSelectionModel().getSelectedItem().getCourseId();
         String name = txtName.getText();
         int credits = txtCredits.getText().isEmpty() ? 0 : Integer.parseInt(txtCredits.getText());
         if (id.isEmpty() || name.isEmpty() || credits == 0) {
@@ -168,15 +173,15 @@ public class SubjectManagementController {
             AlertHelper.showAlert(AlertType.ERROR, "Lỗi", null, "Số tín chỉ không hợp lệ");
             return;
         }
-        ExecuteQuery query = new ExecuteQuery(
-                "UPDATE courses SET course_name = '" + name + "', course_credit = " + credits
-                        + " WHERE course_id = '"
-                        + id + "'");
+        ExecuteQuery query = new ExecuteQuery("UPDATE courses SET course_id = '" + id + "', course_name = '" + name
+                + "', course_credit = " + credits + " WHERE course_id = '" + oldId + "'");
         query.executeUpdate();
         Courses course = tableCourses.getSelectionModel().getSelectedItem();
         course.setCourseName(name);
         course.setCredits(credits);
+        course.setCourseId(id);
         tableCourses.refresh();
+        AlertHelper.showAlert(AlertType.INFORMATION, "Thông báo", null, "Cập nhật dữ liệu thành công!");
         clear();
     }
 

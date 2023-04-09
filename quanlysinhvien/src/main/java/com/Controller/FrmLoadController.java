@@ -17,14 +17,24 @@ public class FrmLoadController {
 
     @FXML
     private void initialize() {
+        loadPane();
+    }
+
+    private void loadPane() {
+        String frm = "";
+        if (LoginController.selectedRole.equals("Admin")) {
+            frm = "/com/CPAdminFrmBeta.fxml";
+        } else {
+            frm = "/com/CPStudentFrm.fxml";
+        }
+
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/CPAdminFrmBeta.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(frm));
             AnchorPane adminPane = loader.load();
             pane.getChildren().add(adminPane);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     public void onClickLogout(ActionEvent actionEvent) {

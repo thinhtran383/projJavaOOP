@@ -1,4 +1,5 @@
 module com {
+
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
@@ -6,8 +7,12 @@ module com {
     requires java.desktop;
     requires java.base;
 
+    // requires javafx.swing;
+
     requires org.apache.poi.poi;
     requires org.apache.poi.ooxml;
+
+    // requires org.apache.pdfbox;
 
     // requires org.apache.logging.log4j.core;
     // requires org.apache.logging.log4j.slf4j;

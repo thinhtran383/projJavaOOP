@@ -1,15 +1,12 @@
 package com.Controller;
 
 import java.io.IOException;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.App;
 import com.Helper.AlertHelper;
 import com.Helper.DataManager;
 import com.Models.Account;
-import com.utils.ExecuteQuery;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -35,7 +32,7 @@ public class LoginController {
     @FXML
     public void initialize() { // tu dong goi khi chuong trinh chay
         setCbRole(); // xu ly combobox
-        initAccount(); // load accout admin, student tu db
+
     }
 
     private void setCbRole() {
@@ -47,48 +44,33 @@ public class LoginController {
         });
     }
 
-    private void initAccount() {
-        ExecuteQuery queryAdmin = new ExecuteQuery("SELECT * FROM adminaccount"); // lay du lieu account admin tu
-                                                                                  // database
+    // private int checkAccount() { // kiem tra account co ton tai hay khong
+    // if (txtEmail.getText().equals(adminAccounts.get(0).getUsername())
+    // && txtPassword.getText().equals(adminAccounts.get(0).getPassword())) {
+    // return 1;
+    // }
 
-        ResultSet resultSet = queryAdmin.executeQuery(); // lay tai khoan admin tu db
-        try {
-            while (resultSet.next()) { // lay du lieu theo thuoc tinh db
-                adminAccounts.add(new Account(resultSet.getString("username"),
-                        resultSet.getString("password")));
-            }
-        } catch (SQLException e) {
-            System.out.println("Không thể lấy dữ liệu từ database");
-            e.printStackTrace();
-        }
+    // if (txtEmail.getText().equals(studentAccounts.get(0).getUsername())
+    // && txtPassword.getText().equals(studentAccounts.get(0).getPassword())) {
+    // return 2;
+    // }
 
-        ExecuteQuery queryStudent = new ExecuteQuery("SELECT * FROM studentaccount"); // lay du lieu account student tu
-                                                                                      // db
-        resultSet = queryStudent.executeQuery();
-        try {
-            while (resultSet.next()) {
-                studentAccounts.add(new Account(
-                        resultSet.getString("student_id"),
-                        resultSet.getString("username"),
-                        resultSet.getString("password")));
-            }
-        } catch (SQLException e) {
-            System.out.println("Không thể lấy dữ liệu từ database");
-            e.printStackTrace();
-        }
-    }
+    // return 0;
+    // }
 
     private int checkAccount() { // kiem tra account co ton tai hay khong
-        if (txtEmail.getText().equals(adminAccounts.get(0).getUsername())
-                && txtPassword.getText().equals(adminAccounts.get(0).getPassword())) {
-            return 1;
+        String email = txtEmail.getText();
+        String password = txtPassword.getText();
+        for (Account account : adminAccounts) {
+            if (email.equals(account.getUsername()) && password.equals(account.getPassword())) {
+                return 1;
+            }
         }
-
-        if (txtEmail.getText().equals(studentAccounts.get(0).getUsername())
-                && txtPassword.getText().equals(studentAccounts.get(0).getPassword())) {
-            return 2;
+        for (Account account : studentAccounts) {
+            if (email.equals(account.getUsername()) && password.equals(account.getPassword())) {
+                return 2;
+            }
         }
-
         return 0;
     }
 

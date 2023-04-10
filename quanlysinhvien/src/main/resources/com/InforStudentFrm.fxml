@@ -7,13 +7,11 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="740.0" prefWidth="898.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Controller.InforStudentController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="790.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Controller.InforStudentController">
     <stylesheets>
         <URL value="@css/Style.css" />
         <URL value="@css/Metro-UI.css" />
@@ -24,11 +22,11 @@
                 <Font name="System Bold" size="17.0" />
             </font>
         </Label>
-        <Line endX="783.0" layoutX="115.0" layoutY="63.0" startX="-115.0" />
-        <Line endX="786.0" layoutX="112.0" layoutY="156.0" startX="-112.0" />
-        <TableView layoutY="203.0" prefHeight="263.0" prefWidth="898.0">
+        <Line endX="845.0" layoutX="115.0" layoutY="63.0" startX="-115.0" />
+        <Line endX="848.0" endY="-1.52587890625E-5" layoutX="112.0" layoutY="265.0" startX="-112.0" />
+        <TableView fx:id="tableGrades" layoutY="387.0" prefHeight="263.0" prefWidth="960.0">
             <columns>
-                <TableColumn prefWidth="127.555535197258" text="Subject ID">
+                <TableColumn fx:id="subjectIdColumn" prefWidth="127.555535197258" text="Subject ID">
                     <graphic>
                         <ImageView fitHeight="28.0" fitWidth="27.0" opacity="0.49" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -36,7 +34,7 @@
                             </image>
                         </ImageView>
                     </graphic></TableColumn>
-                <TableColumn prefWidth="274.2222595214844" text="Subject Name">
+                <TableColumn fx:id="subjectNameColumn" prefWidth="249.77784729003906" text="Subject Name">
                     <graphic>
                         <ImageView fitHeight="28.0" fitWidth="27.0" opacity="0.49" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -45,7 +43,7 @@
                         </ImageView>
                     </graphic>
                 </TableColumn>
-                <TableColumn prefWidth="133.77777099609375" text="Attendance_grade">
+                <TableColumn fx:id="attendanceColumn" prefWidth="158.6666259765625" text="Attendance_grade">
                     <graphic>
                         <ImageView fitHeight="28.0" fitWidth="27.0" opacity="0.49" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -53,7 +51,7 @@
                             </image>
                         </ImageView>
                     </graphic></TableColumn>
-                <TableColumn prefWidth="142.6666259765625" text="Midterm_grade">
+                <TableColumn fx:id="midtermColumn" prefWidth="142.6666259765625" text="Midterm_grade">
                     <graphic>
                         <ImageView fitHeight="28.0" fitWidth="27.0" opacity="0.49" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -62,7 +60,7 @@
                         </ImageView>
                     </graphic>
                 </TableColumn>
-                <TableColumn prefWidth="215.111083984375" text="Final_grade">
+                <TableColumn fx:id="finalColumn" prefWidth="277.3333740234375" text="Final_grade">
                     <graphic>
                         <ImageView fitHeight="28.0" fitWidth="27.0" opacity="0.49" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -73,69 +71,92 @@
                 </TableColumn>
             </columns>
         </TableView>
-        <Label layoutX="30.0" layoutY="169.0" text="BẢNG ĐIỂM">
+        <Label layoutX="30.0" layoutY="340.0" text="BẢNG ĐIỂM">
             <font>
                 <Font name="System Bold" size="17.0" />
             </font>
         </Label>
-        <GridPane layoutX="14.0" layoutY="64.0" prefHeight="66.0" prefWidth="898.0">
-            <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            </columnConstraints>
-            <rowConstraints>
-                <RowConstraints maxHeight="81.5" minHeight="10.0" prefHeight="29.5" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="163.0" minHeight="10.0" prefHeight="36.5" vgrow="SOMETIMES" />
-            </rowConstraints>
-            <children>
+      <VBox layoutX="14.0" layoutY="63.0" prefHeight="112.0" prefWidth="152.0">
+         <children>
                 <Label text="Student ID">
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>
                 </Label>
-                <Label text="Address" GridPane.columnIndex="6">
+                <Label fx:id="lbStudentId">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+                <Label text="Name">
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>
                 </Label>
-                <Label text="Name" GridPane.columnIndex="1">
+                <Label fx:id="lbStudentName">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+                <Label text="Gender">
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>
                 </Label>
-                <Label text="Gender" GridPane.columnIndex="2">
+                <Label fx:id="lbStudentGender">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <VBox layoutX="327.0" layoutY="63.0" prefHeight="165.0" prefWidth="280.0">
+         <children>
+            <VBox>
+               <children>
+                      <Label text="Email">
+                          <font>
+                              <Font name="System Bold" size="14.0" />
+                          </font>
+                      </Label>
+                      <Label fx:id="lbStudentEmail">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                      <Label prefHeight="20.0" prefWidth="102.0" text="Phone Number">
+                          <font>
+                              <Font name="System Bold" size="14.0" />
+                          </font>
+                      </Label>
+                      <Label fx:id="lbPhoneNumber">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                      <Label text="Dob">
+                          <font>
+                              <Font name="System Bold" size="14.0" />
+                          </font>
+                      </Label>
+                      <Label fx:id="lbDob">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+                <Label text="Address">
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>
                 </Label>
-                <Label text="Email" GridPane.columnIndex="3">
-                    <font>
-                        <Font name="System Bold" size="14.0" />
-                    </font>
-                </Label>
-                <Label text="Phone Number" GridPane.columnIndex="4">
-                    <font>
-                        <Font name="System Bold" size="14.0" />
-                    </font>
-                </Label>
-                <Label text="Dob" GridPane.columnIndex="5">
-                    <font>
-                        <Font name="System Bold" size="14.0" />
-                    </font>
-                </Label>
-                <Label fx:id="lbStudentId" GridPane.rowIndex="1" />
-                <Label fx:id="lbStudentName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                <Label fx:id="lbStudentGender" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                <Label fx:id="lbStudentEmail" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                <Label fx:id="lbPhoneNumber" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-                <Label fx:id="lbDob" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-                <Label fx:id="lbStudentAddress" GridPane.columnIndex="6" GridPane.rowIndex="1" />
-            </children>
-        </GridPane>
+                <Label fx:id="lbStudentAddress">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
     </children>
 </AnchorPane>

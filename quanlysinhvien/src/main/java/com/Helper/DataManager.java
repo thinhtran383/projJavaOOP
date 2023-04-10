@@ -16,7 +16,6 @@ public class DataManager {
     private static ObservableList<Student> studentsList = FXCollections.observableArrayList();
 
     private static DataManager instance = null;
-
     private DataManager() {
         initStudents();
         initCourses();

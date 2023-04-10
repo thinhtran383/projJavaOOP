@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="534.0" prefWidth="926.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Controller.EnrollmentManagementController">
+   <stylesheets>
+      <URL value="@css/Style.css" />
+      <URL value="@css/Metro-UI.css" />
+   </stylesheets>
+   <children>
+      <AnchorPane prefHeight="534.0" prefWidth="976.0">
+         <children>
+            <TableView fx:id="tableStudents" layoutY="14.0" onMouseClicked="#onMouseClick" prefHeight="322.0" prefWidth="954.0">
+<columns>
+                <TableColumn fx:id="studentIdColumn" prefWidth="128.4443953037262" text="Subject ID">
+                     <graphic>
+                        <ImageView fitHeight="27.0" fitWidth="28.0" opacity="0.49" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/tabel.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </TableColumn>
+                <TableColumn fx:id="nameColumn" prefWidth="120.00006103515625" text="Name">
+                     <graphic>
+                        <ImageView fitHeight="27.0" fitWidth="28.0" opacity="0.49" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/tabel.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </TableColumn>
+                  <TableColumn fx:id="dobColumn" prefWidth="195.5555419921875" text="Credits">
+                     <graphic>
+                        <ImageView fitHeight="27.0" fitWidth="28.0" opacity="0.49" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/tabel.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </TableColumn>
+              </columns>
+            </TableView>
+            <Button layoutX="47.0" layoutY="427.0" mnemonicParsing="false" text="Xem thông tin sinh viên đăng kí " />
+            <Button layoutX="328.0" layoutY="427.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="255.0" text="In thông tin sinh viên đăng kí" />
+            <TextField layoutX="96.0" layoutY="374.0" prefHeight="30.0" prefWidth="203.0" promptText="tên môn học" />
+            <Text layoutX="47.0" layoutY="395.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search" wrappingWidth="48.26171875">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Text>
+            <Button layoutX="331.0" layoutY="372.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="249.0" text="Chỉnh sửa" />
+         </children></AnchorPane>
+   </children>
+</AnchorPane>

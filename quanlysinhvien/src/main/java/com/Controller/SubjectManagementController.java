@@ -52,9 +52,9 @@ public class SubjectManagementController {
 
     private ObservableList<Courses> coursesList = DataManager.getCoursesList();
 
-    public void initialize() {
+    public void initialize() { // tu dong khoi chay khi duoc goi
         // initCourses();
-        showOnTable();
+        showOnTable(); // khoi tao bang du lieu
     }
 
     // private void initCourses() {
@@ -74,7 +74,8 @@ public class SubjectManagementController {
     // }
 
     private void showOnTable() {
-        idColumn.setCellValueFactory(new PropertyValueFactory<Courses, String>("courseId"));
+        idColumn.setCellValueFactory(new PropertyValueFactory<Courses, String>("courseId")); // ep du lieu vao table
+                                                                                             // view
         nameColumn.setCellValueFactory(new PropertyValueFactory<Courses, String>("courseName"));
         creditsColumn.setCellValueFactory(new PropertyValueFactory<Courses, Integer>("credits"));
         tableCourses.setItems(coursesList);
@@ -126,6 +127,12 @@ public class SubjectManagementController {
         String name = txtName.getText();
 
         // kiem tra neu so tin chi khong la so thi se bao loi
+        try {
+            credits = Integer.parseInt(txtCredits.getText());
+        } catch (NumberFormatException e) {
+            AlertHelper.showAlert(AlertType.ERROR, "Lỗi", null, "Số tín chỉ không hợp lệ");
+            return;
+        }
 
         credits = txtCredits.getText().isEmpty() ? 0 : Integer.parseInt(txtCredits.getText());
         if (id.isEmpty() || name.isEmpty() || credits == 0) {
@@ -136,12 +143,6 @@ public class SubjectManagementController {
             return;
         }
 
-        try {
-            credits = Integer.parseInt(txtCredits.getText());
-        } catch (NumberFormatException e) {
-            AlertHelper.showAlert(AlertType.ERROR, "Lỗi", null, "Số tín chỉ không hợp lệ");
-            return;
-        }
         // kiem tra co bi trung khong
         for (Courses course : coursesList) {
             if (course.getCourseId().equals(id)) {
@@ -163,7 +164,9 @@ public class SubjectManagementController {
 
     public void onClickUpdate(ActionEvent actionEvent) {
         String id = txtid.getText();
+
         String oldId = tableCourses.getSelectionModel().getSelectedItem().getCourseId();
+        System.out.println(oldId + "\n" + id);
         String name = txtName.getText();
         int credits = txtCredits.getText().isEmpty() ? 0 : Integer.parseInt(txtCredits.getText());
         if (id.isEmpty() || name.isEmpty() || credits == 0) {

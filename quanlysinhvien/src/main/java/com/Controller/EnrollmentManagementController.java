@@ -64,6 +64,7 @@ public class EnrollmentManagementController {
 
     public void onClickRefresh(ActionEvent event) {
         tableStudents.refresh();
+        tableCourses.refresh();
     }
 
     public void onMouseClick(MouseEvent event) {

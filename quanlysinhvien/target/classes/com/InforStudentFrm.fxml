@@ -14,7 +14,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
+<<<<<<< HEAD
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="740.0" prefWidth="898.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Controller.infoStudentController">
+=======
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="740.0" prefWidth="898.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Controller.InforStudentController">
+>>>>>>> d40fa7afcf58f2d75c62ad02a031f5bd5aa5b253
     <stylesheets>
         <URL value="@css/Style.css" />
         <URL value="@css/Metro-UI.css" />
@@ -129,6 +133,7 @@
                         <Font name="System Bold" size="14.0" />
                     </font>
                 </Label>
+<<<<<<< HEAD
                 <Label text="Label" GridPane.columnIndex="6" GridPane.rowIndex="1" />
             <Text fx:id="txtStudentId" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.rowIndex="1" />
             <Text fx:id="txtName" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="1" />
@@ -136,6 +141,15 @@
             <Text fx:id="txtEmail" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="3" GridPane.rowIndex="1" />
             <Text fx:id="txtPhoneNumber" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="4" GridPane.rowIndex="1" />
             <Text fx:id="txtDob" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+=======
+                <Label fx:id="lbStudentId" GridPane.rowIndex="1" />
+                <Label fx:id="lbStudentName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <Label fx:id="lbStudentGender" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                <Label fx:id="lbStudentEmail" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                <Label fx:id="lbPhoneNumber" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                <Label fx:id="lbDob" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                <Label fx:id="lbStudentAddress" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+>>>>>>> d40fa7afcf58f2d75c62ad02a031f5bd5aa5b253
             </children>
         </GridPane>
     </children>

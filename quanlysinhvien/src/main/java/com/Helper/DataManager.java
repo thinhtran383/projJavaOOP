@@ -3,7 +3,9 @@ package com.Helper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
+import com.Models.Account;
 import com.Models.Courses;
 import com.Models.Student;
 import com.utils.ExecuteQuery;
@@ -15,10 +17,50 @@ public class DataManager {
     private static ObservableList<Courses> coursesList = FXCollections.observableArrayList();
     private static ObservableList<Student> studentsList = FXCollections.observableArrayList();
 
+    private static ArrayList<Account> studentAccounts = new ArrayList<>();
+    private static ArrayList<Account> adminAccounts = new ArrayList<>();
+
     private static DataManager instance = null;
+<<<<<<< HEAD
     private DataManager() {
+=======
+
+    private DataManager() { // sington
+>>>>>>> d40fa7afcf58f2d75c62ad02a031f5bd5aa5b253
         initStudents();
         initCourses();
+        intitAccount();
+    }
+
+    private void intitAccount() {
+        ExecuteQuery queryAdmin = new ExecuteQuery("SELECT * FROM adminaccount"); // lay du lieu account admin tu
+                                                                                  // database
+
+        ResultSet resultSet = queryAdmin.executeQuery(); // lay tai khoan admin tu db
+        try {
+            while (resultSet.next()) { // lay du lieu theo thuoc tinh db
+                adminAccounts.add(new Account(resultSet.getString("username"),
+                        resultSet.getString("password")));
+            }
+        } catch (SQLException e) {
+            System.out.println("Không thể lấy dữ liệu từ database");
+            e.printStackTrace();
+        }
+
+        ExecuteQuery queryStudent = new ExecuteQuery("SELECT * FROM studentaccount"); // lay du lieu account student tu
+                                                                                      // db
+        resultSet = queryStudent.executeQuery();
+        try {
+            while (resultSet.next()) {
+                studentAccounts.add(new Account(
+                        resultSet.getString("student_id"),
+                        resultSet.getString("username"),
+                        resultSet.getString("password")));
+            }
+        } catch (SQLException e) {
+            System.out.println("Không thể lấy dữ liệu từ database");
+            e.printStackTrace();
+        }
     }
 
     private void initStudents() {
@@ -59,6 +101,8 @@ public class DataManager {
     }
 
     public static ObservableList<Courses> getCoursesList() {
+        if (instance == null)
+            instance = new DataManager();
         return coursesList;
     }
 
@@ -74,6 +118,25 @@ public class DataManager {
 
     public static void setCoursesList(ObservableList<Courses> courses) {
         coursesList.setAll(courses);
+    }
+
+    public static ArrayList<Account> getStudentAccounts() {
+        if (instance == null)
+            instance = new DataManager();
+        return studentAccounts;
+    }
+
+    public static ArrayList<Account> getAdminAccounts() {
+        if (instance == null)
+            instance = new DataManager();
+        return adminAccounts;
+    }
+
+    // get Instance
+    public static DataManager getInstance() {
+        if (instance == null)
+            instance = new DataManager();
+        return instance;
     }
 
 }

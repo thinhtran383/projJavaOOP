@@ -2,9 +2,7 @@
     "java.configuration.updateBuildConfiguration": "automatic",
     "maven.terminal.favorites": [
         {
-            "command": "sdf",
-            "debug": false
+           
         }
     ],
-    "java.debug.settings.onBuildFailureProceed": true
 }

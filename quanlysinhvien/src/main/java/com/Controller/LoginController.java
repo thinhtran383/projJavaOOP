@@ -7,6 +7,8 @@ import com.App;
 import com.Helper.AlertHelper;
 import com.Helper.DataManager;
 import com.Models.Account;
+import com.Models.Grade;
+import com.Models.Student;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,11 +18,13 @@ import javafx.scene.control.Alert.AlertType;
 public class LoginController {
 
     @FXML
-    private TextField txtEmail;
+    private TextField txtUsername;
     @FXML
     private PasswordField txtPassword;
     @FXML
     private ComboBox<String> cbRole;
+    @FXML
+    private TableView<Grade> tableGrades;
 
     @FXML
     Button btnSubmit;
@@ -28,6 +32,8 @@ public class LoginController {
     public static String selectedRole = "Admin";
     private ArrayList<Account> studentAccounts = DataManager.getStudentAccounts();
     private ArrayList<Account> adminAccounts = DataManager.getAdminAccounts();
+
+    public static String email;
 
     @FXML
     public void initialize() { // tu dong goi khi chuong trinh chay
@@ -44,22 +50,8 @@ public class LoginController {
         });
     }
 
-    // private int checkAccount() { // kiem tra account co ton tai hay khong
-    // if (txtEmail.getText().equals(adminAccounts.get(0).getUsername())
-    // && txtPassword.getText().equals(adminAccounts.get(0).getPassword())) {
-    // return 1;
-    // }
-
-    // if (txtEmail.getText().equals(studentAccounts.get(0).getUsername())
-    // && txtPassword.getText().equals(studentAccounts.get(0).getPassword())) {
-    // return 2;
-    // }
-
-    // return 0;
-    // }
-
     private int checkAccount() { // kiem tra account co ton tai hay khong
-        String email = txtEmail.getText();
+        String email = txtUsername.getText();
         String password = txtPassword.getText();
         for (Account account : adminAccounts) {
             if (email.equals(account.getUsername()) && password.equals(account.getPassword())) {
@@ -75,7 +67,8 @@ public class LoginController {
     }
 
     public void btnSubmit(ActionEvent actionEvent) throws IOException { // khi nhan nut
-        if (txtEmail.getText().equals("") || txtPassword.getText().equals("")) { // neu khong nhap du thong tin bao loi
+        if (txtUsername.getText().equals("") || txtPassword.getText().equals("")) { // neu khong nhap du thong tin bao
+                                                                                    // loi
             // showLoginError("Vui lòng nhập đầy đủ thông tin");
             AlertHelper.showAlert(AlertType.ERROR, "Lỗi", null, "Vui lòng nhập đầy đủ thông tin");
             return;
@@ -86,6 +79,7 @@ public class LoginController {
             App.setRoot("Frm");
         } else if (checkAccount() == 2 && selectedRole.equals("Student")) {
             AlertHelper.showAlert(AlertType.INFORMATION, "Thành công", null, "Đăng nhập thành công");
+            email = txtUsername.getText();
             App.setRoot("Frm");
         } else {
             AlertHelper.showAlert(AlertType.ERROR, "Lỗi", null, "Tài khoản hoặc mật khẩu không đúng ");

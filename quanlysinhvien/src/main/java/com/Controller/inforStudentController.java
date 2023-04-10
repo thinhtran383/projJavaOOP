@@ -4,12 +4,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
+import com.Helper.AlertHelper;
 import com.Models.Grade;
 import com.utils.ExecuteQuery;
+import com.utils.ExportToExcel;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -124,6 +128,13 @@ public class InforStudentController {
         tableGrades.setItems(gradeList);
 
         tableGrades.setItems(gradeList);
+    }
+
+    public void onClickExport(ActionEvent actionEvent) {
+        if (AlertHelper.showConfirmation("Bạn có muốn xuất dữ liệu ra excel không?")) {
+            ExportToExcel.exportToExcel(tableGrades, "students.xlsx");
+            AlertHelper.showAlert(AlertType.INFORMATION, "Thông báo", null, "Xuất dữ liệu thành công!");
+        }
     }
 
 }

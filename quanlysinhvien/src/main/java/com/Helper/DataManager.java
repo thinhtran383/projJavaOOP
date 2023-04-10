@@ -128,4 +128,11 @@ public class DataManager {
         return adminAccounts;
     }
 
+    // get Instance
+    public static DataManager getInstance() {
+        if (instance == null)
+            instance = new DataManager();
+        return instance;
+    }
+
 }

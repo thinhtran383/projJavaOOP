@@ -21,8 +21,12 @@ public class DataManager {
     private static ArrayList<Account> adminAccounts = new ArrayList<>();
 
     private static DataManager instance = null;
+<<<<<<< HEAD
+    private DataManager() {
+=======
 
     private DataManager() { // sington
+>>>>>>> d40fa7afcf58f2d75c62ad02a031f5bd5aa5b253
         initStudents();
         initCourses();
         intitAccount();

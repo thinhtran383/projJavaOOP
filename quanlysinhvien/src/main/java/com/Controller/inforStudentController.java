@@ -7,10 +7,13 @@ import java.time.LocalDate;
 import com.Models.Grade;
 import com.utils.ExecuteQuery;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class InforStudentController {
     @FXML
@@ -40,7 +43,16 @@ public class InforStudentController {
     @FXML
     public TableColumn<Grade, Float> finalColumn;
 
+    private ObservableList<Grade> gradeList = FXCollections.observableArrayList();
+
     public void initialize() {
+        initInfo();
+        initGrade();
+        showOnTable();
+
+    }
+
+    private void initInfo() {
         ExecuteQuery query = new ExecuteQuery("SELECT * FROM students WHERE student_id = '" + getStudentId() + "' ");
         ResultSet resultSet = query.executeQuery();
 
@@ -59,7 +71,6 @@ public class InforStudentController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 
     private String getStudentId() {
@@ -80,9 +91,39 @@ public class InforStudentController {
     }
 
     private void initGrade() {
-        ExecuteQuery query = new ExecuteQuery("SELECT * FROM grades WHERE student_id = '" + getStudentId() + "'");
+
+        String sql = "SELECT courses.course_id, courses.course_name, grades.attendance_grade, grades.midterm_grade, grades.final_grade FROM students JOIN grades ON students.student_id = grades.student_id JOIN courses ON grades.course_id = courses.course_id WHERE students.student_id = '"
+                + getStudentId() + "'";
+
+        ExecuteQuery query = new ExecuteQuery(sql);
         ResultSet resultSet = query.executeQuery();
 
+        try {
+            while (resultSet.next()) {
+                Grade grade = new Grade(
+                        resultSet.getString("course_id"),
+                        resultSet.getString("course_name"),
+                        resultSet.getFloat("attendance_grade"),
+                        resultSet.getFloat("midterm_grade"),
+                        resultSet.getFloat("final_grade"));
+
+                gradeList.add(grade);
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void showOnTable() {
+        subjectIdColumn.setCellValueFactory(new PropertyValueFactory<Grade, String>("subjectId"));
+        subjectNameColumn.setCellValueFactory(new PropertyValueFactory<Grade, String>("subjectName"));
+        attendanceColumn.setCellValueFactory(new PropertyValueFactory<Grade, Float>("attendanceGrade"));
+        midtermColumn.setCellValueFactory(new PropertyValueFactory<Grade, Float>("midTermGrade"));
+        finalColumn.setCellValueFactory(new PropertyValueFactory<Grade, Float>("finalGrade"));
+        tableGrades.setItems(gradeList);
+
+        tableGrades.setItems(gradeList);
     }
 
 }

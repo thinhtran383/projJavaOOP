@@ -1,34 +1,34 @@
 package com.Models;
 
 public class Grade {
-    private String studentId;
-    private String courseId;
+    private String subjectName;
+    private String subjectId;
     private float attendanceGrade;
     private float midTermGrade;
     private float finalGrade;
 
-    public Grade(String studentId, String courseId, float attendanceGrade, float midTermGrade, float finalGrade) {
-        this.studentId = studentId;
-        this.courseId = courseId;
+    public Grade(String subjectName, String subjectId, float attendanceGrade, float midTermGrade, float finalGrade) {
+        this.subjectName = subjectName;
+        this.subjectId = subjectId;
         this.attendanceGrade = attendanceGrade;
         this.midTermGrade = midTermGrade;
         this.finalGrade = finalGrade;
     }
 
-    public String getStudentId() {
-        return studentId;
+    public String getSubjectName() {
+        return subjectName;
     }
 
-    public void setStudentId(String studentId) {
-        this.studentId = studentId;
+    public void setSubjectName(String subjectName) {
+        this.subjectName = subjectName;
     }
 
-    public String getCourseId() {
-        return courseId;
+    public String getSubjectId() {
+        return subjectId;
     }
 
-    public void setCourseId(String courseId) {
-        this.courseId = courseId;
+    public void setSubjectId(String subjectId) {
+        this.subjectId = subjectId;
     }
 
     public float getAttendanceGrade() {
@@ -45,12 +45,6 @@ public class Grade {
 
     public void setMidTermGrade(float midTermGrade) {
         this.midTermGrade = midTermGrade;
-    }
-
-    @Override
-    public String toString() {
-        return "Grade [studentId=" + studentId + ", courseId=" + courseId + ", attendanceGrade=" + attendanceGrade
-                + ", midTermGrade=" + midTermGrade + ", finalGrade=" + finalGrade + "]";
     }
 
     public float getFinalGrade() {

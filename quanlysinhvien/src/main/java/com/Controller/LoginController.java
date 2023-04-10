@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import com.App;
 import com.Helper.AlertHelper;
+import com.Helper.DataManager;
 import com.Models.Account;
 import com.utils.ExecuteQuery;
 
@@ -28,8 +29,8 @@ public class LoginController {
     Button btnSubmit;
 
     public static String selectedRole = "Admin";
-    private ArrayList<Account> studentAccounts = new ArrayList<>();
-    private ArrayList<Account> adminAccounts = new ArrayList<>();
+    private ArrayList<Account> studentAccounts = DataManager.getStudentAccounts();
+    private ArrayList<Account> adminAccounts = DataManager.getAdminAccounts();
 
     @FXML
     public void initialize() { // tu dong goi khi chuong trinh chay
@@ -66,7 +67,9 @@ public class LoginController {
         resultSet = queryStudent.executeQuery();
         try {
             while (resultSet.next()) {
-                studentAccounts.add(new Account(resultSet.getString("username"),
+                studentAccounts.add(new Account(
+                        resultSet.getString("student_id"),
+                        resultSet.getString("username"),
                         resultSet.getString("password")));
             }
         } catch (SQLException e) {

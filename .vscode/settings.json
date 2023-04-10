@@ -5,5 +5,6 @@
             "command": "sdf",
             "debug": false
         }
-    ]
+    ],
+    "java.debug.settings.onBuildFailureProceed": true
 }

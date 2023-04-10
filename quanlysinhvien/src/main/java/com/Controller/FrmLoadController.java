@@ -9,9 +9,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 
 public class FrmLoadController {
 
+    public Text lblLogin;
     @FXML
     private AnchorPane pane;
 
@@ -23,8 +25,10 @@ public class FrmLoadController {
     private void loadPane() {
         String frm = "";
         if (LoginController.selectedRole.equals("Admin")) {
+            lblLogin.setText("Admin Control Panel");
             frm = "/com/CPAdminFrmBeta.fxml";
         } else {
+            lblLogin.setText("Student Control Panel");
             frm = "/com/CPStudentFrm.fxml";
         }
 

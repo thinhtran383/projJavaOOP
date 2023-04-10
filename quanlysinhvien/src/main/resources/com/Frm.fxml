@@ -11,7 +11,7 @@
    <children>
       <AnchorPane layoutY="-8.0" prefHeight="748.0" prefWidth="249.0" style="-fx-background-color: #2b579a;">
          <children>
-            <Text fx:id="lblUserLogin" fill="WHITE" layoutX="14.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin Control Panel" underline="true" wrappingWidth="213.6171875">
+            <Text fx:id="lblLogin" fill="WHITE" layoutX="14.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" underline="true" wrappingWidth="213.6171875">
                <font>
                   <Font name="Segoe UI Light" size="24.0" />
                </font>
@@ -27,4 +27,3 @@
       <AnchorPane fx:id="pane" layoutX="257.0" layoutY="-1.0" prefHeight="727.0" prefWidth="764.0" />
    </children>
 </AnchorPane>
-  

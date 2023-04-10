@@ -48,9 +48,9 @@
               </columns>
             </TableView>
          </children></AnchorPane>
-      <Button layoutX="57.0" layoutY="717.0" mnemonicParsing="false" onAction="#onClickRefresh" text="Refresh" />
-      <Button layoutX="170.0" layoutY="717.0" mnemonicParsing="false" text="Delete" />
-      <Button layoutX="330.0" layoutY="717.0" mnemonicParsing="false" text="Button" />
+      <Button layoutX="99.0" layoutY="661.0" mnemonicParsing="false" onAction="#onClickRefresh" text="Refresh" />
+      <Button layoutX="212.0" layoutY="661.0" mnemonicParsing="false" text="Delete" />
+      <Button layoutX="332.0" layoutY="661.0" mnemonicParsing="false" text="Button" />
       <TableView fx:id="tableCourses" layoutX="8.0" layoutY="326.0" prefHeight="290.0" prefWidth="954.0">
          <columns>
             <TableColumn fx:id="subjectIdColumn" prefWidth="101.77777099609375" text="Subject ID">

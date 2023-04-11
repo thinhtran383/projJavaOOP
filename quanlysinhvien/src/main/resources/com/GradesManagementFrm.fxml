@@ -17,7 +17,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="740.0" prefWidth="898.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Controller.GradesManagementController">
    <children>
-      <TableView fx:id="tableGrades" layoutX="-2.0" layoutY="46.0" prefHeight="401.0" prefWidth="898.0">
+      <TableView fx:id="tableGrades" layoutX="-2.0" layoutY="46.0" onMouseClicked="#onMouseClick" prefHeight="401.0" prefWidth="898.0">
         <columns>
           <TableColumn fx:id="studentIdColumn" prefWidth="105.77777016162872" text="Student ID">
                <graphic>

@@ -10,6 +10,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 public class GradesManagementController {
     @FXML
@@ -60,5 +61,16 @@ public class GradesManagementController {
         midtermColumn.setCellValueFactory(new PropertyValueFactory<>("midTermGrade"));
         finalColumn.setCellValueFactory(new PropertyValueFactory<>("finalGrade"));
         tableGrades.setItems(gradesList);
+    }
+
+    public void onMouseClick(MouseEvent mouseEvent) {
+        Grade grade = tableGrades.getSelectionModel().getSelectedItem();
+        txtStudentId.setText(grade.getStudentId());
+        txtStudentName.setText(grade.getStudentName());
+        txtSubjectId.setText(grade.getSubjectId());
+        txtSubjectName.setText(grade.getSubjectName());
+        txtAttendance.setText(String.valueOf(grade.getAttendanceGrade()));
+        txtMidterm.setText(String.valueOf(grade.getMidTermGrade()));
+        txtFinal.setText(String.valueOf(grade.getFinalGrade()));
     }
 }

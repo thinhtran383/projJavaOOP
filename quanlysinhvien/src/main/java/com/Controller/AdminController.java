@@ -17,34 +17,25 @@ public class AdminController {
     private void initialize() {
 
         Tab tab1 = tabPane.getTabs().get(0);
-
-        FXMLLoader loader = new FXMLLoader(
-                getClass().getResource("/com/SubjectMangement.fxml"));
-        try {
-            Parent root = loader.load();
-            tab1.setContent(root);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        loadFrm(tab1, "/com/SubjectMangement.fxml");
 
         Tab tab2 = tabPane.getTabs().get(1);
-
-        FXMLLoader loader1 = new FXMLLoader(
-                getClass().getResource("/com/StudentMangementFrm.fxml"));
-        try {
-            Parent root = loader1.load();
-            tab2.setContent(root);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        loadFrm(tab2, "/com/StudentMangementFrm.fxml");
 
         Tab tab3 = tabPane.getTabs().get(2);
+        loadFrm(tab3, "/com/EnrollmentManagementFrm.fxml");
 
-        FXMLLoader loader2 = new FXMLLoader(
-                getClass().getResource("/com/EnrollmentManagementFrm.fxml"));
+        Tab tab4 = tabPane.getTabs().get(3);
+        loadFrm(tab4, "/com/GradesManagementFrm.fxml");
+
+    }
+
+    private void loadFrm(Tab tab, String path) {
+        FXMLLoader loader = new FXMLLoader(
+                getClass().getResource(path));
         try {
-            Parent root = loader2.load();
-            tab3.setContent(root);
+            Parent root = loader.load();
+            tab.setContent(root);
         } catch (IOException e) {
             e.printStackTrace();
         }

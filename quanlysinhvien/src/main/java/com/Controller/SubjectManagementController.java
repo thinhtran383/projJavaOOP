@@ -191,16 +191,19 @@ public class SubjectManagementController {
 
     public void search(KeyEvent keyEvent) {
         String search = txtSearch.getText();
+        System.out.println(search);
         if (search.isEmpty()) {
             tableCourses.setItems(coursesList);
             return;
-        }
-        ObservableList<Courses> searchList = FXCollections.observableArrayList();
-        for (Courses course : coursesList) {
-            if (course.getCourseId().contains(search) || course.getCourseName().contains(search)) {
-                searchList.add(course);
+        } else {
+            ObservableList<Courses> searchList = FXCollections.observableArrayList();
+            for (Courses course : coursesList) {
+                if (course.getCourseId().toLowerCase().contains(search)
+                        || course.getCourseName().toLowerCase().contains(search)) {
+                    searchList.add(course);
+                }
             }
+            tableCourses.setItems(searchList);
         }
-        tableCourses.setItems(searchList);
     }
 }

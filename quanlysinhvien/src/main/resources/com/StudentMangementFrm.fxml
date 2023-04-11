@@ -92,7 +92,7 @@
             <Font size="23.0" />
          </font>
       </Text>
-      <TextField layoutX="109.0" layoutY="28.0" />
+      <TextField fx:id="txtSearch" layoutX="109.0" layoutY="28.0" onKeyReleased="#search" />
       <Label layoutX="32.0" layoutY="443.0" text="Studen ID:">
          <font>
             <Font size="13.0" />

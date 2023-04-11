@@ -7,6 +7,21 @@ public class Grade {
     private float midTermGrade;
     private float finalGrade;
 
+    private String studentId;
+
+    private String studentName;
+
+    public Grade(String studentId, String studentName, String subjectName, String subjectId, float attendanceGrade,
+            float midTermGrade, float finalGrade) {
+        this.studentId = studentId;
+        this.studentName = studentName;
+        this.subjectName = subjectName;
+        this.subjectId = subjectId;
+        this.attendanceGrade = attendanceGrade;
+        this.midTermGrade = midTermGrade;
+        this.finalGrade = finalGrade;
+    }
+
     public Grade(String subjectName, String subjectId, float attendanceGrade, float midTermGrade, float finalGrade) {
         this.subjectName = subjectName;
         this.subjectId = subjectId;
@@ -55,4 +70,19 @@ public class Grade {
         this.finalGrade = finalGrade;
     }
 
+    public String getStudentName() {
+        return studentName;
+    }
+
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
+    }
+
+    public String getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(String studentId) {
+        this.studentId = studentId;
+    }
 }

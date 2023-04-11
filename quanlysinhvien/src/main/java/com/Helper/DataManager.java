@@ -23,9 +23,9 @@ public class DataManager {
     private static DataManager instance = null;
 
     private DataManager() { // sington
-
         initCourses();
         intitAccount();
+        initStudents();
     }
 
     private void intitAccount() {

@@ -19,6 +19,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 public class SubjectManagementController {
@@ -188,4 +189,18 @@ public class SubjectManagementController {
         clear();
     }
 
+    public void search(KeyEvent keyEvent) {
+        String search = txtSearch.getText();
+        if (search.isEmpty()) {
+            tableCourses.setItems(coursesList);
+            return;
+        }
+        ObservableList<Courses> searchList = FXCollections.observableArrayList();
+        for (Courses course : coursesList) {
+            if (course.getCourseId().contains(search) || course.getCourseName().contains(search)) {
+                searchList.add(course);
+            }
+        }
+        tableCourses.setItems(searchList);
+    }
 }

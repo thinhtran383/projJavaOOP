@@ -8,12 +8,15 @@ import com.Models.Student;
 import com.utils.ExecuteQuery;
 import com.utils.ExportToExcel;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 public class StudentManagementController {
@@ -57,6 +60,8 @@ public class StudentManagementController {
     private Button btnUpdate;
     @FXML
     private Button btnExport;
+    @FXML
+    private TextField txtSearch;
 
     // public ObservableList<Student> studentsList =
     // FXCollections.observableArrayList();
@@ -211,12 +216,33 @@ public class StudentManagementController {
 
     public void onMouseClicked(MouseEvent mouseEvent) {
         Student student = tableStudents.getSelectionModel().getSelectedItem();
-        txtAddress.setText(student.getStudentAddress());
-        txtEmail.setText(student.getStudentEmail());
-        txtName.setText(student.getStudentName());
-        txtPhone.setText(student.getStudentPhone());
-        txtStudentId.setText(student.getStudentId());
-        cbDob.setValue(student.getStudentBirthday());
-        cbGender.setValue(student.getStudentGender());
+        if (student != null) {
+            txtStudentId.setText(student.getStudentId());
+            txtName.setText(student.getStudentName());
+            txtAddress.setText(student.getStudentAddress());
+            txtEmail.setText(student.getStudentEmail());
+            txtPhone.setText(student.getStudentPhone());
+            cbDob.setValue(student.getStudentBirthday());
+            cbGender.setValue(student.getStudentGender());
+        }
+    }
+
+    public void search(KeyEvent keyEvent) {
+        String search = txtSearch.getText();
+        if (search.isEmpty()) {
+            tableStudents.setItems(studentsList);
+        } else {
+            ObservableList<Student> searchList = FXCollections.observableArrayList();
+            for (Student student : studentsList) {
+                if (student.getStudentId().contains(search) || student.getStudentName().contains(search)
+                        || student.getStudentAddress().contains(search) || student.getStudentEmail().contains(search)
+                        || student.getStudentPhone().contains(search) || student.getStudentBirthday().toString()
+                                .contains(search)
+                        || student.getStudentGender().contains(search)) {
+                    searchList.add(student);
+                }
+            }
+            tableStudents.setItems(searchList);
+        }
     }
 }

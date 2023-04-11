@@ -228,17 +228,20 @@ public class StudentManagementController {
     }
 
     public void search(KeyEvent keyEvent) {
-        String search = txtSearch.getText();
+        String search = txtSearch.getText().toLowerCase();
         if (search.isEmpty()) {
             tableStudents.setItems(studentsList);
         } else {
             ObservableList<Student> searchList = FXCollections.observableArrayList();
             for (Student student : studentsList) {
-                if (student.getStudentId().contains(search) || student.getStudentName().contains(search)
-                        || student.getStudentAddress().contains(search) || student.getStudentEmail().contains(search)
-                        || student.getStudentPhone().contains(search) || student.getStudentBirthday().toString()
+                if (student.getStudentId().toLowerCase().contains(search)
+                        || student.getStudentName().toLowerCase().contains(search)
+                        || student.getStudentAddress().toLowerCase().contains(search)
+                        || student.getStudentEmail().toLowerCase().contains(search)
+                        || student.getStudentPhone().toLowerCase().contains(search)
+                        || student.getStudentBirthday().toString().toLowerCase()
                                 .contains(search)
-                        || student.getStudentGender().contains(search)) {
+                        || student.getStudentGender().toLowerCase().contains(search)) {
                     searchList.add(student);
                 }
             }

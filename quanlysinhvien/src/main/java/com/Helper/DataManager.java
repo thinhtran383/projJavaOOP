@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import com.Models.Account;
 import com.Models.Courses;
+import com.Models.Grade;
 import com.Models.Student;
 import com.utils.ExecuteQuery;
 
@@ -16,6 +17,7 @@ import javafx.collections.ObservableList;
 public class DataManager {
     private static ObservableList<Courses> coursesList = FXCollections.observableArrayList();
     private static ObservableList<Student> studentsList = FXCollections.observableArrayList();
+    private static ObservableList<Grade> gradesList = FXCollections.observableArrayList();
 
     private static ArrayList<Account> studentAccounts = new ArrayList<>();
     private static ArrayList<Account> adminAccounts = new ArrayList<>();
@@ -26,6 +28,28 @@ public class DataManager {
         initCourses();
         intitAccount();
         initStudents();
+        initGrade();
+    }
+
+    private void initGrade() {
+        ExecuteQuery query = new ExecuteQuery(
+                "SELECT s.student_id, s.name, c.course_id, c.course_name, g.attendance_grade, g.midterm_grade, g.final_grade FROM students s JOIN grades g ON s.student_id = g.student_id JOIN courses c ON g.course_id = c.course_id");
+        ResultSet resultSet = query.executeQuery();
+        try {
+            while (resultSet.next()) {
+                Grade grade = new Grade(
+                        resultSet.getString("student_id"),
+                        resultSet.getString("name"),
+                        resultSet.getString("course_name"),
+                        resultSet.getString("course_id"),
+                        resultSet.getFloat("attendance_grade"),
+                        resultSet.getFloat("midterm_grade"),
+                        resultSet.getFloat("final_grade"));
+                gradesList.add(grade);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     private void intitAccount() {
@@ -133,6 +157,12 @@ public class DataManager {
         if (instance == null)
             instance = new DataManager();
         return instance;
+    }
+
+    public static ObservableList<Grade> getGradesList() {
+        if (instance == null)
+            instance = new DataManager();
+        return gradesList;
     }
 
 }

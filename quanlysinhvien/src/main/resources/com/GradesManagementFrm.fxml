@@ -77,8 +77,8 @@
                </graphic></TableColumn>
         </columns>
       </TableView>
-      <Button fx:id="btnUpdate" layoutX="495.0" layoutY="472.0" mnemonicParsing="false" text="Update" />
-      <Button layoutX="495.0" layoutY="517.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="95.0" text="Export" />
+      <Button fx:id="btnUpdate" layoutX="495.0" layoutY="472.0" mnemonicParsing="false" onAction="#onClickUpdate" text="Update" />
+      <Button layoutX="495.0" layoutY="517.0" mnemonicParsing="false" onAction="#onClickExport" prefHeight="34.0" prefWidth="95.0" text="Export" />
       <GridPane layoutX="53.0" layoutY="462.0" prefHeight="229.0" prefWidth="336.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
@@ -94,10 +94,10 @@
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <TextField fx:id="txtStudentId" prefWidth="191.0" GridPane.columnIndex="1" />
-            <TextField fx:id="txtSubjectId" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField fx:id="txtStudentName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="txtSubjectName" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="txtStudentId" editable="false" prefWidth="191.0" GridPane.columnIndex="1" />
+            <TextField fx:id="txtSubjectId" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="txtStudentName" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txtSubjectName" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="txtAttendance" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <TextField fx:id="txtMidterm" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <TextField fx:id="txtFinal" GridPane.columnIndex="1" GridPane.rowIndex="6" />
@@ -110,7 +110,7 @@
             <Label text="Subject Name" GridPane.rowIndex="2" />
          </children>
       </GridPane>
-      <TextField fx:id="txtSearch" layoutX="104.0" layoutY="12.0" prefHeight="25.0" prefWidth="255.0" promptText="Search..." />
+      <TextField fx:id="txtSearch" layoutX="104.0" layoutY="12.0" onKeyReleased="#search" prefHeight="25.0" prefWidth="255.0" promptText="Search..." />
       <Text fill="#2b579a" layoutX="13.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search:" wrappingWidth="79.3828125">
          <font>
             <Font size="23.0" />

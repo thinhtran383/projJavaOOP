@@ -1,8 +1,5 @@
 package com.Controller;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 import com.Helper.AlertHelper;
 import com.Helper.DataManager;
 import com.Models.Courses;

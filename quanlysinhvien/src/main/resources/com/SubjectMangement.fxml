@@ -26,7 +26,7 @@
       <Button fx:id="btnAdd" defaultButton="true" layoutX="21.0" layoutY="312.0" mnemonicParsing="false" onAction="#onClickAdd" prefHeight="34.0" prefWidth="95.0" text="Add" />
       <Button fx:id="btnClear" layoutX="194.0" layoutY="312.0" mnemonicParsing="false" onAction="#onClickClear" prefHeight="34.0" prefWidth="95.0" text="Clear" />
       <Button layoutX="194.0" layoutY="363.0" mnemonicParsing="false" onAction="#onPressExport" prefHeight="34.0" prefWidth="95.0" text="Export" />
-      <TextField layoutX="547.0" layoutY="15.0" onKeyReleased="#search" />
+      <TextField fx:id="txtSearch" layoutX="547.0" layoutY="15.0" onKeyReleased="#search" />
       <Text fill="#2b579a" layoutX="439.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search:" wrappingWidth="79.3828125">
          <font>
             <Font size="23.0" />

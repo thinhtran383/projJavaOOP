@@ -7,6 +7,7 @@ import com.utils.ExecuteQuery;
 import com.utils.ExportToExcel;
 
 import javafx.beans.Observable;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,6 +16,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 public class GradesManagementController {
@@ -119,5 +121,24 @@ public class GradesManagementController {
             ExportToExcel.exportToExcel(tableGrades, "students.xlsx");
             AlertHelper.showAlert(AlertType.INFORMATION, "Thông báo", null, "Xuất dữ liệu thành công!");
         }
+    }
+
+    public void search(KeyEvent keyEvent) {
+        String search = txtSearch.getText().toLowerCase();
+        if (search.isEmpty()) {
+            tableGrades.setItems(gradesList);
+        } else {
+            ObservableList<Grade> searchList = FXCollections.observableArrayList();
+            for (Grade grade : gradesList) {
+                if (grade.getStudentId().toLowerCase().contains(search)
+                        || grade.getStudentName().toLowerCase().contains(search)
+                        || grade.getSubjectId().toLowerCase().contains(search)
+                        || grade.getSubjectName().toLowerCase().contains(search)) {
+                    searchList.add(grade);
+                }
+            }
+            tableGrades.setItems(searchList);
+        }
+
     }
 }

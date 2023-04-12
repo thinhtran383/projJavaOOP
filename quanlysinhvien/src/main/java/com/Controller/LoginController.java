@@ -8,7 +8,6 @@ import com.Helper.AlertHelper;
 import com.Helper.DataManager;
 import com.Models.Account;
 import com.Models.Grade;
-import com.Models.Student;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -69,7 +68,6 @@ public class LoginController {
     public void btnSubmit(ActionEvent actionEvent) throws IOException { // khi nhan nut
         if (txtUsername.getText().equals("") || txtPassword.getText().equals("")) { // neu khong nhap du thong tin bao
                                                                                     // loi
-            // showLoginError("Vui lòng nhập đầy đủ thông tin");
             AlertHelper.showAlert(AlertType.ERROR, "Lỗi", null, "Vui lòng nhập đầy đủ thông tin");
             return;
         }
@@ -85,7 +83,6 @@ public class LoginController {
             AlertHelper.showAlert(AlertType.ERROR, "Lỗi", null, "Tài khoản hoặc mật khẩu không đúng ");
         }
 
-        // System.out.println("Pass: " + getPassword());
     }
 
 }

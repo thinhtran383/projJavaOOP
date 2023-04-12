@@ -5,12 +5,12 @@ import java.time.LocalDate;
 import com.Helper.AlertHelper;
 import com.Helper.DataManager;
 import com.Models.Student;
+import com.constants.Regex;
 import com.utils.ExecuteQuery;
 import com.utils.ExportToExcel;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -127,6 +127,17 @@ public class StudentManagementController {
         String phone = txtPhone.getText();
         LocalDate dob = cbDob.getValue();
         String gender = cbGender.getValue();
+
+        if (!email.matches(Regex.EMAIL)) {
+            AlertHelper.showAlert(AlertType.ERROR, "Lỗi", null, "Email không hợp lệ");
+            return;
+        }
+
+        if (!phone.matches(Regex.PHONE)) {
+            AlertHelper.showAlert(AlertType.ERROR, "Lỗi", null, "Số điện thoại không hợp lệ");
+            return;
+        }
+
         if (id.isEmpty() || name.isEmpty() || address.isEmpty()
                 || email.isEmpty() || phone.isEmpty() || dob == null
                 || gender == null) {
@@ -181,6 +192,16 @@ public class StudentManagementController {
         String phone = txtPhone.getText();
         LocalDate dob = cbDob.getValue();
         String gender = cbGender.getValue();
+
+        if (!email.matches(Regex.EMAIL)) {
+            AlertHelper.showAlert(AlertType.ERROR, "Lỗi", null, "Email không hợp lệ");
+            return;
+        }
+
+        if (!phone.matches(Regex.PHONE)) {
+            AlertHelper.showAlert(AlertType.ERROR, "Lỗi", null, "Số điện thoại không hợp lệ");
+            return;
+        }
         String sql = "UPDATE students SET name = '" + name + "', student_id='" + id + "', address = '" + address
                 + "', phone_number = '" + phone + "', email = '" + email + "', date_of_birth = '" + dob
                 + "', gender = '" + gender + "' WHERE student_id = '" + oldId + "'";
@@ -200,6 +221,7 @@ public class StudentManagementController {
         tableStudents.refresh();
 
         AlertHelper.showAlert(AlertType.INFORMATION, "Thông báo", null, "Cập nhật thành công!");
+        clear();
     }
 
     public void onClickExport(ActionEvent actionEvent) {

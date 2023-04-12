@@ -49,7 +49,7 @@
             </TableView>
          </children></AnchorPane>
       <Button layoutX="99.0" layoutY="661.0" mnemonicParsing="false" onAction="#onClickRefresh" text="Refresh" />
-      <Button layoutX="413.0" layoutY="661.0" mnemonicParsing="false" text="Delete" />
+      <Button fx:id="btnDelete" layoutX="413.0" layoutY="661.0" mnemonicParsing="false" onAction="#onClickDelete" text="Delete" />
       <TableView fx:id="tableCourses" layoutX="8.0" layoutY="326.0" prefHeight="290.0" prefWidth="954.0">
          <columns>
             <TableColumn fx:id="subjectIdColumn" prefWidth="172.00003051757812" text="Subject ID">

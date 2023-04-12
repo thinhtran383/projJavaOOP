@@ -41,6 +41,8 @@ public class EnrollmentManagementController {
 
     private ObservableList<Courses> enrollList = FXCollections.observableArrayList();
 
+    private String studentId;
+
     public void initialize() {
         showStudentOnTable();
         showCoursesOnTable();
@@ -68,7 +70,7 @@ public class EnrollmentManagementController {
     }
 
     public void onMouseClick(MouseEvent event) {
-        String studentId = tableStudents.getSelectionModel().getSelectedItem().getStudentId();
+        studentId = tableStudents.getSelectionModel().getSelectedItem().getStudentId();
         System.out.println(studentId);
         String sql = "SELECT s.student_id,s.name,c.course_id,c.course_name,c.course_credit,g.attendance_grade,g.midterm_grade, g.final_grade "
                 + "FROM grades g JOIN students s ON g.student_id= s.student_id JOIN courses c ON g.course_id= c.course_id "
@@ -90,6 +92,15 @@ public class EnrollmentManagementController {
 
         }
 
+    }
+
+    public void onClickDelete(ActionEvent actionEvent) {
+        String subjectId = tableCourses.getSelectionModel().getSelectedItem().getCourseId();
+        String sql = "DELETE FROM grades WHERE student_id='" + studentId + "' AND course_id='" + subjectId + "';";
+        ExecuteQuery query = new ExecuteQuery(sql);
+        query.executeUpdate();
+
+        enrollList.remove(tableCourses.getSelectionModel().getSelectedItem());
     }
 
 }

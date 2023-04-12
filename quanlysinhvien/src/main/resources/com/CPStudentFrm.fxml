@@ -9,8 +9,7 @@
         <TabPane fx:id="tabPane" prefHeight="768.0" prefWidth="914.0" stylesheets="@css/Style.css">
             <tabs>
                 <Tab closable="false" text="Information" />
-                <Tab closable="false" text="1-stop service" />
-            <Tab text="Enrollment">
+            <Tab closable="false" text="Enrollment">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
               </content>

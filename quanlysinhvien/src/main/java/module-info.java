@@ -7,6 +7,8 @@ module com {
     requires java.desktop;
     requires java.base;
 
+    // requires org.controlsfx.controls;
+
     // requires javafx.swing;
 
     requires org.apache.poi.poi;
@@ -20,6 +22,7 @@ module com {
     exports com.Controller;
     exports com.Models;
     exports com.utils;
+    exports com.constants;
 
     opens com.Controller to javafx.fxml;
 }

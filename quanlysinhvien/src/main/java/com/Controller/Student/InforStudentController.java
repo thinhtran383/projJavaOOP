@@ -78,7 +78,7 @@ public class InforStudentController {
         }
     }
 
-    private String getStudentId() {
+    protected static String getStudentId() {
 
         String studentId = null;
         ExecuteQuery query = new ExecuteQuery(

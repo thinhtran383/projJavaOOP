@@ -158,7 +158,8 @@ public class GradesManagementController {
             return;
         }
 
-        float totalGrade = attendanceGrade * 0.1f + midTermGrade * 0.4f + finalGrade * 0.5f;
+        float totalGrade = (float) Math.round((attendanceGrade * 0.1f + midTermGrade * 0.4f + finalGrade * 0.5f) * 100)
+                / 100;
 
         ExecuteQuery query = new ExecuteQuery("UPDATE grades SET attendance_grade ='" + attendanceGrade
                 + "', midterm_grade ='" + midTermGrade + "', final_grade ='" + finalGrade + "' WHERE student_id ='"

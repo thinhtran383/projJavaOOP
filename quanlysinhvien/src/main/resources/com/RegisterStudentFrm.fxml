@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -7,18 +8,22 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="740.0" prefWidth="898.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Controller.Student.RegisterManagementController>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="740.0" prefWidth="898.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Controller.Student.RegisterManagementController">
    <children>
-      <TableView layoutY="50.0" prefHeight="429.0" prefWidth="898.0">
+      <TableView fx:id="tableCourses" layoutY="50.0" prefHeight="429.0" prefWidth="898.0">
         <columns>
-          <TableColumn prefWidth="199.0" text="Subject Name" />
-          <TableColumn prefWidth="157.0" text="Subject ID" />
-            <TableColumn prefWidth="248.0" text="Subject Credits" />
+          <TableColumn fx:id="subjectColumn" prefWidth="199.0" text="Subject ID" />
+          <TableColumn fx:id="subjectNameColumn" prefWidth="588.8888549804688" text="Subject Name" />
+            <TableColumn fx:id="creditsColumn" prefWidth="109.77783203125" text="Credits" />
         </columns>
       </TableView>
-      <TextField layoutX="76.0" layoutY="14.0" prefHeight="25.0" prefWidth="257.0" />
+      <TextField layoutX="91.0" layoutY="11.0" prefHeight="25.0" prefWidth="257.0" />
       <Text layoutX="29.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search:" />
-      <Button layoutX="58.0" layoutY="525.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="84.0" text="Đăng ký" />
-      <Button layoutX="177.0" layoutY="525.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="138.0" text="Danh sách đã đăng ký" />
+      <Button layoutX="67.0" layoutY="525.0" mnemonicParsing="false" onAction="#onClckRegister" prefHeight="44.0" prefWidth="195.0" text="Đăng ký" />
+      <Button layoutX="657.0" layoutY="525.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="195.0" text="Danh sách đã đăng ký" />
    </children>
+   <stylesheets>
+      <URL value="@css/Style.css" />
+      <URL value="@css/Metro-UI.css" />
+   </stylesheets>
 </AnchorPane>

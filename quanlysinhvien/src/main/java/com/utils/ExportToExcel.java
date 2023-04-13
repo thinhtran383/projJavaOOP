@@ -14,6 +14,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ExportToExcel {
+
     public static <T> void exportToExcel(TableView<T> table, String fileName) { // phuong thuc generic voi T la kieu du
                                                                                 // lieu cua table
         XSSFWorkbook workbook = new XSSFWorkbook();

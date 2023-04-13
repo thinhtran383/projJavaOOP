@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -54,11 +55,26 @@ public class GradesManagementController {
     private TextField txtFinal;
     @FXML
     private TextField txtSearch;
+    @FXML
+    private ComboBox<String> cbFilter;
 
     private ObservableList<Grade> gradesList = DataManager.getGradesList();
 
+    private String selectedFilter = "<None>";
+
     public void initialize() {
         showOnTable();
+        setCbFillter();
+    }
+
+    private void setCbFillter() {
+        cbFilter.getItems().addAll("Trượt", "Đỗ", "<None>");
+        cbFilter.getSelectionModel().selectLast();
+        cbFilter.setOnAction(e -> {
+            selectedFilter = cbFilter.getSelectionModel().getSelectedItem().toString();
+            filter();
+            System.out.println(selectedFilter);
+        });
     }
 
     private void clear() {
@@ -188,8 +204,19 @@ public class GradesManagementController {
         }
     }
 
-    public void onClickRefresh(ActionEvent actionEvent) {
-        tableGrades.setItems(gradesList);
-        System.out.println("refresh");
+    public void filter() {
+        if (selectedFilter.equals("<None>")) {
+            tableGrades.setItems(gradesList);
+        } else {
+            ObservableList<Grade> filterList = FXCollections.observableArrayList();
+            for (Grade grade : gradesList) {
+                if (grade.getTotalGrade() < 5 && selectedFilter.equals("Trượt")) {
+                    filterList.add(grade);
+                } else if (grade.getTotalGrade() >= 5 && selectedFilter.equals("Đỗ")) {
+                    filterList.add(grade);
+                }
+            }
+            tableGrades.setItems(filterList);
+        }
     }
 }

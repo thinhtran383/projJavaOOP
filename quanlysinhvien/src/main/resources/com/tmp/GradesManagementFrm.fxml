@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="791.0" prefWidth="1009.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Controller.Admin.GradesManagementController">
+   <children>
+      <TableView fx:id="tableGrades" layoutX="-2.0" layoutY="46.0" onMouseClicked="#onMouseClick" prefHeight="401.0" prefWidth="1009.0">
+        <columns>
+          <TableColumn fx:id="studentIdColumn" prefWidth="105.77777016162872" text="Student ID">
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="28.0" opacity="0.49" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/tabel.png" />
+                     </image>
+                  </ImageView>
+               </graphic></TableColumn>
+          <TableColumn fx:id="studentNameColumn" prefWidth="152.44449615478516" text="Student Name">
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="28.0" opacity="0.49" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/tabel.png" />
+                     </image>
+                  </ImageView>
+               </graphic></TableColumn>
+            <TableColumn fx:id="subjectNameColumn" prefWidth="160.0" text="Subject Name">
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="28.0" opacity="0.49" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/tabel.png" />
+                     </image>
+                  </ImageView>
+               </graphic></TableColumn>
+            <TableColumn fx:id="subjectIdColumn" prefWidth="130.22216796875" text="Subject ID">
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="28.0" opacity="0.49" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/tabel.png" />
+                     </image>
+                  </ImageView>
+               </graphic></TableColumn>
+            <TableColumn fx:id="attendanceColumn" prefWidth="147.1112060546875" text="Attendance Grade">
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="28.0" opacity="0.49" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/tabel.png" />
+                     </image>
+                  </ImageView>
+               </graphic></TableColumn>
+            <TableColumn fx:id="midtermColumn" prefWidth="104.8887939453125" text="Midterm Grade">
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="28.0" opacity="0.49" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/tabel.png" />
+                     </image>
+                  </ImageView>
+               </graphic></TableColumn>
+            <TableColumn fx:id="finalColumn" prefWidth="77.333251953125" text="Final Grade">
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="28.0" opacity="0.49" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/tabel.png" />
+                     </image>
+                  </ImageView>
+               </graphic></TableColumn>
+            <TableColumn fx:id="totalColumn" prefWidth="129.77785237630212" text="Total">
+               <graphic>
+                  <ImageView fitHeight="28.0" fitWidth="27.0" opacity="0.49" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/tabel.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </TableColumn>
+        </columns>
+      </TableView>
+      <Button fx:id="btnUpdate" layoutX="495.0" layoutY="472.0" mnemonicParsing="false" onAction="#onClickUpdate" text="Update" />
+      <Button layoutX="495.0" layoutY="517.0" mnemonicParsing="false" onAction="#onClickExport" prefHeight="34.0" prefWidth="95.0" text="Export" />
+      <GridPane layoutX="53.0" layoutY="462.0" prefHeight="229.0" prefWidth="336.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <TextField fx:id="txtStudentId" editable="false" prefWidth="191.0" GridPane.columnIndex="1" />
+            <TextField fx:id="txtSubjectId" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="txtStudentName" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txtSubjectName" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="txtAttendance" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="txtMidterm" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="txtFinal" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <Label text="Student ID:" />
+            <Label text="Student Name:" GridPane.rowIndex="1" />
+            <Label text="Subject ID:" GridPane.rowIndex="3" />
+            <Label text="Attendance_grade:" GridPane.rowIndex="4" />
+            <Label text="Midterm_grade:" GridPane.rowIndex="5" />
+            <Label text="Final_grade:" GridPane.rowIndex="6" />
+            <Label text="Subject Name" GridPane.rowIndex="2" />
+         </children>
+      </GridPane>
+      <TextField fx:id="txtSearch" layoutX="104.0" layoutY="12.0" onKeyReleased="#search" prefHeight="25.0" prefWidth="255.0" promptText="Search..." />
+      <Text fill="#2b579a" layoutX="13.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search:" wrappingWidth="79.3828125">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Text>
+      <Text fill="#2b579a" layoutX="504.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fillter:" wrappingWidth="79.3828125">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Text>
+      <ComboBox fx:id="cbFilter" layoutX="583.0" layoutY="14.0" prefWidth="150.0" />
+   </children>
+   <stylesheets>
+      <URL value="@css/Style.css" />
+      <URL value="@css/Metro-UI.css" />
+   </stylesheets>
+</AnchorPane>

@@ -32,8 +32,11 @@ public class DataManager {
     }
 
     private void initGrade() {
+
         ExecuteQuery query = new ExecuteQuery(
-                "SELECT s.student_id, s.name, c.course_id, c.course_name, g.attendance_grade, g.midterm_grade, g.final_grade FROM students s JOIN grades g ON s.student_id = g.student_id JOIN courses c ON g.course_id = c.course_id");
+                "SELECT s.student_id, s.name, c.course_id, c.course_name, g.attendance_grade, g.midterm_grade, g.final_grade, (g.attendance_grade * 0.1 + g.midterm_grade * 0.4 + g.final_grade * 0.5) AS total_grade "
+                        +
+                        "FROM students s JOIN grades g ON s.student_id = g.student_id JOIN courses c ON g.course_id = c.course_id");
         ResultSet resultSet = query.executeQuery();
         try {
             while (resultSet.next()) {
@@ -44,7 +47,8 @@ public class DataManager {
                         resultSet.getString("course_id"),
                         resultSet.getFloat("attendance_grade"),
                         resultSet.getFloat("midterm_grade"),
-                        resultSet.getFloat("final_grade"));
+                        resultSet.getFloat("final_grade"),
+                        resultSet.getFloat("total_grade"));
                 gradesList.add(grade);
             }
         } catch (SQLException e) {

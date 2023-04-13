@@ -81,5 +81,6 @@
             </TableColumn>
          </columns>
       </TableView>
+      <Button layoutX="737.0" layoutY="661.0" mnemonicParsing="false" onAction="#onClickExport" text="Export" />
    </children>
 </AnchorPane>

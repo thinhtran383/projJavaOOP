@@ -81,7 +81,7 @@ public class InforStudentController {
 
         String studentId = null;
         ExecuteQuery query = new ExecuteQuery(
-                "SELECT student_id FROM studentaccount WHERE username = '" + LoginController.email + "'");
+                "SELECT student_id FROM studentaccount WHERE username = '" + LoginController.username + "'");
         ResultSet resultSet = query.executeQuery();
 
         try {

@@ -32,7 +32,7 @@ public class LoginController {
     private ArrayList<Account> studentAccounts = DataManager.getStudentAccounts();
     private ArrayList<Account> adminAccounts = DataManager.getAdminAccounts();
 
-    public static String email;
+    public static String username;
 
     @FXML
     public void initialize() { // tu dong goi khi chuong trinh chay
@@ -50,15 +50,15 @@ public class LoginController {
     }
 
     private int checkAccount() { // kiem tra account co ton tai hay khong
-        String email = txtUsername.getText();
+        String username = txtUsername.getText();
         String password = txtPassword.getText();
         for (Account account : adminAccounts) {
-            if (email.equals(account.getUsername()) && password.equals(account.getPassword())) {
+            if (username.equals(account.getUsername()) && password.equals(account.getPassword())) {
                 return 1;
             }
         }
         for (Account account : studentAccounts) {
-            if (email.equals(account.getUsername()) && password.equals(account.getPassword())) {
+            if (username.equals(account.getUsername()) && password.equals(account.getPassword())) {
                 return 2;
             }
         }
@@ -77,7 +77,7 @@ public class LoginController {
             App.setRoot("Frm");
         } else if (checkAccount() == 2 && selectedRole.equals("Student")) {
             AlertHelper.showAlert(AlertType.INFORMATION, "Thành công", null, "Đăng nhập thành công");
-            email = txtUsername.getText();
+            username = txtUsername.getText();
             App.setRoot("Frm");
         } else {
             AlertHelper.showAlert(AlertType.ERROR, "Lỗi", null, "Tài khoản hoặc mật khẩu không đúng ");

@@ -17,7 +17,7 @@ public class ExportToExcel {
     public static <T> void exportToExcel(TableView<T> table, String fileName) { // phuong thuc generic voi T la kieu du
                                                                                 // lieu cua table
         XSSFWorkbook workbook = new XSSFWorkbook();
-        XSSFSheet sheet = workbook.createSheet(table.getId());
+        XSSFSheet sheet = workbook.createSheet("Sheet 1");
         XSSFRow headerRow = sheet.createRow(0);
 
         // Tạo header

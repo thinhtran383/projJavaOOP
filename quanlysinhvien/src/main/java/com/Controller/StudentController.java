@@ -24,6 +24,16 @@ public class StudentController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        Tab tab2 = tabPane.getTabs().get(1);
+        FXMLLoader loader2 = new FXMLLoader(
+                getClass().getResource("/com/RegisterStudentFrm.fxml"));
+        try {
+            Parent root = loader2.load();
+            tab2.setContent(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

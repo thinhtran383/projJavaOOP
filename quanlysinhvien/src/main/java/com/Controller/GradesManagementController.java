@@ -6,7 +6,6 @@ import com.Models.Grade;
 import com.utils.ExecuteQuery;
 import com.utils.ExportToExcel;
 
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -97,6 +96,12 @@ public class GradesManagementController {
         float attendanceGrade = Float.parseFloat(txtAttendance.getText());
         float midTermGrade = Float.parseFloat(txtMidterm.getText());
         float finalGrade = Float.parseFloat(txtFinal.getText());
+
+        if (attendanceGrade < 0 || attendanceGrade > 10 || midTermGrade < 0 || midTermGrade > 10 || finalGrade < 0
+                || finalGrade > 10) {
+            AlertHelper.showAlert(AlertType.ERROR, "Thông báo", null, "Điểm không hợp lệ!");
+            return;
+        }
 
         ExecuteQuery query = new ExecuteQuery("UPDATE grades SET attendance_grade ='" + attendanceGrade
                 + "', midterm_grade ='" + midTermGrade + "', final_grade ='" + finalGrade + "' WHERE student_id ='"

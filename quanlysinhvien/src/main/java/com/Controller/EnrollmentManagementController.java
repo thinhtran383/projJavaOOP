@@ -3,10 +3,13 @@ package com.Controller;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.Helper.AlertHelper;
 import com.Helper.DataManager;
 import com.Models.Courses;
+import com.Models.Grade;
 import com.Models.Student;
 import com.utils.ExecuteQuery;
+import com.utils.ExportToExcel;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -35,13 +38,11 @@ public class EnrollmentManagementController {
     @FXML
     private TableColumn<Courses, String> creditColumn;
 
-    // private ObservableList<Student> studentsList =
-    // FXCollections.observableArrayList();
     private ObservableList<Student> studentsList = DataManager.getStudentsList();
-
     private ObservableList<Courses> enrollList = FXCollections.observableArrayList();
+    private ObservableList<Grade> subjectRegistrationList = DataManager.getGradesList();
 
-    private String studentId;
+    private String studentId; // su dung trong ham onMouseClick va onClickDelete
 
     public void initialize() {
         showStudentOnTable();
@@ -96,11 +97,35 @@ public class EnrollmentManagementController {
 
     public void onClickDelete(ActionEvent actionEvent) {
         String subjectId = tableCourses.getSelectionModel().getSelectedItem().getCourseId();
+        if (AlertHelper.showConfirmation("Bạn có chắc chắn muốn huỷ học phần này của sinh viên?") == false) {
+            return;
+        }
         String sql = "DELETE FROM grades WHERE student_id='" + studentId + "' AND course_id='" + subjectId + "';";
         ExecuteQuery query = new ExecuteQuery(sql);
         query.executeUpdate();
 
         enrollList.remove(tableCourses.getSelectionModel().getSelectedItem());
+    }
+
+    public void onClickExport(ActionEvent actionEvent) {
+        // tao mot table view de chua du lieu
+        TableView<Grade> table = new TableView<Grade>();
+        // tao cac cot cho table view
+        TableColumn<Grade, String> studentIdColumn = new TableColumn<Grade, String>("Student ID");
+        TableColumn<Grade, String> studentNameColumn = new TableColumn<Grade, String>("Student Name");
+        TableColumn<Grade, String> subjectIdColumn = new TableColumn<Grade, String>("Subject ID");
+        TableColumn<Grade, String> subjectNameColumn = new TableColumn<Grade, String>("Subject Name");
+        // gan du lieu cho cac cot
+        studentIdColumn.setCellValueFactory(new PropertyValueFactory<>("studentId"));
+        studentNameColumn.setCellValueFactory(new PropertyValueFactory<>("studentName"));
+        subjectIdColumn.setCellValueFactory(new PropertyValueFactory<>("subjectId"));
+        subjectNameColumn.setCellValueFactory(new PropertyValueFactory<>("subjectName"));
+        table.setItems(subjectRegistrationList);
+
+        // them cac cot vao table view
+        table.getColumns().addAll(studentIdColumn, studentNameColumn, subjectIdColumn, subjectNameColumn);
+
+        ExportToExcel.exportToExcel(table, "EnrollList.xlsx3");
     }
 
 }

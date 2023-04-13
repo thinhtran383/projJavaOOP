@@ -10,8 +10,8 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 
 public class AdminController {
-
-    public TabPane tabPane;
+    @FXML
+    private TabPane tabPane;
 
     @FXML
     private void initialize() {

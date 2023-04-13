@@ -24,5 +24,10 @@ module com {
     exports com.utils;
     exports com.constants;
 
+    exports com.Controller.Admin;
+    exports com.Controller.Student;
+
     opens com.Controller to javafx.fxml;
+    opens com.Controller.Admin to javafx.fxml;
+    opens com.Controller.Student to javafx.fxml;
 }

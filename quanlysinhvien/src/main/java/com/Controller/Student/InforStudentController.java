@@ -22,31 +22,31 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 public class InforStudentController {
     @FXML
-    public Label lbStudentId;
+    private Label lbStudentId;
     @FXML
-    public Label lbStudentName;
+    private Label lbStudentName;
     @FXML
-    public Label lbStudentGender;
+    private Label lbStudentGender;
     @FXML
-    public Label lbStudentEmail;
+    private Label lbStudentEmail;
     @FXML
-    public Label lbPhoneNumber;
+    private Label lbPhoneNumber;
     @FXML
-    public Label lbDob;
+    private Label lbDob;
     @FXML
-    public Label lbStudentAddress;
+    private Label lbStudentAddress;
     @FXML
-    public TableView<Grade> tableGrades;
+    private TableView<Grade> tableGrades;
     @FXML
-    public TableColumn<Grade, String> subjectIdColumn;
+    private TableColumn<Grade, String> subjectIdColumn;
     @FXML
-    public TableColumn<Grade, String> subjectNameColumn;
+    private TableColumn<Grade, String> subjectNameColumn;
     @FXML
-    public TableColumn<Grade, Float> attendanceColumn;
+    private TableColumn<Grade, Float> attendanceColumn;
     @FXML
-    public TableColumn<Grade, Float> midtermColumn;
+    private TableColumn<Grade, Float> midtermColumn;
     @FXML
-    public TableColumn<Grade, Float> finalColumn;
+    private TableColumn<Grade, Float> finalColumn;
 
     private ObservableList<Grade> gradeList = FXCollections.observableArrayList();
 

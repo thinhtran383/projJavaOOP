@@ -19,6 +19,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 public class GradesManagementController {
+
     @FXML
     TableView<Grade> tableGrades;
     @FXML
@@ -35,6 +36,8 @@ public class GradesManagementController {
     private TableColumn<Grade, Float> midtermColumn;
     @FXML
     private TableColumn<Grade, Float> finalColumn;
+    @FXML
+    private TableColumn<Grade, Float> totalColumn;
     @FXML
     private TextField txtStudentId;
     @FXML
@@ -76,6 +79,7 @@ public class GradesManagementController {
         attendanceColumn.setCellValueFactory(new PropertyValueFactory<>("attendanceGrade"));
         midtermColumn.setCellValueFactory(new PropertyValueFactory<>("midTermGrade"));
         finalColumn.setCellValueFactory(new PropertyValueFactory<>("finalGrade"));
+        totalColumn.setCellValueFactory(new PropertyValueFactory<>("totalGrade"));
         tableGrades.setItems(gradesList);
     }
 
@@ -90,6 +94,41 @@ public class GradesManagementController {
         txtFinal.setText(String.valueOf(grade.getFinalGrade()));
     }
 
+    // public void onClickUpdate(ActionEvent actionEvent) {
+    // String studentId = txtStudentId.getText();
+    // String subjectId = txtSubjectId.getText();
+    // float attendanceGrade = Float.parseFloat(txtAttendance.getText());
+    // float midTermGrade = Float.parseFloat(txtMidterm.getText());
+    // float finalGrade = Float.parseFloat(txtFinal.getText());
+
+    // if (attendanceGrade < 0 || attendanceGrade > 10 || midTermGrade < 0 ||
+    // midTermGrade > 10 || finalGrade < 0
+    // || finalGrade > 10) {
+    // AlertHelper.showAlert(AlertType.ERROR, "Thông báo", null, "Điểm không hợp
+    // lệ!");
+    // return;
+    // }
+
+    // ExecuteQuery query = new ExecuteQuery("UPDATE grades SET attendance_grade ='"
+    // + attendanceGrade
+    // + "', midterm_grade ='" + midTermGrade + "', final_grade ='" + finalGrade +
+    // "' WHERE student_id ='"
+    // + studentId + "' AND course_id ='" + subjectId + "'");
+    // query.executeUpdate();
+
+    // Grade grade = tableGrades.getSelectionModel().getSelectedItem();
+
+    // grade.setAttendanceGrade(attendanceGrade);
+    // grade.setMidTermGrade(midTermGrade);
+    // grade.setFinalGrade(finalGrade);
+
+    // tableGrades.refresh();
+
+    // AlertHelper.showAlert(AlertType.INFORMATION, "Thông báo", null, "Cập nhật
+    // thành công!");
+    // clear();
+    // }
+
     public void onClickUpdate(ActionEvent actionEvent) {
         String studentId = txtStudentId.getText();
         String subjectId = txtSubjectId.getText();
@@ -103,6 +142,8 @@ public class GradesManagementController {
             return;
         }
 
+        float totalGrade = attendanceGrade * 0.1f + midTermGrade * 0.4f + finalGrade * 0.5f;
+
         ExecuteQuery query = new ExecuteQuery("UPDATE grades SET attendance_grade ='" + attendanceGrade
                 + "', midterm_grade ='" + midTermGrade + "', final_grade ='" + finalGrade + "' WHERE student_id ='"
                 + studentId + "' AND course_id ='" + subjectId + "'");
@@ -113,6 +154,7 @@ public class GradesManagementController {
         grade.setAttendanceGrade(attendanceGrade);
         grade.setMidTermGrade(midTermGrade);
         grade.setFinalGrade(finalGrade);
+        grade.setTotalGrade(totalGrade);
 
         tableGrades.refresh();
 
@@ -144,6 +186,10 @@ public class GradesManagementController {
             }
             tableGrades.setItems(searchList);
         }
+    }
 
+    public void onClickRefresh(ActionEvent actionEvent) {
+        tableGrades.setItems(gradesList);
+        System.out.println("refresh");
     }
 }

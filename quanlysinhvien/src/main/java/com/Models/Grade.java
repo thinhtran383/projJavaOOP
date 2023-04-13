@@ -6,13 +6,14 @@ public class Grade {
     private float attendanceGrade;
     private float midTermGrade;
     private float finalGrade;
+    private float totalGrade;
 
     private String studentId;
 
     private String studentName;
 
     public Grade(String studentId, String studentName, String subjectName, String subjectId, float attendanceGrade,
-            float midTermGrade, float finalGrade) {
+            float midTermGrade, float finalGrade, float totalGrade) {
         this.studentId = studentId;
         this.studentName = studentName;
         this.subjectName = subjectName;
@@ -20,9 +21,11 @@ public class Grade {
         this.attendanceGrade = attendanceGrade;
         this.midTermGrade = midTermGrade;
         this.finalGrade = finalGrade;
+        this.totalGrade = totalGrade;
     }
 
     public Grade(String subjectName, String subjectId, float attendanceGrade, float midTermGrade, float finalGrade) {
+        // su dung trong inforStudent
         this.subjectName = subjectName;
         this.subjectId = subjectId;
         this.attendanceGrade = attendanceGrade;
@@ -84,5 +87,13 @@ public class Grade {
 
     public void setStudentId(String studentId) {
         this.studentId = studentId;
+    }
+
+    public float getTotalGrade() {
+        return totalGrade;
+    }
+
+    public void setTotalGrade(float totalGrade) {
+        this.totalGrade = totalGrade;
     }
 }

@@ -20,7 +20,7 @@
       <TextField layoutX="91.0" layoutY="11.0" prefHeight="25.0" prefWidth="257.0" />
       <Text layoutX="29.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search:" />
       <Button layoutX="67.0" layoutY="525.0" mnemonicParsing="false" onAction="#onClckRegister" prefHeight="44.0" prefWidth="195.0" text="Đăng ký" />
-      <Button layoutX="657.0" layoutY="525.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="195.0" text="Danh sách đã đăng ký" />
+      <Button layoutX="657.0" layoutY="525.0" mnemonicParsing="false" onAction="#onClickShowList" prefHeight="44.0" prefWidth="195.0" text="Danh sách đã đăng ký" />
    </children>
    <stylesheets>
       <URL value="@css/Style.css" />

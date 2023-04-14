@@ -12,7 +12,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -74,7 +74,6 @@ public class RegisterManagementController {
                 "INSERT INTO grades (student_id, course_id) " +
                         "VALUES ('" + InforStudentController.getStudentId() + "', '" + subjectId + "')");
         query.executeUpdate();
-
         coursesList.remove(tableCourses.getSelectionModel().getSelectedItem());
 
     }

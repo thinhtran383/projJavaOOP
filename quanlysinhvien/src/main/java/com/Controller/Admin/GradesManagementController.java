@@ -110,41 +110,6 @@ public class GradesManagementController {
         txtFinal.setText(String.valueOf(grade.getFinalGrade()));
     }
 
-    // public void onClickUpdate(ActionEvent actionEvent) {
-    // String studentId = txtStudentId.getText();
-    // String subjectId = txtSubjectId.getText();
-    // float attendanceGrade = Float.parseFloat(txtAttendance.getText());
-    // float midTermGrade = Float.parseFloat(txtMidterm.getText());
-    // float finalGrade = Float.parseFloat(txtFinal.getText());
-
-    // if (attendanceGrade < 0 || attendanceGrade > 10 || midTermGrade < 0 ||
-    // midTermGrade > 10 || finalGrade < 0
-    // || finalGrade > 10) {
-    // AlertHelper.showAlert(AlertType.ERROR, "Thông báo", null, "Điểm không hợp
-    // lệ!");
-    // return;
-    // }
-
-    // ExecuteQuery query = new ExecuteQuery("UPDATE grades SET attendance_grade ='"
-    // + attendanceGrade
-    // + "', midterm_grade ='" + midTermGrade + "', final_grade ='" + finalGrade +
-    // "' WHERE student_id ='"
-    // + studentId + "' AND course_id ='" + subjectId + "'");
-    // query.executeUpdate();
-
-    // Grade grade = tableGrades.getSelectionModel().getSelectedItem();
-
-    // grade.setAttendanceGrade(attendanceGrade);
-    // grade.setMidTermGrade(midTermGrade);
-    // grade.setFinalGrade(finalGrade);
-
-    // tableGrades.refresh();
-
-    // AlertHelper.showAlert(AlertType.INFORMATION, "Thông báo", null, "Cập nhật
-    // thành công!");
-    // clear();
-    // }
-
     public void onClickUpdate(ActionEvent actionEvent) {
         String studentId = txtStudentId.getText();
         String subjectId = txtSubjectId.getText();
@@ -180,11 +145,23 @@ public class GradesManagementController {
     }
 
     public void onClickExport(ActionEvent actionEvent) {
-
+        if (gradesList.isEmpty()) {
+            AlertHelper.showAlert(AlertType.ERROR, "Thông báo", null, "Không có dữ liệu để xuất!");
+            return;
+        }
         if (AlertHelper.showConfirmation("Bạn có muốn xuất dữ liệu ra excel không?")) {
             ExportToExcel.exportToExcel(tableGrades, "students.xlsx");
             AlertHelper.showAlert(AlertType.INFORMATION, "Thông báo", null, "Xuất dữ liệu thành công!");
         }
+    }
+
+    public void onClickRefresh(ActionEvent actionEvent) { // van de: khi gradesList rong thi khong the
+        gradesList.clear();
+        if (gradesList.isEmpty()) {
+            DataManager.initGrade();
+        }
+        gradesList = DataManager.getGradesList();
+        showOnTable();
     }
 
     public void search(KeyEvent keyEvent) {
@@ -220,4 +197,5 @@ public class GradesManagementController {
             tableGrades.setItems(filterList);
         }
     }
+
 }

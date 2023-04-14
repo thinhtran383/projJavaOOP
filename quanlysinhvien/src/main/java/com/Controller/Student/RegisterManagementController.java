@@ -3,6 +3,7 @@ package com.Controller.Student;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.Helper.DataManager;
 import com.Models.Courses;
 import com.utils.ExecuteQuery;
 import java.sql.SQLException;
@@ -25,6 +26,8 @@ public class RegisterManagementController {
     @FXML
     private TableColumn<Courses, String> creditsColumn;
 
+    // private ObservableList<Courses> coursesList =
+    // DataManager.getCoursesRegisterList();
     private ObservableList<Courses> coursesList = FXCollections.observableArrayList();
 
     public void initialize() {

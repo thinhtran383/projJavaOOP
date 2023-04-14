@@ -47,6 +47,8 @@ public class InforStudentController {
     private TableColumn<Grade, Float> midtermColumn;
     @FXML
     private TableColumn<Grade, Float> finalColumn;
+    @FXML
+    private TableColumn<Grade, Float> totalColumn;
 
     private ObservableList<Grade> gradeList = FXCollections.observableArrayList();
 
@@ -78,7 +80,7 @@ public class InforStudentController {
         }
     }
 
-    protected static String getStudentId() {
+    public static String getStudentId() {
 
         String studentId = null;
         ExecuteQuery query = new ExecuteQuery(
@@ -97,7 +99,7 @@ public class InforStudentController {
 
     private void initGrade() {
 
-        String sql = "SELECT courses.course_id, courses.course_name, grades.attendance_grade, grades.midterm_grade, grades.final_grade FROM students JOIN grades ON students.student_id = grades.student_id JOIN courses ON grades.course_id = courses.course_id WHERE students.student_id = '"
+        String sql = "SELECT courses.course_id, courses.course_name, grades.attendance_grade, grades.midterm_grade, grades.final_grade, ROUND(( grades.attendance_grade * 0.1)+( grades.midterm_grade * 0.4)+(grades.final_grade * 0.5),2) as total_grade FROM students JOIN grades ON students.student_id = grades.student_id JOIN courses ON grades.course_id = courses.course_id WHERE students.student_id = '"
                 + getStudentId() + "'";
 
         ExecuteQuery query = new ExecuteQuery(sql);
@@ -110,8 +112,8 @@ public class InforStudentController {
                         resultSet.getString("course_name"),
                         resultSet.getFloat("attendance_grade"),
                         resultSet.getFloat("midterm_grade"),
-                        resultSet.getFloat("final_grade"));
-
+                        resultSet.getFloat("final_grade"),
+                        resultSet.getFloat("total_grade"));
                 gradeList.add(grade);
 
             }
@@ -126,8 +128,7 @@ public class InforStudentController {
         attendanceColumn.setCellValueFactory(new PropertyValueFactory<Grade, Float>("attendanceGrade"));
         midtermColumn.setCellValueFactory(new PropertyValueFactory<Grade, Float>("midTermGrade"));
         finalColumn.setCellValueFactory(new PropertyValueFactory<Grade, Float>("finalGrade"));
-        tableGrades.setItems(gradeList);
-
+        totalColumn.setCellValueFactory(new PropertyValueFactory<Grade, Float>("totalGrade"));
         tableGrades.setItems(gradeList);
     }
 

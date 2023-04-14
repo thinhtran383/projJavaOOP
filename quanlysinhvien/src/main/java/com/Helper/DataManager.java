@@ -18,6 +18,8 @@ public class DataManager {
     private static ObservableList<Courses> coursesList = FXCollections.observableArrayList();
     private static ObservableList<Student> studentsList = FXCollections.observableArrayList();
     private static ObservableList<Grade> gradesList = FXCollections.observableArrayList();
+    // private static ObservableList<Courses> coursesRegisterList =
+    // FXCollections.observableArrayList();
 
     private static ArrayList<Account> studentAccounts = new ArrayList<>();
     private static ArrayList<Account> adminAccounts = new ArrayList<>();
@@ -29,9 +31,34 @@ public class DataManager {
         intitAccount();
         initStudents();
         initGrade();
+        // initCoursesRegister();
     }
 
-    private void initGrade() {
+    // private void initCoursesRegister() {
+    // ExecuteQuery query = new ExecuteQuery(
+    // "SELECT course_id, course_name, course_credit " +
+    // "FROM courses " +
+    // "WHERE course_id NOT IN (" +
+    // "SELECT course_id FROM grades " +
+    // "WHERE student_id = '" + InforStudentController.getStudentId() + "'" +
+    // ")");
+    // ResultSet resultSet = query.executeQuery();
+
+    // try {
+    // while (resultSet.next()) {
+    // Courses courses = new Courses(
+    // resultSet.getString("course_id"),
+    // resultSet.getString("course_name"),
+    // resultSet.getInt("course_credit"));
+    // coursesRegisterList.add(courses);
+
+    // }
+    // } catch (SQLException e) {
+    // e.printStackTrace();
+    // }
+    // }
+
+    public static void initGrade() {
 
         ExecuteQuery query = new ExecuteQuery(
                 "SELECT s.student_id, s.name, c.course_id, c.course_name, g.attendance_grade, g.midterm_grade, g.final_grade, (g.attendance_grade * 0.1 + g.midterm_grade * 0.4 + g.final_grade * 0.5) AS total_grade "
@@ -136,6 +163,12 @@ public class DataManager {
         return studentsList;
     }
 
+    // public static ObservableList<Courses> getCoursesRegisterList() {
+    // if (instance == null)
+    // instance = new DataManager();
+    // return coursesRegisterList;
+    // }
+
     public static void setStudentsList(ObservableList<Student> students) {
         studentsList.setAll(students);
     }
@@ -156,17 +189,17 @@ public class DataManager {
         return adminAccounts;
     }
 
+    public static ObservableList<Grade> getGradesList() {
+        if (instance == null)
+            instance = new DataManager();
+        return gradesList;
+    }
+
     // get Instance
     public static DataManager getInstance() {
         if (instance == null)
             instance = new DataManager();
         return instance;
-    }
-
-    public static ObservableList<Grade> getGradesList() {
-        if (instance == null)
-            instance = new DataManager();
-        return gradesList;
     }
 
 }

@@ -1,4 +1,5 @@
 package com.Controller.Student;
+
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,8 +9,6 @@ import com.Helper.AlertHelper;
 import com.Models.Courses;
 import com.utils.ExecuteQuery;
 import com.utils.ExportToExcel;
-
-import java.sql.SQLException;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -72,19 +71,18 @@ public class DanhSachMonDaDangKyController {
 
         tableMonDaDangKy.setItems(coursesList);
     }
-    public void onClickBack(ActionEvent actionEvent)throws IOException {
+
+    public void onClickBack(ActionEvent actionEvent) throws IOException {
         App.setRoot("RegisterStudentFrm");
     }
-//    public void onClickXuat(ActionEvent actionEvent) {
-//        if (coursesList.isEmpty()) {
-//            AlertHelper.showAlert(AlertType.ERROR, "Lỗi", null, "Không có dữ liệu để xuất");
-//        } else {
-//
-//            if (AlertHelper.showConfirmation("Bạn có muốn xuất dữ liệu ra excel không?")) {
-//                ExportToExcel.exportToExcel(tableMonDaDangKy, "DanhSachMonDaDangKy.xlsx");
-//                AlertHelper.showAlert(AlertType.INFORMATION, "Thông báo", null, "Xuất dữ liệu thành công!");
-//            }
-//        }
-//
-//    }
+
+    public void onClickExport(ActionEvent actionEvent) {
+        if (coursesList.isEmpty()) {
+            AlertHelper.showAlert(AlertType.ERROR, "Lỗi", null, "Không có dữ liệu để xuất");
+            return;
+        } else if (AlertHelper.showConfirmation("Bạn có muốn xuất dữ liệu ra excel không?")) {
+            ExportToExcel.exportToExcel(tableMonDaDangKy, "danh_sach_da_dang_ki.xlsx");
+            AlertHelper.showAlert(AlertType.INFORMATION, "Thông báo", null, "Xuất dữ liệu thành công!");
+        }
+    }
 }

@@ -1,12 +1,14 @@
 package com.Controller.Student;
-
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.App;
+import com.Helper.AlertHelper;
 import com.Models.Courses;
 import com.utils.ExecuteQuery;
+import com.utils.ExportToExcel;
+
 import java.sql.SQLException;
 
 import javafx.collections.FXCollections;
@@ -16,23 +18,20 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class RegisterManagementController {
+public class DanhSachMonDaDangKyController {
     @FXML
-    private TableView<Courses> tableCourses;
+    private TableView<Courses> tableMonDaDangKy;
     @FXML
-    private TableColumn<Courses, String> subjectColumn;
+    private TableColumn<Courses, String> subjectIdColumn;
     @FXML
     private TableColumn<Courses, String> subjectNameColumn;
     @FXML
-    private TableColumn<Courses, String> creditsColumn;
-
+    private TableColumn<Courses, Integer> creditsColumn;
     @FXML
-    private Button btDangKy;
-    @FXML
-    private Button btShowListDaDangKy;
-
+    private Button btExport;
     @FXML
     private ObservableList<Courses> coursesList = FXCollections.observableArrayList();
 
@@ -46,7 +45,7 @@ public class RegisterManagementController {
         ExecuteQuery query = new ExecuteQuery(
                 "SELECT course_id, course_name, course_credit " +
                         "FROM courses " +
-                        "WHERE course_id NOT IN (" +
+                        "WHERE course_id IN (" +
                         "SELECT course_id FROM grades " +
                         "WHERE student_id = '" + InforStudentController.getStudentId() + "'" +
                         ")");
@@ -67,26 +66,25 @@ public class RegisterManagementController {
     }
 
     private void showOnTable() {
-        subjectColumn.setCellValueFactory(new PropertyValueFactory<>("courseId"));
+        subjectIdColumn.setCellValueFactory(new PropertyValueFactory<>("courseId"));
         subjectNameColumn.setCellValueFactory(new PropertyValueFactory<>("courseName"));
         creditsColumn.setCellValueFactory(new PropertyValueFactory<>("credits"));
 
-        tableCourses.setItems(coursesList);
+        tableMonDaDangKy.setItems(coursesList);
     }
-
-    public void onClckRegister(ActionEvent actionEvent) {
-        String subjectId = tableCourses.getSelectionModel().getSelectedItem().getCourseId();
-
-        ExecuteQuery query = new ExecuteQuery(
-                "INSERT INTO grades (student_id, course_id) " +
-                        "VALUES ('" + InforStudentController.getStudentId() + "', '" + subjectId + "')");
-        query.executeUpdate();
-
-        coursesList.remove(tableCourses.getSelectionModel().getSelectedItem());
-
+    public void onClickBack(ActionEvent actionEvent)throws IOException {
+        App.setRoot("RegisterStudentFrm");
     }
-
-    public void onClickShowList(ActionEvent actionEvent) throws IOException {
-        App.setRootPop("DanhSachMonDaDangKyFrm", "Danh sách môn đã đăng ký", true);
-    }
+//    public void onClickXuat(ActionEvent actionEvent) {
+//        if (coursesList.isEmpty()) {
+//            AlertHelper.showAlert(AlertType.ERROR, "Lỗi", null, "Không có dữ liệu để xuất");
+//        } else {
+//
+//            if (AlertHelper.showConfirmation("Bạn có muốn xuất dữ liệu ra excel không?")) {
+//                ExportToExcel.exportToExcel(tableMonDaDangKy, "DanhSachMonDaDangKy.xlsx");
+//                AlertHelper.showAlert(AlertType.INFORMATION, "Thông báo", null, "Xuất dữ liệu thành công!");
+//            }
+//        }
+//
+//    }
 }

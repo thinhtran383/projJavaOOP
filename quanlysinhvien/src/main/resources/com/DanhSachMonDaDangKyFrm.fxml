@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Controller.Student.DanhSachMonDaDangKyController">
+   <children>
+      <TableView fx:id="tableMonDaDangKy" layoutX="1.0" layoutY="65.0" prefHeight="250.0" prefWidth="600.0">
+        <columns>
+          <TableColumn fx:id="subjectIdColumn" prefWidth="151.0" text="Subject ID" />
+          <TableColumn fx:id="subjectNameColumn" prefWidth="215.0" text="Subject Name" />
+            <TableColumn fx:id="creditsColumn" minWidth="3.0" prefWidth="233.0" text="Subject Credit" />
+        </columns>
+      </TableView>
+      <Text layoutX="159.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Danh sách môn học đã đăng ký" wrappingWidth="295.13671875">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Text>
+      <Button fx:id="btExport" layoutX="241.0" layoutY="340.0" mnemonicParsing="false" onAction="#onCLickXuat" prefHeight="25.0" prefWidth="119.0" text="Xuất Excel" />
+   </children>
+</AnchorPane>

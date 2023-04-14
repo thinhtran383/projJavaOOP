@@ -49,6 +49,7 @@ public class FrmLoadController {
                 System.out.println("Không tìm thấy tài nguyên");
                 e.printStackTrace();
             }
+            LoginController.selectedRole = "Admin";
         } else {
             System.out.println("Cancel");
         }

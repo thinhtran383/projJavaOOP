@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import com.App;
 import com.Models.Courses;
 import com.utils.ExecuteQuery;
-import java.sql.SQLException;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -28,12 +27,6 @@ public class RegisterManagementController {
     @FXML
     private TableColumn<Courses, String> creditsColumn;
 
-    @FXML
-    private Button btDangKy;
-    @FXML
-    private Button btShowListDaDangKy;
-
-    @FXML
     private ObservableList<Courses> coursesList = FXCollections.observableArrayList();
 
     public void initialize() {
@@ -87,6 +80,6 @@ public class RegisterManagementController {
     }
 
     public void onClickShowList(ActionEvent actionEvent) throws IOException {
-        App.setRootPop("DanhSachMonDaDangKyFrm", "Danh sách môn đã đăng ký", true);
+        App.setRootPop("DanhSachMonDaDangKyFrm", "Danh sách môn đã đăng ký", false);
     }
 }

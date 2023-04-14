@@ -24,13 +24,15 @@ public class Grade {
         this.totalGrade = totalGrade;
     }
 
-    public Grade(String subjectName, String subjectId, float attendanceGrade, float midTermGrade, float finalGrade) {
+    public Grade(String subjectName, String subjectId, float attendanceGrade, float midTermGrade, float finalGrade,
+            float totalGrade) {
         // su dung trong inforStudent
         this.subjectName = subjectName;
         this.subjectId = subjectId;
         this.attendanceGrade = attendanceGrade;
         this.midTermGrade = midTermGrade;
         this.finalGrade = finalGrade;
+        this.totalGrade = totalGrade;
     }
 
     public String getSubjectName() {

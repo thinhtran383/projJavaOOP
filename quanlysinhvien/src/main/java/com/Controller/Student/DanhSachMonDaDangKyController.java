@@ -72,10 +72,6 @@ public class DanhSachMonDaDangKyController {
         tableMonDaDangKy.setItems(coursesList);
     }
 
-    public void onClickBack(ActionEvent actionEvent) throws IOException {
-        App.setRoot("RegisterStudentFrm");
-    }
-
     public void onClickExport(ActionEvent actionEvent) {
         if (coursesList.isEmpty()) {
             AlertHelper.showAlert(AlertType.ERROR, "Lỗi", null, "Không có dữ liệu để xuất");

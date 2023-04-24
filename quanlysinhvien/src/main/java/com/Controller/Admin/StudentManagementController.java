@@ -1,6 +1,7 @@
 package com.Controller.Admin;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import com.Helper.AlertHelper;
 import com.Helper.DataManager;
@@ -154,6 +155,7 @@ public class StudentManagementController {
                 +
                 id + "', '" + name + "', '" + address + "', '" + phone + "', '" + email + "', '" + dob + "', '" + gender
                 + "')";
+
         ExecuteQuery query = new ExecuteQuery(insertSql);
         query.executeUpdate();
 
@@ -161,8 +163,14 @@ public class StudentManagementController {
         studentsList.add(new Student(id, name, address, phone,
                 email, dob, gender));
 
-        clear();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyy");
+        String password = formatter.format(dob);
+        String addAccountStudentSql = "INSERT INTO studentaccount (student_id, username, password) VALUES ('" + id
+                + "', '" + id + "', '" + password + "')";
 
+        ExecuteQuery addAccount = new ExecuteQuery(addAccountStudentSql);
+        addAccount.executeUpdate();
+        clear();
     }
 
     public void onClickDelete(ActionEvent actionEvent) {

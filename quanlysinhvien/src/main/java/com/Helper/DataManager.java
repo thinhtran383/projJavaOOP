@@ -34,30 +34,6 @@ public class DataManager {
         // initCoursesRegister();
     }
 
-    // private void initCoursesRegister() {
-    // ExecuteQuery query = new ExecuteQuery(
-    // "SELECT course_id, course_name, course_credit " +
-    // "FROM courses " +
-    // "WHERE course_id NOT IN (" +
-    // "SELECT course_id FROM grades " +
-    // "WHERE student_id = '" + InforStudentController.getStudentId() + "'" +
-    // ")");
-    // ResultSet resultSet = query.executeQuery();
-
-    // try {
-    // while (resultSet.next()) {
-    // Courses courses = new Courses(
-    // resultSet.getString("course_id"),
-    // resultSet.getString("course_name"),
-    // resultSet.getInt("course_credit"));
-    // coursesRegisterList.add(courses);
-
-    // }
-    // } catch (SQLException e) {
-    // e.printStackTrace();
-    // }
-    // }
-
     public static void initGrade() {
 
         ExecuteQuery query = new ExecuteQuery(

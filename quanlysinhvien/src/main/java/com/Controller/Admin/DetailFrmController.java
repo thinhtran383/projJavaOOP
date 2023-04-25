@@ -1,2 +1,4 @@
-package com.Controller.Admin;public class DetailFrmController {
+package com.Controller.Admin;
+
+public class DetailFrmController {
 }

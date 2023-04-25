@@ -1,5 +1,6 @@
 package com.Controller.Student;
 
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -140,8 +141,8 @@ public class InforStudentController {
         }
     }
 
-    // public void onCickUpdateInfo(ActionEvent actionEvent) {
-    // App.setRootPop("");
-    // }
-
+    public void onClickUpdateInfo(ActionEvent actionEvent) throws IOException {
+        // App.setRootPop("DanhSachMonDaDangKyFrm", "Danh sách môn đã đăng ký", false);
+        App.setRootPop("InputInfoFrm", "Info", false);
+    }
 }

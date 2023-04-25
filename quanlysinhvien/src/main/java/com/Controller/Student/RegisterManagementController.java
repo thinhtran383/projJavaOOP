@@ -5,7 +5,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.App;
-import com.Helper.AlertHelper;
 import com.Models.Courses;
 import com.utils.ExecuteQuery;
 
@@ -13,7 +12,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert.AlertType;
+
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -69,14 +68,6 @@ public class RegisterManagementController {
     }
 
     public void onClckRegister(ActionEvent actionEvent) {
-        if (tableCourses.getSelectionModel().getSelectedItem() == null) {
-            AlertHelper.showAlert(AlertType.INFORMATION, "Thông báo", null, "Bạn chưa chọn môn học để đăng ký");
-            return;
-        }
-
-        if (AlertHelper.showConfirmation("Bạn có chắc chắn muốn đăng ký môn học này?") == false) {
-            return;
-        }
         String subjectId = tableCourses.getSelectionModel().getSelectedItem().getCourseId();
 
         ExecuteQuery query = new ExecuteQuery(
@@ -84,7 +75,6 @@ public class RegisterManagementController {
                         "VALUES ('" + InforStudentController.getStudentId() + "', '" + subjectId + "')");
         query.executeUpdate();
         coursesList.remove(tableCourses.getSelectionModel().getSelectedItem());
-        AlertHelper.showAlert(AlertType.INFORMATION, "Thông báo", null, "Đăng ký môn học thành công");
 
     }
 

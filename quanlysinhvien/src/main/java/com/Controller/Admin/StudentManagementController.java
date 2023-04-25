@@ -66,7 +66,7 @@ public class StudentManagementController {
 
     // public ObservableList<Student> studentsList =
     // FXCollections.observableArrayList();
-    private ObservableList<Student> studentsList = DataManager.getStudentsList();
+    private ObservableList<Student> studentsList = DataManager.getStudentsList(); // tao rang buoc du lieu voi bang
 
     public void initialize() {
         // initStudents();
@@ -130,8 +130,7 @@ public class StudentManagementController {
         String gender = cbGender.getValue();
 
         if (!email.matches(Regex.EMAIL)) {
-            AlertHelper.showAlert(AlertType.ERROR, "Lỗi", null,
-                    "Email không hợp lệ, đuôi email phải là @st.phenikaa-uni.edu.vn");
+            AlertHelper.showAlert(AlertType.ERROR, "Lỗi", null, "Email không hợp lệ");
             return;
         }
 
@@ -175,7 +174,7 @@ public class StudentManagementController {
     }
 
     public void onClickDelete(ActionEvent actionEvent) {
-        if (tableStudents.getSelectionModel().getSelectedItems() == null) {
+        if (tableStudents.getSelectionModel().getSelectedItems() == null) { // neu khong chon gi thi khong lam gi
             return;
         }
 

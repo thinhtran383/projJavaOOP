@@ -130,7 +130,8 @@ public class StudentManagementController {
         String gender = cbGender.getValue();
 
         if (!email.matches(Regex.EMAIL)) {
-            AlertHelper.showAlert(AlertType.ERROR, "Lỗi", null, "Email không hợp lệ");
+            AlertHelper.showAlert(AlertType.ERROR, "Lỗi", null,
+                    "Email không hợp lệ, đuôi email phải là @st.phenikaa-uni.edu.vn");
             return;
         }
 

@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
+import com.App;
 import com.Controller.LoginController;
 import com.Helper.AlertHelper;
 import com.Models.Grade;
@@ -138,5 +139,9 @@ public class InforStudentController {
             AlertHelper.showAlert(AlertType.INFORMATION, "Thông báo", null, "Xuất dữ liệu thành công!");
         }
     }
+
+    // public void onCickUpdateInfo(ActionEvent actionEvent) {
+    // App.setRootPop("");
+    // }
 
 }

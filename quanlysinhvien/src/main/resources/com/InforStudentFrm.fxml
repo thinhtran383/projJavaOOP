@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="791.0" prefWidth="1009.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="790.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Controller.Student.InforStudentController">
     <stylesheets>
         <URL value="@css/Style.css" />
         <URL value="@css/Metro-UI.css" />
@@ -23,9 +23,9 @@
                 <Font name="System Bold" size="17.0" />
             </font>
         </Label>
-        <Line endX="894.0000610351562" endY="3.814697265625E-6" layoutX="115.0" layoutY="63.0" startX="-115.0" />
-        <Line endX="897.0" layoutX="112.0" layoutY="265.0" startX="-112.0" />
-        <TableView fx:id="tableGrades" layoutY="387.0" prefHeight="263.0" prefWidth="1009.0">
+        <Line endX="845.0" layoutX="115.0" layoutY="63.0" startX="-115.0" />
+        <Line endX="848.0" endY="-1.52587890625E-5" layoutX="112.0" layoutY="265.0" startX="-112.0" />
+        <TableView fx:id="tableGrades" layoutY="387.0" prefHeight="263.0" prefWidth="960.0">
             <columns>
                 <TableColumn fx:id="subjectIdColumn" prefWidth="127.555535197258" text="Subject ID">
                     <graphic>
@@ -161,6 +161,6 @@
          </children>
       </VBox>
       <Button layoutX="422.0" layoutY="688.0" mnemonicParsing="false" onAction="#onClickExport" text="Export" />
-      <Button layoutX="823.0" layoutY="28.0" mnemonicParsing="false" style="-fx-background-color: #D76067; -fx-background-radius: 50px;" text="Update information" />
+      <Button layoutX="777.0" layoutY="28.0" mnemonicParsing="false" onAction="#onClickUpdateInfo" style="-fx-background-color: #D76067; -fx-background-radius: 20px;" text="Update Infomation" />
     </children>
 </AnchorPane>

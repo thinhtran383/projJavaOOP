@@ -4,13 +4,17 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="791.0" prefWidth="1009.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Controller.AdminController">
+<AnchorPane prefHeight="798.0" prefWidth="959.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Controller.AdminController">
    <children>
-      <TabPane fx:id="tabPane" prefHeight="798.0" prefWidth="1009.0" stylesheets="@css/Style.css">
+      <TabPane fx:id="tabPane" prefHeight="798.0" prefWidth="959.0" stylesheets="@css/Style.css">
          <tabs>
             <Tab closable="false" text="Subject Mangement" />
             <Tab closable="false" text="Student Management" />
-            <Tab closable="false" text="Enrollment Management" />
+            <Tab closable="false" text="Enrollment Management">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
             <Tab closable="false" text="Grades Management" />
          </tabs>
       </TabPane>

@@ -7,9 +7,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="791.0" prefWidth="1009.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Controller.FrmLoadController">
+<AnchorPane prefHeight="740.0" prefWidth="965.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Controller.FrmLoadController">
    <children>
-      <AnchorPane layoutY="-8.0" prefHeight="798.0" prefWidth="249.0" style="-fx-background-color: #3DA5FF;">
+      <AnchorPane layoutY="-8.0" prefHeight="748.0" prefWidth="249.0" style="-fx-background-color: #2b579a;">
          <children>
             <Text fx:id="lblLogin" fill="WHITE" layoutX="14.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" underline="true" wrappingWidth="213.6171875">
                <font>
@@ -21,9 +21,9 @@
                   <Image url="@img/pngwing.com.png" />
                </image>
             </ImageView>
-            <Button fx:id="btnSignout" layoutX="80.0" layoutY="713.0" mnemonicParsing="false" onAction="#onClickLogout" prefHeight="25.0" prefWidth="65.0" text="Sign out" />
+            <Button fx:id="btnSignout" layoutX="81.0" layoutY="659.0" mnemonicParsing="false" onAction="#onClickLogout" prefHeight="25.0" prefWidth="65.0" text="Sign out" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="pane" layoutX="257.0" layoutY="-1.0" prefHeight="791.0" prefWidth="764.0" />
+      <AnchorPane fx:id="pane" layoutX="257.0" layoutY="-1.0" prefHeight="727.0" prefWidth="764.0" />
    </children>
 </AnchorPane>

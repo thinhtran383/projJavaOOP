@@ -21,6 +21,9 @@ public class DataManager {
     // private static ObservableList<Courses> coursesRegisterList =
     // FXCollections.observableArrayList();
 
+    // private static ObservableList<Student> studentInfoList =
+    // FXCollections.observableArrayList();
+
     private static ArrayList<Account> studentAccounts = new ArrayList<>();
     private static ArrayList<Account> adminAccounts = new ArrayList<>();
 

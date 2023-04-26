@@ -174,6 +174,15 @@ public class SubjectManagementController {
             AlertHelper.showAlert(AlertType.ERROR, "Lỗi", null, "Số tín chỉ không hợp lệ");
             return;
         }
+
+        // kiem tra neu la chuoi thi bao loi
+        try {
+            credits = Integer.parseInt(txtCredits.getText());
+        } catch (NumberFormatException e) {
+            AlertHelper.showAlert(AlertType.ERROR, "Lỗi", null, "Số tín chỉ không hợp lệ");
+            return;
+        }
+
         ExecuteQuery query = new ExecuteQuery("UPDATE courses SET course_id = '" + id + "', course_name = '" + name
                 + "', course_credit = " + credits + " WHERE course_id = '" + oldId + "'");
         query.executeUpdate();

@@ -8,7 +8,9 @@ import java.time.LocalDate;
 import com.App;
 import com.Controller.LoginController;
 import com.Helper.AlertHelper;
+import com.Helper.DataManager;
 import com.Models.Grade;
+import com.Models.Student;
 import com.utils.ExecuteQuery;
 import com.utils.ExportToExcel;
 
@@ -54,11 +56,27 @@ public class InforStudentController {
 
     private ObservableList<Grade> gradeList = FXCollections.observableArrayList();
 
+    private ObservableList<Student> studentList = DataManager.getStudentsList();
+
     public void initialize() {
-        initInfo();
+        // initInfo();
         initGrade();
         showOnTable();
+        initInfo_2();
+    }
 
+    private void initInfo_2() {
+        for (Student student : studentList) {
+            if (student.getStudentId().equals(getStudentId())) {
+                lbStudentId.setText(student.getStudentId());
+                lbStudentName.setText(student.getStudentName());
+                lbPhoneNumber.setText(student.getStudentPhone());
+                lbStudentEmail.setText(student.getStudentEmail());
+                lbStudentAddress.setText(student.getStudentAddress());
+                lbStudentGender.setText(student.getStudentGender());
+                lbDob.setText(student.getStudentBirthday().toString());
+            }
+        }
     }
 
     private void initInfo() {

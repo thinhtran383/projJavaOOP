@@ -5,32 +5,53 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="791.0" prefWidth="1009.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Controller.Admin.NotificationController">
    <children>
       <AnchorPane layoutY="-1.0" prefHeight="400.0" prefWidth="600.0">
          <children>
-            <TableView fx:id="tbNoti" layoutX="1.0" layoutY="55.0" prefHeight="347.0" prefWidth="473.0">
+            <TableView fx:id="tbNoti" layoutX="1.0" layoutY="55.0" onMouseClicked="#onMouseClick" prefHeight="347.0" prefWidth="1009.0">
               <columns>
-                <TableColumn fx:id="columnId" prefWidth="45.0" text="ID" />
-                <TableColumn fx:id="columnIdStudent" prefWidth="120.0" text="ID Student" />
-                  <TableColumn fx:id="columnTime" prefWidth="208.0" text="Time" />
-                  <TableColumn fx:id="columnType" prefWidth="99.0" text="Type" />
+                <TableColumn fx:id="columnId" prefWidth="86.66665315628052" text="ID">
+                     <graphic>
+                        <ImageView fitHeight="28.0" fitWidth="27.0" opacity="0.49" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/tabel.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></TableColumn>
+                <TableColumn fx:id="columnIdStudent" prefWidth="385.7777404785156" text="ID Student">
+                     <graphic>
+                        <ImageView fitHeight="28.0" fitWidth="27.0" opacity="0.49" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/tabel.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></TableColumn>
+                  <TableColumn fx:id="columnTime" prefWidth="533.3334045410156" text="Time">
+                     <graphic>
+                        <ImageView fitHeight="28.0" fitWidth="27.0" opacity="0.49" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/tabel.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></TableColumn>
               </columns>
             </TableView>
-            <Button fx:id="btDetail" layoutX="484.0" layoutY="116.0" mnemonicParsing="false" onAction="#onClickDetail" prefHeight="30.0" prefWidth="94.0" text="detail" />
-            <Text layoutX="31.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search: " wrappingWidth="61.13671875">
+            <TextField layoutX="99.0" layoutY="15.0" prefHeight="25.0" prefWidth="181.0" />
+            <Text fill="#2b579a" layoutX="14.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search:" wrappingWidth="79.3828125">
                <font>
-                  <Font size="18.0" />
+                  <Font size="23.0" />
                </font>
             </Text>
-            <TextField layoutX="99.0" layoutY="15.0" prefHeight="25.0" prefWidth="181.0" />
          </children>
       </AnchorPane>
+      <Button fx:id="btDetail1" layoutX="406.0" layoutY="531.0" mnemonicParsing="false" onAction="#onClickDetail" prefHeight="30.0" prefWidth="94.0" text="Detail" />
    </children>
    <stylesheets>
       <URL value="@css/Style.css" />

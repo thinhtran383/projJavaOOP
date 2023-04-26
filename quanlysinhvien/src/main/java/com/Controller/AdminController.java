@@ -28,6 +28,9 @@ public class AdminController {
         Tab tab4 = tabPane.getTabs().get(3);
         loadFrm(tab4, "/com/GradesManagementFrm.fxml");
 
+        Tab tab5 = tabPane.getTabs().get(4);
+        loadFrm(tab5, "/com/notificationFrm.fxml");
+
     }
 
     private void loadFrm(Tab tab, String path) {

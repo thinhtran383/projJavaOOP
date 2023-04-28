@@ -1,9 +1,10 @@
 package com.Controller.Admin;
 
 import java.io.IOException;
-
+import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
 import com.App;
 import com.Models.Notification;
@@ -13,13 +14,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-
+import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 
-public class NotificationController {
+public class NotificationController implements Initializable {
     @FXML
     private TableView<Notification> tbNoti;
     @FXML
@@ -33,7 +33,8 @@ public class NotificationController {
 
     protected static ObservableList<Notification> list = FXCollections.observableArrayList();
 
-    public void initialize() {
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
         showOnTable();
         initNoti();
     }
@@ -59,11 +60,6 @@ public class NotificationController {
         columnIdStudent.setCellValueFactory(new PropertyValueFactory<>("studentid"));
         columnTime.setCellValueFactory(new PropertyValueFactory<>("created_at"));
         tbNoti.setItems(list);
-    }
-
-    public void onMouseClick(MouseEvent mouseEvent) {
-        // String idSelected = tbNoti.getSelectionModel().getSelectedItem().getId();
-        // System.out.println(idSelected);
     }
 
     public void onClickDetail(ActionEvent actionEvent) throws IOException {

@@ -1,14 +1,17 @@
 package com.Controller.Student;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ResourceBundle;
 
 import com.App;
 import com.Controller.LoginController;
 import com.Helper.AlertHelper;
 import com.Helper.DataManager;
+import com.Interfaces.ButtonAction;
 import com.Models.Grade;
 import com.Models.Student;
 import com.utils.ExecuteQuery;
@@ -18,13 +21,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class InforStudentController {
+public class InforStudentController extends AlertHelper implements Initializable, ButtonAction {
     @FXML
     private Label lbStudentId;
     @FXML
@@ -58,8 +62,8 @@ public class InforStudentController {
 
     private ObservableList<Student> studentList = DataManager.getStudentsList();
 
-    public void initialize() {
-        // initInfo();
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
         initGrade();
         showOnTable();
         initInfo_2();
@@ -152,6 +156,7 @@ public class InforStudentController {
         tableGrades.setItems(gradeList);
     }
 
+    @Override
     public void onClickExport(ActionEvent actionEvent) {
         if (AlertHelper.showConfirmation("Bạn có muốn xuất dữ liệu ra excel không?")) {
             ExportToExcel.exportToExcel(tableGrades, "students.xlsx");
@@ -159,8 +164,37 @@ public class InforStudentController {
         }
     }
 
-    public void onClickUpdateInfo(ActionEvent actionEvent) throws IOException {
+    @Override
+    public void onClickUpdate(ActionEvent actionEvent) {
         // App.setRootPop("DanhSachMonDaDangKyFrm", "Danh sách môn đã đăng ký", false);
-        App.setRootPop("InputInfoFrm", "Info", false);
+        try {
+            App.setRootPop("InputInfoFrm", "Info", false);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onClickAdd(ActionEvent event) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'onClickAdd'");
+    }
+
+    @Override
+    public void onClickDelete(ActionEvent event) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'onClickDelete'");
+    }
+
+    @Override
+    public void onClickClear(ActionEvent event) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'onClickClear'");
+    }
+
+    @Override
+    public void onClickRefresh(ActionEvent event) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'onClickRefresh'");
     }
 }

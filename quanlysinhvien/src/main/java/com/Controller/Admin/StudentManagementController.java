@@ -1,10 +1,13 @@
 package com.Controller.Admin;
 
+import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ResourceBundle;
 
 import com.Helper.AlertHelper;
 import com.Helper.DataManager;
+import com.Interfaces.ButtonAction;
 import com.Models.Student;
 import com.constants.Regex;
 import com.utils.ExecuteQuery;
@@ -14,13 +17,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
-public class StudentManagementController {
+public class StudentManagementController extends AlertHelper implements Initializable, ButtonAction {
     @FXML
     private TableColumn<Student, String> idColumn;
     @FXML
@@ -68,7 +72,8 @@ public class StudentManagementController {
     // FXCollections.observableArrayList();
     private ObservableList<Student> studentsList = DataManager.getStudentsList(); // tao rang buoc du lieu voi bang
 
-    public void initialize() {
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
         // initStudents();
         showOnTable();
         setCbGender();
@@ -120,6 +125,7 @@ public class StudentManagementController {
         cbGender.setValue(null);
     }
 
+    @Override
     public void onClickAdd(ActionEvent actionEvent) {
         String id = txtStudentId.getText();
         String name = txtName.getText();
@@ -187,10 +193,12 @@ public class StudentManagementController {
         }
     }
 
+    @Override
     public void onClickClear(ActionEvent actionEvent) {
         clear();
     }
 
+    @Override
     public void onClickUpdate(ActionEvent actionEvent) {
         String id = txtStudentId.getText();
         String oldId = tableStudents.getSelectionModel().getSelectedItem().getStudentId();
@@ -232,6 +240,7 @@ public class StudentManagementController {
         clear();
     }
 
+    @Override
     public void onClickExport(ActionEvent actionEvent) {
         if (studentsList.isEmpty()) {
             AlertHelper.showAlert(AlertType.ERROR, "Lỗi", null, "Không có dữ liệu để xuất");
@@ -278,4 +287,11 @@ public class StudentManagementController {
             tableStudents.setItems(searchList);
         }
     }
+
+    @Override
+    public void onClickRefresh(ActionEvent event) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'onClickRefresh'");
+    }
+
 }

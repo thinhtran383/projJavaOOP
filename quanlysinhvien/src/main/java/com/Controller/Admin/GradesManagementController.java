@@ -1,7 +1,11 @@
 package com.Controller.Admin;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import com.Helper.AlertHelper;
 import com.Helper.DataManager;
+import com.Interfaces.ButtonAction;
 import com.Models.Grade;
 import com.utils.ExecuteQuery;
 import com.utils.ExportToExcel;
@@ -10,6 +14,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
@@ -19,7 +24,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
-public class GradesManagementController {
+public class GradesManagementController extends AlertHelper implements ButtonAction, Initializable {
 
     @FXML
     TableView<Grade> tableGrades;
@@ -62,7 +67,8 @@ public class GradesManagementController {
 
     private String selectedFilter = "<None>";
 
-    public void initialize() {
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
         showOnTable();
         setCbFillter();
     }
@@ -144,6 +150,7 @@ public class GradesManagementController {
         clear();
     }
 
+    @Override
     public void onClickExport(ActionEvent actionEvent) {
         if (gradesList.isEmpty()) {
             AlertHelper.showAlert(AlertType.ERROR, "Thông báo", null, "Không có dữ liệu để xuất!");
@@ -196,6 +203,24 @@ public class GradesManagementController {
             }
             tableGrades.setItems(filterList);
         }
+    }
+
+    @Override
+    public void onClickAdd(ActionEvent event) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'onClickAdd'");
+    }
+
+    @Override
+    public void onClickDelete(ActionEvent event) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'onClickDelete'");
+    }
+
+    @Override
+    public void onClickClear(ActionEvent event) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'onClickClear'");
     }
 
 }

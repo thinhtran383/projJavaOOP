@@ -2,7 +2,6 @@ package com.Controller.Admin;
 
 import java.sql.ResultSet;
 
-import com.Controller.Student.InforStudentController;
 import com.Helper.AlertHelper;
 import com.Helper.DataManager;
 import com.Models.Student;
@@ -10,24 +9,36 @@ import com.utils.ExecuteQuery;
 
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
 
 public class DetailFrmController {
+    @FXML
+    private Label lbNameOld;
+    @FXML
+    private Label lbGenderOld;
+    @FXML
+    private Label lbEmailOld;
+    @FXML
+    private Label lbPhoneOld;
+    @FXML
+    private Label lbDobOld;
+    @FXML
+    private Label lbAddressOld;
 
-    public Label lbNameOld;
-    public Label lbGenderOld;
-    public Label lbEmailOld;
-    public Label lbPhoneOld;
-    public Label lbDobOld;
-    public Label lbAddressOld;
-
-    public Label lbNameNew;
-    public Label lbGenderNew;
-    public Label lbEmailNew;
-    public Label lbPhoneNew;
-    public Label lbPDobNew;
-    public Label lbAddressNew;
+    @FXML
+    private Label lbNameNew;
+    @FXML
+    private Label lbGenderNew;
+    @FXML
+    private Label lbEmailNew;
+    @FXML
+    private Label lbPhoneNew;
+    @FXML
+    private Label lbPDobNew;
+    @FXML
+    private Label lbAddressNew;
 
     private ObservableList<Student> studentsList = DataManager.getStudentsList();
 

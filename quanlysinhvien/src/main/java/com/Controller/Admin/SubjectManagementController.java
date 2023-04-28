@@ -1,7 +1,11 @@
 package com.Controller.Admin;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import com.Helper.AlertHelper;
 import com.Helper.DataManager;
+import com.Interfaces.ButtonAction;
 import com.Models.Courses;
 import com.utils.ExecuteQuery;
 import com.utils.ExportToExcel;
@@ -10,6 +14,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -19,7 +24,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
-public class SubjectManagementController {
+public class SubjectManagementController extends AlertHelper implements Initializable, ButtonAction {
     @FXML
     private Button btnDelete;
     @FXML
@@ -50,7 +55,8 @@ public class SubjectManagementController {
 
     private ObservableList<Courses> coursesList = DataManager.getCoursesList();
 
-    public void initialize() { // tu dong khoi chay khi duoc goi
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
         // initCourses();
         showOnTable(); // khoi tao bang du lieu
     }
@@ -79,19 +85,6 @@ public class SubjectManagementController {
         tableCourses.setItems(coursesList);
     }
 
-    public void onPressExport(ActionEvent actionEvent) {
-        if (coursesList.isEmpty()) {
-            AlertHelper.showAlert(AlertType.ERROR, "Lỗi", null, "Không có dữ liệu để xuất");
-        } else {
-
-            if (AlertHelper.showConfirmation("Bạn có muốn xuất dữ liệu ra excel không?")) {
-                ExportToExcel.exportToExcel(tableCourses, "Courses.xlsx");
-                AlertHelper.showAlert(AlertType.INFORMATION, "Thông báo", null, "Xuất dữ liệu thành công!");
-            }
-        }
-
-    }
-
     public void setOnMouseClick(MouseEvent mouseEvent) {
         Courses course = tableCourses.getSelectionModel().getSelectedItem();
         txtid.setText(course.getCourseId());
@@ -106,6 +99,7 @@ public class SubjectManagementController {
         txtCredits.clear();
     }
 
+    @Override
     public void onClickDelete(ActionEvent actionEvent) { // bug
         if (tableCourses.getSelectionModel().getSelectedItem() == null)
             return;
@@ -119,6 +113,7 @@ public class SubjectManagementController {
         clear();
     }
 
+    @Override
     public void onClickAdd(ActionEvent actionEvent) { // chua hoan thien
         int credits;
         String id = txtid.getText();
@@ -160,6 +155,7 @@ public class SubjectManagementController {
         clear();
     }
 
+    @Override
     public void onClickUpdate(ActionEvent actionEvent) {
         String id = txtid.getText();
 
@@ -212,4 +208,24 @@ public class SubjectManagementController {
             tableCourses.setItems(searchList);
         }
     }
+
+    @Override
+    public void onClickExport(ActionEvent event) {
+        if (coursesList.isEmpty()) {
+            AlertHelper.showAlert(AlertType.ERROR, "Lỗi", null, "Không có dữ liệu để xuất");
+        } else {
+
+            if (AlertHelper.showConfirmation("Bạn có muốn xuất dữ liệu ra excel không?")) {
+                ExportToExcel.exportToExcel(tableCourses, "Courses.xlsx");
+                AlertHelper.showAlert(AlertType.INFORMATION, "Thông báo", null, "Xuất dữ liệu thành công!");
+            }
+        }
+    }
+
+    @Override
+    public void onClickRefresh(ActionEvent event) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'onClickRefresh'");
+    }
+
 }

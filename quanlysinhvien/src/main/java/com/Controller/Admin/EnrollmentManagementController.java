@@ -1,10 +1,13 @@
 package com.Controller.Admin;
 
+import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
 import com.Helper.AlertHelper;
 import com.Helper.DataManager;
+import com.Interfaces.ButtonAction;
 import com.Models.Courses;
 import com.Models.Grade;
 import com.Models.Student;
@@ -15,12 +18,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
-public class EnrollmentManagementController {
+public class EnrollmentManagementController extends AlertHelper implements Initializable, ButtonAction {
     @FXML
     private TableView<Student> tableStudents;
     @FXML
@@ -44,7 +49,8 @@ public class EnrollmentManagementController {
 
     private String studentId; // su dung trong ham onMouseClick va onClickDelete
 
-    public void initialize() {
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
         showStudentOnTable();
         showCoursesOnTable();
     }
@@ -107,6 +113,7 @@ public class EnrollmentManagementController {
         enrollList.remove(tableCourses.getSelectionModel().getSelectedItem());
     }
 
+    @Override
     public void onClickExport(ActionEvent actionEvent) {
         // tao mot table view de chua du lieu
         TableView<Grade> table = new TableView<Grade>();
@@ -124,8 +131,26 @@ public class EnrollmentManagementController {
 
         // them cac cot vao table view
         table.getColumns().addAll(studentIdColumn, studentNameColumn, subjectIdColumn, subjectNameColumn);
+        ExportToExcel.exportToExcel(table, "EnrollList.xlsx");
+        AlertHelper.showAlert(AlertType.INFORMATION, "Thông báo", null, "Xuất dữ liệu thành công!");
+    }
 
-        ExportToExcel.exportToExcel(table, "EnrollList.xlsx3");
+    @Override
+    public void onClickAdd(ActionEvent event) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'onClickAdd'");
+    }
+
+    @Override
+    public void onClickUpdate(ActionEvent event) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'onClickUpdate'");
+    }
+
+    @Override
+    public void onClickClear(ActionEvent event) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'onClickClear'");
     }
 
 }

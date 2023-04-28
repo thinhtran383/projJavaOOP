@@ -1,21 +1,23 @@
 package com.Controller;//package com.Controller;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Tab;
 
 import javafx.scene.control.TabPane;
 
-public class AdminController {
+public class AdminController implements Initializable {
     @FXML
     private TabPane tabPane;
 
-    @FXML
-    private void initialize() {
-
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
         Tab tab1 = tabPane.getTabs().get(0);
         loadFrm(tab1, "/com/SubjectMangement.fxml");
 
@@ -30,7 +32,6 @@ public class AdminController {
 
         Tab tab5 = tabPane.getTabs().get(4);
         loadFrm(tab5, "/com/notificationFrm.fxml");
-
     }
 
     private void loadFrm(Tab tab, String path) {
@@ -43,4 +44,5 @@ public class AdminController {
             e.printStackTrace();
         }
     }
+
 }

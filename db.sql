@@ -11,6 +11,19 @@ PRIMARY KEY (admin_id),
 UNIQUE KEY username (username)
 );
 
+-- Tạo bảng students
+CREATE TABLE students (
+student_id varchar(10) NOT NULL,
+name varchar(50) DEFAULT NULL,
+address varchar(100) DEFAULT NULL,
+phone_number varchar(20) DEFAULT NULL,
+email varchar(50) DEFAULT NULL,
+date_of_birth date DEFAULT NULL,
+gender varchar(10) DEFAULT NULL,
+PRIMARY KEY (student_id)
+);
+
+
 -- Tạo bảng courses
 CREATE TABLE courses (
 course_id VARCHAR(10) NOT NULL,
@@ -41,17 +54,6 @@ PRIMARY KEY (student_id),
 UNIQUE KEY username (username)
 );
 
--- Tạo bảng students
-CREATE TABLE students (
-student_id varchar(10) NOT NULL,
-name varchar(50) DEFAULT NULL,
-address varchar(100) DEFAULT NULL,
-phone_number varchar(20) DEFAULT NULL,
-email varchar(50) DEFAULT NULL,
-date_of_birth date DEFAULT NULL,
-gender varchar(10) DEFAULT NULL,
-PRIMARY KEY (student_id)
-);
 
 CREATE TABLE pending (
   id INT AUTO_INCREMENT,
@@ -78,14 +80,7 @@ ALTER TABLE grades ADD FOREIGN KEY (course_id) REFERENCES courses (course_id) ON
 
 
 
--- Cấp quyền cho admin
-GRANT SELECT, UPDATE, INSERT, DELETE ON students TO adminaccount;
-GRANT SELECT, UPDATE, INSERT, DELETE ON studentaccount TO adminaccount;
-GRANT SELECT, UPDATE, INSERT, DELETE ON grades TO adminaccount;
 
--- Cấp quyền cho sinh viên
-GRANT SELECT, UPDATE ON students TO studentaccount;
-GRANT SELECT ON grades TO studentaccount;
 
 
 -- in ra du lieu cua tat ca cac bang
@@ -98,14 +93,8 @@ SELECT * FROM students;
 -- viet query cap nhat student_id cua bang students thanh 21010001
 UPDATE students SET student_id = '21010001' WHERE student_id = '988';
 
--- xoa du lieu cua tat ca cac bang
-DELETE FROM students;
-DELETE FROM courses;
-DELETE from adminaccount;
-DELETE FROM studentaccount;
-DELETE FROM grades;
 
--- them du lieu 
+
 
 INSERT INTO adminaccount (admin_id, username, password) VALUES ('1', 'admin', 'admin');
 INSERT INTO studentaccount (student_id, username, password) VALUES ('2', 'student', 'student');
@@ -140,11 +129,10 @@ INSERT INTO studentaccount (student_id, username, password)
 VALUES ('21010002', 'tranthib', 'password456');
 
 
--- tao bang pending gom cac truong du lieu nhu bang student nhung khong co rang buoc
 
 
 
-
+-- Test case. Khong phai chay
 SELECT attendance_grade, midterm_grade, final_grade
 FROM grades
 WHERE student_id = '21010001' AND course_id = 'CSC101';
@@ -219,8 +207,6 @@ delete from pending WHERE student_id = '21010001';
 DELETE FROM pending;
 
 --them id vao bang pending tu dong tang 1 cho moi ban ghi
-
-
 
 SELECT name, address, phone_number, email, date_of_birth, gender, created_at 
 FROM pending 

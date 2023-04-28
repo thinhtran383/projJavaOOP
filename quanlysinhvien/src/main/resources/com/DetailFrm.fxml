@@ -13,7 +13,7 @@
 
 <AnchorPane prefHeight="467.0" prefWidth="668.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Controller.Admin.DetailFrmController">
    <children>
-      <Text layoutX="265.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Detail">
+      <Text layoutX="285.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Detail">
          <font>
             <Font name="System Bold" size="22.0" />
          </font>

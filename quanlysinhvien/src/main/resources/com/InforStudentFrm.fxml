@@ -161,6 +161,6 @@
          </children>
       </VBox>
       <Button layoutX="422.0" layoutY="688.0" mnemonicParsing="false" onAction="#onClickExport" text="Export" />
-      <Button layoutX="702.0" layoutY="28.0" mnemonicParsing="false" onAction="#onClickUpdateInfo" style="-fx-background-color: #D76067; -fx-background-radius: 20px;" text="Update Infomation" />
+      <Button layoutX="702.0" layoutY="28.0" mnemonicParsing="false" onAction="#onClickUpdate" style="-fx-background-color: #D76067; -fx-background-radius: 20px;" text="Update Infomation" />
     </children>
 </AnchorPane>
